@@ -1,0 +1,74 @@
+﻿<section class="content-header">
+    <h1>
+        Cập nhật giao dịch
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="transactions">Nhóm chính</a></li>
+        <li class="active">Cập nhật</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thông tin giao dịch</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmEditTransaction" role="form" ng-submit="EditTransaction()">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Dịch vụ</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="metaDescription" ng-model="transaction.ServiceName" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-repeat="prop in transaction.TransactionDetails">
+                        <label for="inputPassword3" class="col-sm-3 control-label">{{prop.PropertyServiceName}}</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="metaDescription" ng-model="prop.Money" />
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Ngày giao dịch</label>
+                        <div class="col-sm-9 col-sm-offset-1 input-group date" id='datetimepicker1'>
+                            <input type='text' class="form-control" ng-model="transaction.TransactionDate" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!--<div class="form-group">
+                        <label class="col-sm-3 control-label">Ngày giao dịch</label>
+                        <div class="col-sm-9" ng-cloak>
+                            <md-content>
+                                <md-datepicker format="HH:mm:ss" ng-model="transaction.TransactionDate" md-placeholder="Enter date"></md-datepicker>
+                            </md-content>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="iscash" ng-model="transaction.IsCash" ng-checked="transaction.IsCash"> Tiền mặt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="transactions" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddMainServiceGroup.$invalid" class="btn btn-info pull-right">Lưu</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+</section>
+
+

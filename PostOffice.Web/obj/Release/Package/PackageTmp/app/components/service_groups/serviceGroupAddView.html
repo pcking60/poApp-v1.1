@@ -1,0 +1,96 @@
+﻿<section class="content-header">
+    <h1>
+        Thêm mới nhóm dịch vụ
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="service_groups">Nhóm Dịch vụ</a></li>
+        <li class="active">Thêm mới</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thông tin thêm mới</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddServiceGroup" role="form" ng-submit="AddServiceGroup()">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tên nhóm dịch vụ</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required ng-change="changeSomething()" autofocus name="name" ng-model="serviceGroup.Name"  >
+                            <span ng-show="frmAddServiceGroup.name.$invalid" class="text-danger">* Phải nhập tên nhóm dịch vụ</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tiêu đề SEO</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" required name="alias" ng-model="serviceGroup.Alias" placeholder="seo title">
+                            <span ng-show="frmAddServiceGroup.alias.$invalid" class="text-danger">* Phải nhập tiêu đề SEO</span> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Danh mục cha</label>
+                        <div class="col-sm-9">
+                            <select name="parentId" class="form-control" ng-model="serviceGroup.MainServiceGroupId" ng-options="option.Id as option.Name for option in parentGroups">
+                                <option value="">Danh mục gốc</option>
+                            </select>
+                            <input type="hidden" name="parentId" ng-model="serviceGroup.MainServiceGroupId" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" name="metaDescription" ng-model="serviceGroup.MetaDescription"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!--<div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Thứ tự</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="DisplayOrder" ng-model="serviceGroup.DisplayOrder" placeholder="order by">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Hình ảnh</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="image" ng-model="serviceGroup.Image">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Meta Keyword</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="metaKeyword" ng-model="serviceGroup.MetaKeyWord">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Meta Description</label>
+                        <div class="col-sm-9">
+                            <textarea type="email" class="form-control" name="metaDescription" ng-model="serviceGroup.MetaDescription"></textarea>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="status" ng-model="serviceGroup.Status" ng-checked="serviceGroup.Status"> Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="service_groups" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddServiceGroup.$invalid" class="btn btn-info pull-right">Lưu</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+</section>

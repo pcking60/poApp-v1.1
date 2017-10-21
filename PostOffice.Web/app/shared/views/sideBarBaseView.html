@@ -1,0 +1,146 @@
+﻿<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar" ng-controller="rootController">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+        <div class="pull-left image" style="background-color: #222d32; border: none">          
+            <i class="fa fa-dollar fa-3x" style="color: white"> </i>            
+        </div>
+        <div class="pull-left info" style="background-color: #222d32; border: none">                       
+            <span class="info-box-text text-center text-bold" style="color: white">Accounts</span>
+            <span class="info-box-number text-center text-bold" style="color: white">{{userInfo.TotalEarn | currency}}</span>            
+        </div>        
+    </div>
+    
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu"  ng-hide="!isAdmin && !isManager">
+
+        <li class="header" style="color: #fff024 !important;"><i class="fa fa-cogs" aria-hidden="true"></i> <span style="padding-right:2px"></span>Quản lý hệ thống</li>
+        <li class="treeview" >
+            <a href="javascript:void(0);">
+                <i class="fa fa-files-o"></i>
+                <span>User and Role</span>
+                <span class="pull-right"><i class="fa fa-chevron-down text-aqua"></i></span>
+            </a>
+            <ul class="treeview-menu">
+                <li ng-hide="!isAdmin"><a ui-sref="application_groups"><i class="fa fa-circle-o text-aqua"></i> Nhóm người dùng</a></li>
+                <li ng-hide="!isAdmin"><a ui-sref="application_roles"><i class="fa fa-circle-o"></i> Quyền</a></li>
+                <li ng-hide="!isAdmin && !isManager"><a ui-sref="application_users"><i class="fa fa-circle-o"></i> Người dùng</a></li>
+            </ul>
+        </li>
+        <li class="treeview" ng-hide="!isAdmin">
+            <a href="javascript:void(0);">
+                <i class="fa fa-files-o"></i>
+                <span>Categories</span>
+                <span class="pull-right"><i class="fa fa-chevron-down text-aqua"></i></span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a ui-sref="districts"><i class="fa fa-circle-o"></i> Thành phố, huyện</a></li>
+                <li><a ui-sref="pos"><i class="fa fa-circle-o"></i> Bưu cục</a></li>
+            </ul>
+        </li>
+        <li class="treeview" ng-hide="!isAdmin">
+            <a href="javascript:void(0);">
+                <i class="fa fa-files-o"></i>
+                <span>Bussiness</span>
+                <span class="pull-right"><i class="fa fa-chevron-down text-aqua"></i></span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a ui-sref="main_service_groups"><i class="fa fa-circle-o"></i> Nhóm chính </a></li>
+                <li><a ui-sref="service_groups"><i class="fa fa-circle-o"></i> Nhóm dịch vụ </a></li>
+                <li><a ui-sref="services"><i class="fa fa-circle-o"></i> Dịch vụ</a></li>
+                <li><a ui-sref="property_services"><i class="fa fa-circle-o"></i> Thuộc tính</a></li>
+            </ul>
+        </li>
+        <!--<li class="treeview">
+            <a href="javascript:void(0);">
+                <i class="fa fa-files-o"></i>
+                <span>User Dashboard</span>
+                <span class="label label-primary pull-right"><i class="fa fa-chevron-down"></i></span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a ui-sref="user_dashboard"><i class="fa fa-circle-o"></i> Vùng nhập liệu</a></li>
+                <li><a ui-sref="statistic_revenue"><i class="fa fa-area-chart"></i> Thống kê</a></li>
+            </ul>
+        </li>-->
+    </ul>   
+    
+    <ul class="sidebar-menu" ng-controller="mainServiceGroupsListController">
+        <li class="header" style="color: #fff024 !important;">
+            <i class="fa fa-line-chart" aria-hidden="true"></i> 
+            <span style="padding-right:2px"></span>
+            Giao dịch khách hàng
+        </li>
+        <li class="treeview" ng-repeat="item in mainServiceGroups">
+            <a href="">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                <span>{{item.Name}}</span>
+                <span class="pull-right"><i class="fa fa-chevron-down text-aqua"></i></span>
+            </a>
+            <!--List ServiceGroup by MainServiceGroupId-->
+            <ul class="treeview-menu" ng-controller="serviceGroupsListController">
+                <li ng-repeat="item1 in serviceGroups">
+                    <a href="" ng-if="item1.MainServiceGroupId==item.Id">
+                        <i class="fa fa-angle-double-right text-aqua"></i>
+                        <span>{{item1.Name}}</span>
+                        <span class="pull-right" ng-if="item1.NoService>0"><i class="fa fa-hand-o-down"></i></span>
+                    </a>
+                    <!--List Service by ServiceGroupId-->
+                    <ul class="treeview-menu">
+                        <li ng-repeat="item2 in ::Services track by item2.ID" ng-if="item2.GroupID==item1.ID">
+                            <a ui-sref="add_transaction({id:item2.ID})">
+                                <i class="fa fa-angle-double-right text-aqua"></i>
+                                <span>{{item2.Name}}</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>            
+        </li>
+
+    </ul>
+    
+    <ul class="sidebar-menu">
+        <li class="header" style="color: #fff024 !important;"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span style="padding-right:2px"></span>Thống kê && Báo cáo</li>
+        <li class="treeview">
+            <a href="">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                <span>Danh mục thống kê</span>
+                <span class="pull-right"><i class="fa fa-chevron-down text-aqua"></i></span>
+            </a>
+
+            <ul class="treeview-menu">
+                <li>
+                    <a ui-sref="timeStatistic">
+                        <i class="fa fa-circle-o text-red"></i>
+                        <span>Thống kê tổng hợp</span>
+                    </a>
+                </li>
+                <li ng-hide="!isAdmin && !isManager && !isCounter">
+                    <a ui-sref="reports">
+                        <i class="fa fa-circle-o text-yellow"></i>
+                        <span>Xuất báo cáo</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul class="sidebar-menu">
+        <li class="header" style="color: #fff024 !important;"><i class="fa fa-money" aria-hidden="true"></i> <span style="padding-right:2px"></span>Tiết kiệm bưu điện</li>
+        <li class="treeview">
+            <a ui-sref="tkbdhistory">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                <span>Lịch sử giao dịch TKBD</span>
+            </a>
+         </li>
+        <li>
+            <a ui-sref="tkbds">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                <span>Doanh thu tính lương TKBD</span>
+            </a>
+        </li>        
+    </ul>
+</section>
+<!-- /.sidebar -->

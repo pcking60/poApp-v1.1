@@ -1,0 +1,55 @@
+﻿<section class="content-header">
+    <h1>
+        Thêm mới nhóm chính
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="main_service_groups">Nhóm chính</a></li>
+        <li class="active">Thêm mới</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thông tin thêm mới</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddMainServiceGroup" role="form" ng-submit="AddMainServiceGroup()">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tên nhóm chính</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required ng-change="changeSomething()" autofocus name="name" ng-model="mainServiceGroup.Name"  >
+                            <span ng-show="frmAddMainServiceGroup.name.$invalid" class="text-danger">* Phải nhập tên nhóm</span>
+                        </div>
+                    </div>                                       
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Mô tả</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" name="metaDescription" ng-model="mainServiceGroup.MetaDescription"></textarea>
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="status" ng-model="mainServiceGroup.Status" ng-checked="mainServiceGroup.Status"> Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="main_service_groups" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddMainServiceGroup.$invalid" class="btn btn-info pull-right">Lưu</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+</section>

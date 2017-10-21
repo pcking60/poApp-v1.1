@@ -1,0 +1,120 @@
+﻿<section class="content-header">
+    <h1>
+        Thực hiện giao dịch
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="transactions">Giao dịch</a></li>
+        <li class="active">Thêm mới</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thông tin giao dịch</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddTransaction" role="form" ng-submit="AddTransaction()">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-1">
+                    <!-- Service -->
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Dịch vụ</label>
+                        <!--<div class="col-sm-9">
+                            <input type="text" class="form-control" name="service" readonly ng-model="transaction.Service.Name" />
+                        </div>-->
+                        <div class="col-sm-9">
+                            <ui-select ng-model="transaction.Service.Name"
+                                       ng-disabled="ctrl.disabled"
+                                       on-select="onSelectCallback($item, $model)"
+                                       title="Chọn dịch vụ">
+                                <ui-select-match placeholder="chọn or tìm kiếm dịch vụ trong nhóm..">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="item.ID as item in Services | filter: $select.search">
+                                    <small>
+                                        {{item.Name}}
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <!-- Properties -->
+                    <div class="form-group" ng-repeat="prop in transaction.Properties">
+                        <ng-form name="userFieldForm">
+                            <label for="inputPassword3" class="col-sm-3 control-label">{{prop.Name}}</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control col-sm-7" name="propertyValue" ng-model="prop.Money" required />
+                                <span class="text-blue" ng-hide="userFieldForm.propertyValue.$invalid">Bạn vừa nhập vào: {{prop.Money | number}}</span>
+                                <span ng-show="userFieldForm.propertyValue.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                            </div>
+                        </ng-form>
+                    </div>
+                    <!-- TransactionDate -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Ngày giao dịch</label>
+                        <div class='input-group date col-sm-9' id='datetimepicker1'>
+                            <input type='datetime' name="transactionDate" class="form-control" ng-model="transaction.TransactionDate" />
+                            <!--<span ng-show="frmAddTransaction.transactionDate.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>-->
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Nhân viên thực hiện</label>                      
+                        <div class="col-sm-9">
+                            <ui-select ng-model="transaction.UserId"
+                                       ng-disabled="ctrl.disabled"
+                                       on-select="onSelectStaffCallback($item, $model)"
+                                       title="Chọn dịch vụ">
+                                <ui-select-match placeholder="chọn or gõ để tìm kiếm nhân viên ..">{{$select.selected.FullName}}</ui-select-match>
+                                <ui-select-choices repeat="item.Id as item in transaction.Users | filter: $select.search">
+                                    <small>
+                                        {{item.FullName}}
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <!--<div class="form-group">
+                        <label class="col-sm-3 control-label">Ngày giao dịch</label>
+                        <div class="col-sm-9" ng-cloak>
+                            <md-content>
+                                <md-datepicker format="HH:mm:ss" ng-model="transaction.TransactionDate" md-placeholder="Enter date"></md-datepicker>
+                            </md-content>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="iscash" ng-model="transaction.IsCash" ng-checked="transaction.IsCash"> Tiền mặt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="transactions" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddTransaction.$invalid" class="btn btn-info pull-right">Lưu</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            maxDate: moment(),
+            minDate: moment().subtract(2, 'day'),
+
+        });
+    });
+</script>

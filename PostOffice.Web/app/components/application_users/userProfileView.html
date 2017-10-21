@@ -1,0 +1,242 @@
+﻿<section class="content-header">
+    <h1>
+        User Profile
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">User profile</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" src="../../../Assets/admin/img/user4-128x128.jpg" alt="User profile picture">
+                    <p class="text-muted text-center">{{authentication.fullName}}</p>
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Điểm</b> <a class="pull-right">Coming soon</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Danh hiệu</b> <a class="pull-right">Coming soon</a>
+                        </li>                        
+                    </ul>
+                    <a href="" class="btn btn-primary btn-block"><b>Chỗ này nên làm gì nhỉ?</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- About Me Box -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Về bản thân</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <strong><i class="fa fa-book margin-r-5"></i> Chức danh</strong>
+                    <p class="text-muted">
+                        Tổng giám đốc cty trong tương lai
+                    </p>
+                    <hr>
+                    <strong><i class="fa fa-map-marker margin-r-5"></i> Đơn vị</strong>
+                    <p class="text-muted">Malibu, California</p>
+                    <hr>
+                    <strong><i class="fa fa-pencil margin-r-5"></i> Thôn tin chi tiết và liên hệ</strong>
+                    <p>
+                        <span class="label label-info">ID: 05.010</span>
+                        <br />
+                        <span class="label label-warning">CMT: 365456897</span>    
+                        <br />                    
+                        <span class="label label-danger">Phone: 0123.69.69.69</span>
+                        <br />
+                        <span class="label label-success">Email: vip@supervip.com</span>   
+                        <br />
+                        <span class="label label-primary">Address: tỉnh lộ 69, Sun Son, abcxyz</span>                     
+                    </p>
+                    <hr>
+                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Sở thích</strong>
+                    <p>Thích giao lưu và quan hệ.</p>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="nav-tabs-custom" ng-controller="userProfileViewController as tab">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a ng-click="tab.selectTab(1)" data-toggle="tab" style="cursor:pointer">Activity</a></li>                   
+                    <li><a ng-click="tab.selectTab(2)" data-toggle="tab" style="cursor:pointer">Settings</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="active tab-pane" ng-show="tab.isTab(1)">
+                        <!-- Post -->
+                        <div class="post">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="../../../Assets/admin/img/user1-128x128.jpg" alt="user image">
+                                <span class="username">
+                                    <a href="#">Jonathan Burke Jr.</a>
+                                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                                </span>
+                                <span class="description">Shared publicly - 7:30 PM today</span>
+                            </div>
+                            <!-- /.user-block -->
+                            <p>
+                                Lorem ipsum represents a long-held tradition for designers,
+                                typographers and the like. Some people hate it and argue for
+                                its demise, but others ignore the hate as they create awesome
+                                tools to help create filler text for everyone from bacon lovers
+                                to Charlie Sheen fans.
+                            </p>
+                            <ul class="list-inline">
+                                <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                                <li>
+                                    <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                </li>
+                                <li class="pull-right">
+                                    <a href="#" class="link-black text-sm">
+                                        <i class="fa fa-comments-o margin-r-5"></i> Comments
+                                        (5)
+                                    </a>
+                                </li>
+                            </ul>
+                            <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                        </div>
+                        <!-- /.post -->
+                        <!-- Post -->
+                        <div class="post clearfix">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="../../../Assets/admin/img/user7-128x128.jpg" alt="User Image">
+                                <span class="username">
+                                    <a href="#">Sarah Ross</a>
+                                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                                </span>
+                                <span class="description">Sent you a message - 3 days ago</span>
+                            </div>
+                            <!-- /.user-block -->
+                            <p>
+                                Lorem ipsum represents a long-held tradition for designers,
+                                typographers and the like. Some people hate it and argue for
+                                its demise, but others ignore the hate as they create awesome
+                                tools to help create filler text for everyone from bacon lovers
+                                to Charlie Sheen fans.
+                            </p>
+                            <form class="form-horizontal">
+                                <div class="form-group margin-bottom-none">
+                                    <div class="col-sm-9">
+                                        <input class="form-control input-sm" placeholder="Response">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.post -->
+                        <!-- Post -->
+                        <div class="post">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="../../../Assets/admin/img/user6-128x128.jpg" alt="User Image">
+                                <span class="username">
+                                    <a href="#">Adam Jones</a>
+                                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                                </span>
+                                <span class="description">Posted 5 photos - 5 days ago</span>
+                            </div>
+                            <!-- /.user-block -->
+                            <div class="row margin-bottom">
+                                <div class="col-sm-6">
+                                    <img class="img-responsive" src="../../../Assets/admin/img/photo1.png" alt="Photo">
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <img class="img-responsive" src="../../../Assets/admin/img/photo2.png" alt="Photo">
+                                            <br>
+                                            <img class="img-responsive" src="../../../Assets/admin/img/photo3.jpg" alt="Photo">
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-6">
+                                            <img class="img-responsive" src="../../../Assets/admin/img/photo4.jpg" alt="Photo">
+                                            <br>
+                                            <img class="img-responsive" src="../../../Assets/admin/img/photo1.png" alt="Photo">
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                            <ul class="list-inline">
+                                <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                                <li>
+                                    <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                </li>
+                                <li class="pull-right">
+                                    <a href="#" class="link-black text-sm">
+                                        <i class="fa fa-comments-o margin-r-5"></i> Comments
+                                        (5)
+                                    </a>
+                                </li>
+                            </ul>
+                            <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                        </div>
+                        <!-- /.post -->
+                    </div>
+                    <!-- /.tab-pane -->                   
+                    <div class="active tab-pane" ng-show="tab.isTab(2)">
+                        <form class="form-horizontal" novalidate name="frmUpdateInfo" ng-submit="updateInfo()">
+                            <div class="form-group" >
+                                <label for="inputName" class="col-sm-2 control-label">Họ tên</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="info.FullName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="info.Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Phone</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName" placeholder="Phone" ng-model="info.PhoneNumber">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSkills" class="col-sm-2 control-label">Mật khẩu</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputSkills" placeholder="password" ng-model="info.Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputExperience" class="col-sm-2 control-label">Địa chỉ</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="inputExperience" placeholder="Address" ng-model="info.Address"></textarea>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" ng-disabled="frmUpdateInfo.$pristine" class="btn btn-danger">Xác nhận</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

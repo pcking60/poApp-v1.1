@@ -1,0 +1,75 @@
+﻿<section class="content-header">
+    <h1>
+        Cập nhật giao dịch
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="property_services">Damh mục thuộc tính</a></li>
+        <li class="active">Cập nhật</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thông tin cập nhật</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmEditPropertyService" role="form" ng-submit="EditPropertyService()">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tên</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-change="changeSomething()" required name="name" ng-model="propertyService.Name">
+                            <span ng-show="frmEditPropertyService.name.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Phần trăm</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" required name="code" ng-model="propertyService.Percent">
+                            <span ng-show="frmEditPropertyService.code.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Dịch vụ</label>
+                        <div class="col-sm-9">
+                            <select name="parentId" class="form-control" ng-model="propertyService.ServiceID" ng-options="option.ID as option.Name for option in listServices">
+                                <option value="">Chọn dịch vụ</option>
+                            </select>
+                            <input type="hidden" name="parentId" ng-model="propertyService.ServiceID" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Mô tả</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" required name="code" ng-model="propertyService.MetaDescription"></textarea>
+                            <span ng-show="frmAddPropertyService.code.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Trạng thái</label>
+                        <div class="col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="status" ng-model="propertyService.Status" ng-checked="propertyService.Status"> Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </div>    <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="property_services" class="btn btn-default">Hủy</button>
+                <button type="submit" class="btn btn-info pull-right">Lưu</button>
+            </div>
+                <!-- /.box-footer -->
+            
+        </form>
+    </div>
+</section>

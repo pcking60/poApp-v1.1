@@ -1,0 +1,143 @@
+﻿<section class="content-header">
+  <h1>
+    Thêm mới người dùng
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a ui-sref="accounts">Danh mục người dùng</a></li>
+    <li class="active"><a href="#">Thêm mới</a></li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{account.FullName}}</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" role="form" novalidate name="frmAddAccount" ng-submit="addAccount()">
+          <div class="box-body">
+            <div class="col-md-10">
+              <div class="form-group" ng-class="{ 'has-error' : frmAddAccount.name.$invalid && !frmAddAccount.name.$pristine }">
+                <label class="col-sm-3 control-label">Họ tên người dùng</label>
+                <div class="col-sm-9">
+                  <input type="text" name="name" class="form-control"
+                         required reqired-message="Họ tên bắt buộc." ng-model="account.FullName">
+                </div>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : frmAddAccount.userName.$invalid && !frmAddAccount.userName.$pristine }">
+                <label class="col-sm-3 control-label">Tài khoản</label>
+                <div class="col-sm-9">
+                  <input type="text" name="userName" class="form-control"
+                         required reqired-message="Tài khoản bắt buộc." ng-model="account.UserName">
+                </div>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : frmAddAccount.password.$invalid && !frmAddAccount.password.$pristine }">
+                <label class="col-sm-3 control-label">Mật khẩu</label>
+                <div class="col-sm-9">
+                  <input type="password" name="password" class="form-control"
+                         required reqired-message="Mật khẩu bắt buộc." ng-model="account.PasswordHash">
+                </div>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : frmAddAccount.email.$invalid && !frmAddAccount.email.$pristine }">
+                <label class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="email" name="email" class="form-control"
+                         required reqired-message="Email bắt buộc." ng-model="account.Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Điện thoại</label>
+                <div class="col-sm-9">
+                  <input type="text" name="password" class="form-control"
+                          ng-model="account.PhoneNumber">
+                </div>
+              </div>
+              <!--<div class="form-group" ng-class="{ 'has-error' : frmAddAccount.birthDate.$invalid && !frmAddAccount.birthDate.$pristine }">
+                <label class="col-sm-3 control-label">Ngày sinh</label>
+                <div class="col-sm-9">
+                  <input type="date" name="birthDate" class="form-control"
+                          ng-model="account.BirthDay">
+                </div>
+              </div>-->
+                <!--<div class="form-group">
+                    <label class="col-sm-3 control-label">Ngày giao dịch</label>
+                    <div class='input-group date col-sm-9' id='datetimepicker1'>
+                        <input type='datetime' name="transactionDate" class="form-control" ng-model="transaction.TransactionDate" />
+                        <span ng-show="frmAddTransaction.transactionDate.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>-->
+                <!--<div class="form-group">
+                    <label class="col-sm-3 control-label">Ngày sinh</label>
+                    <div class="col-sm-9">
+                        <datetimepicker ng-model="transaction.TransactionDate"
+                                        show-meridian="showMeridian"
+                                        date-format="{{format}}"
+                                        date-options="dateOptions"
+                                        datepicker-append-to-body="false"
+                                        name="datetimepicker"
+                                        show-spinners="true"
+                                        min-date="minDate"
+                                        max-date="maxDate">
+                             Use date-ng-click="open($event, opened)" to override date ng-click 
+                        </datetimepicker>
+                    </div>                    
+                </div>-->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Ngày sinh</label>
+                    <div class="col-sm-9" >
+                        <md-content layout-padding ng-cloak>
+                            <div layout-gt-xs="row">
+                                <div flex-gt-xs>
+                                    <md-datepicker ng-model="account.BirthDay" md-placeholder="Enter date" ></md-datepicker>
+                                </div>
+                            </div>
+                        </md-content>                        
+                    </div>                        
+                </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Đơn vị quản lý</label>
+                        <div class="col-sm-9">
+                            <select name="districtid" class="form-control" required ng-model="account.POID" ng-options="option.ID as option.Name for option in pos">
+                                <option value="">Chọn đơn vị quản lý</option>
+                            </select>
+                            <input type="hidden" name="parentId" ng-model="account.POID" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3 control-label">
+                            <label for="inputPassword3">Thuộc nhóm </label>
+                        </div>
+
+                        <div class="checkbox col-sm-9">
+                            <label ng-repeat="group in groups" class="checkbox">
+                                <input type="checkbox" checklist-model="account.Groups" checklist-value="group"> {{group.Name}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Trạng thái</label>
+                        <div class="checkbox col-sm-9">
+                            <label>
+                                <input type="checkbox" name="status" ng-model="account.Status" ng-checked="account.Status"> Kích hoạt
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-9">
+                            <a ui-sref="application_users" class="btn btn-default">Hủy bỏ</a>
+                            <input type="submit" ng-disabled="frmAddAccount.$invalid" class="btn btn-primary" value="Lưu lại" />
+                        </div>
+                    </div>
+                </div>
+          </div><!-- /.box-body -->
+        </form>
+      </div><!-- /.box -->
+    </div>
+  </div>
+</section>

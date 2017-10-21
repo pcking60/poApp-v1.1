@@ -1,0 +1,176 @@
+[
+  {
+    "outputFileName": "Assets/admin/libs/ckeditor/ckeditor.min.js",
+    "inputFiles": [
+      "Assets/admin/libs/ckeditor/ckeditor.js"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/ckfinder/ckfinder.min.js",
+    "inputFiles": [
+      "Assets/admin/libs/ckfinder/ckfinder.js"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/js/angular-ui-router.min.js",
+    "inputFiles": [
+      "Assets/admin/js/angular-ui-router.js"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/moment/moment.min.js",
+    "inputFiles": [
+      "Assets/admin/libs/moment/moment.js"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/js/demo.min.js",
+    "inputFiles": [
+      "Assets/admin/js/demo.js"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/js/app.min.js",
+    "inputFiles": [
+      "Assets/admin/js/app.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/statistic/reportsController.min.js",
+    "inputFiles": [
+      "app/components/statistic/reportsController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/statistic/timeStatisticController.min.js",
+    "inputFiles": [
+      "app/components/statistic/timeStatisticController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/tkbd/TKBDHistoryController.min.js",
+    "inputFiles": [
+      "app/components/tkbd/TKBDHistoryController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/tkbd/tkbdImportListController.min.js",
+    "inputFiles": [
+      "app/components/tkbd/tkbdImportListController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/tkbd/tkbdListController.min.js",
+    "inputFiles": [
+      "app/components/tkbd/tkbdListController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/tkbd/tkbd.module.min.js",
+    "inputFiles": [
+      "app/components/tkbd/tkbd.module.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/statistic/unitStatisticController.min.js",
+    "inputFiles": [
+      "app/components/statistic/unitStatisticController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/statistic/revenueStatisticController.min.js",
+    "inputFiles": [
+      "app/components/statistic/revenueStatisticController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/transactions/transactionAddController.min.js",
+    "inputFiles": [
+      "app/components/transactions/transactionAddController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/transactions/transactionEditController.min.js",
+    "inputFiles": [
+      "app/components/transactions/transactionEditController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/transactions/transactions.module.min.js",
+    "inputFiles": [
+      "app/components/transactions/transactions.module.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/transactions/transactionsListController.min.js",
+    "inputFiles": [
+      "app/components/transactions/transactionsListController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/login/loginController.min.js",
+    "inputFiles": [
+      "app/components/login/loginController.js"
+    ]
+  },
+  {
+    "outputFileName": "app/components/login/loginView.min.html",
+    "inputFiles": [
+      "app/components/login/loginView.html"
+    ]
+  },
+  {
+    "outputFileName": "app/app.min.js",
+    "inputFiles": [
+      "app/app.js"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/bootstrap-daterangepicker/daterangepicker.min.js",
+    "inputFiles": [
+      "Assets/admin/libs/bootstrap-daterangepicker/daterangepicker.js"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/iCheck/minimal/_all.min.css",
+    "inputFiles": [
+      "Assets/admin/libs/iCheck/minimal/_all.css"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/iCheck/square/_all.min.css",
+    "inputFiles": [
+      "Assets/admin/libs/iCheck/square/_all.css"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/iCheck/flat/_all.min.css",
+    "inputFiles": [
+      "Assets/admin/libs/iCheck/flat/_all.css"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/iCheck/line/_all.min.css",
+    "inputFiles": [
+      "Assets/admin/libs/iCheck/line/_all.css"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/iCheck/all.min.css",
+    "inputFiles": [
+      "Assets/admin/libs/iCheck/all.css"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/iCheck/polaris/polaris.min.css",
+    "inputFiles": [
+      "Assets/admin/libs/iCheck/polaris/polaris.css"
+    ]
+  },
+  {
+    "outputFileName": "Assets/admin/libs/iCheck/futurico/futurico.min.css",
+    "inputFiles": [
+      "Assets/admin/libs/iCheck/futurico/futurico.css"
+    ]
+  }
+]

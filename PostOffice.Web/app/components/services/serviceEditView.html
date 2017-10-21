@@ -1,0 +1,103 @@
+﻿<section class="content-header">
+    <h1>
+        Cập nhật {{service.Name}}
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="services">Dịch vụ</a></li>
+        <li class="active">Cập nhật {{service.Name}}</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thông tin cập nhật</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmEditService" role="form" ng-submit="EditService()">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tên dịch vụ</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-change="getSeoTitle()" name="name" ng-model="service.Name" placeholder="Tên dịch vụ">
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tiêu đề SEO</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="alias" ng-model="service.Alias" placeholder="seo title">
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Đơn vị tính</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="alias" ng-model="service.Unit">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Thuế VAT</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="alias" ng-model="service.VAT">
+                        </div>
+                    </div>                    
+                    <!--<div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Cách tính lương</label>
+                        <div class="col-sm-9">
+                            <select name="menthod" class="form-control-static" ng-model="service.PayMethodID" ng-options="option.ID as option.Name for option in paymentMethods">
+                                <option value="">Danh mục gốc</option>
+                            </select>
+                            <input type="hidden" name="paymentMethod" ng-model="service.PayMethodID" />
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Danh mục cha</label>
+                        <div class="col-sm-9">
+                            <select name="parentId" class="form-control" ng-model="service.GroupID" ng-options="option.ID as option.Name for option in parentGroups">
+                                <option value="">Danh mục gốc</option>
+                            </select>
+                            <input type="hidden" name="parentId" ng-model="service.GroupID" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Giá vốn</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="buyin" ng-model="service.BuyIn" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Giá bán</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="soldout" ng-model="service.SoldOut">
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Mô tả</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" name="metaDescription" ng-model="service.MetaDescription"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Kích hoạt</label>
+                        <div class="col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="status" ng-model="service.Status" ng-checked="service.Status"> Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="services" class="btn btn-default">Hủy</button>
+                <button type="submit" class="btn btn-info pull-right">Lưu</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+</section>

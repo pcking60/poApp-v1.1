@@ -1,0 +1,89 @@
+﻿<section class="content-header">
+    <h1>
+        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        Xuất báo cáo giao dịch khách hàng
+    </h1>
+    <small>Thực hiện xuất file báo cáo Excel theo các chỉ tiêu được chọn</small>
+
+</section>
+<section class="content" style="min-height:500px">
+    <div class="row">
+        <div class="box box-info">
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" novalidate name="frmReport" role="form" ng-submit="Report()">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Chọn chức năng </label>
+                        <div class="col-sm-6">
+                            <select name="function" class="form-control" 
+                                    ng-model="report.functionId" ng-options="option.Id as option.Name for option in functions" required>
+                                <!--<option value="">Chọn chức năng cần xuất báo cáo</option>-->
+                            </select>
+                            <span ng-show="frmReport.function.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                            <input type="hidden" name="parentId" ng-model="report.functionId" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Chọn thời gian</label>
+                        <div class="col-sm-6">
+                            <input date-range-picker required class="form-control date-picker" type="text" ng-model="report.date" name="name" 
+                                   options="{locale: {separator: ' to ', format: 'DD-MM-YYYY'}}"/>
+                            <span ng-show="frmReport.name.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                        </div>
+                    </div>                    
+                    <div class="form-group" ng-hide="!isAdmin">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Chọn đơn vị</label>
+                        <div class="col-sm-6">
+                            <select name="districtId" class="form-control" ng-change="updatePos(report.districtId)" ng-model="report.districtId" ng-options="option.ID as option.Name for option in report.districts">
+                                <option value="">Tất cả</option>
+                            </select>
+                            <input type="hidden" name="districtId" ng-model="report.districtId" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-hide="!isManager && !isAdmin">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Chọn bưu cục</label>
+                        <div class="col-sm-6">
+                            <select name="poId" class="form-control" ng-change="updateUser(report.poId)" ng-model="report.poId" ng-options="option.ID as option.Name for option in report.pos">
+                                <option value="">Tất cả</option>
+                            </select>
+                            <input type="hidden" name="poId" ng-model="report.poId" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="report.functionId==3 || report.functionId==5">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Chọn nhân viên</label>
+                        <div class="col-sm-6">
+                            <select name="staff" class="form-control" ng-change="updateService(report.userId)" ng-model="report.userId" ng-options="option.Id as option.FullName for option in report.users">
+                                <option value="">Tất cả</option>
+                            </select>
+                            <input type="hidden" name="parentId" ng-model="report.userId" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="report.functionId==4 || report.functionId==5">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Chọn dịch vụ </label>
+                        <div class="col-sm-6">
+                            <select name="staff" class="form-control" ng-model="report.serviceId" ng-options="option.ID as option.Name for option in services">
+                                <option value="">Tất cả</option>
+                            </select>
+                            <input type="hidden" name="parentId" ng-model="report.serviceId" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <span class="col-sm-4"><button type="submit" class="btn bg-orange btn-flat" ng-disabled="frmReport.$invalid" style="opacity:1">Xuất báo cáo</button></span>
+                            <span class="col-sm-4"><button type="reset" class="btn  btn-flat bg-olive " ng-click="Reset()">Làm mới</button></span>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <!--<div class="box-footer">
+                    <button type="submit" class="btn btn-info " ng-disabled="frmTimeStatistic.$invalid">Lưu</button>
+                </div>-->
+                <!-- /.box-footer -->
+            </form>
+        </div>
+    </div> <!-- /.row-->
+   
+</section>

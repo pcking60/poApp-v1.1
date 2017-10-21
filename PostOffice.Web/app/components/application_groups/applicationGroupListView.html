@@ -1,0 +1,83 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Danh sách nhóm
+
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a ui-sref="application_groups">Nhóm người dùng</a></li>    
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+  <!-- Default box -->
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Danh mục nhóm người dùng</h3>      
+    </div>
+    <div class="box-body">
+      <div class="row">        
+        <div class="col-md-6">
+          <button class="btn btn-success" ui-sref="add_application_group">Thêm mới</button>
+          <button class="btn btn-danger" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa</button>
+        </div>
+      </div>
+      <div class="row"><br /></div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <td style="width: 5%" class="text-center text-bold"><input name="all" type="checkbox" ng-click="selectAll()" /></td>
+                      <th style="width: 5%" class="text-center text-bold">ID</th>
+                      <th style="width:30%" class="text-center text-bold">Tên nhóm</th>
+                      <th style="width:15%" class="text-center text-bold">Số lượng user</th>
+                      <th style="width: 30%" class="text-center text-bold">Mô tả</th>
+                      <th style="width: 15%" class="text-center text-bold">Thao tác</th>
+                  </tr>
+                  <tr>
+                      <th></th>
+                      <th></th>
+                      <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Name" placeholder="auto search..."></th>
+                      <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.NoUser" placeholder="auto search..."></th>                      
+                      <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Description" placeholder="auto search..."></th>
+                      <th></th>
+                      
+                  </tr>
+              </thead>
+            <tr ng-repeat="item in data| filter: SmartSearch">
+              <td class="text-center"><input type="checkbox" ng-model="item.checked" name="all" /></td>
+              <td class="text-center">{{item.ID}}</td>
+              <td><a ui-sref="edit_application_group({id:item.ID})">{{item.Name}}</a></td>
+                <td class="text-center">{{item.NoUser}}</td>
+               
+              <td>
+                {{item.Description}}
+              </td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-primary" ui-sref="edit_application_group({id:item.ID})"><i class="fa fa-pencil"></i></button>
+                <button class="btn  btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash"></i></button>
+              </td>
+            </tr>
+            <tfoot>
+              <tr>
+                <td colspan="8"><span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+          <div ng-if="loading">
+              <div class="col-xs-4"></div>
+              <div class="col-xs-4">
+                  <i class="fa fa-spinner fa-3x fa-spin"></i>
+              </div>
+              <div class="col-xs-4"></div>
+          </div>
+      </div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+      <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getServiceGroups(page)"></pager-directive>
+    </div><!-- /.box-footer-->
+  </div><!-- /.box -->
+</section><!-- /.content -->

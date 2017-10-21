@@ -1,0 +1,41 @@
+﻿<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>POSTOFFICE</b> WEB APP</a>
+  </div><!-- /.login-logo -->
+  <div class="login-box-body">
+      <h3 class="login-box-msg">Đăng nhập hệ thống</h3>
+    <form role="form" method="post" ng-submit="loginSubmit()">
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Tài khoản" ng-model="loginData.userName" required autofocus>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" ng-model="loginData.password" required placeholder="Mật khẩu">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox"> Nhớ mật khẩu
+            </label>
+          </div>
+        </div><!-- /.col -->
+        <div class="col-xs-4">
+          <button id="login-form-submit-button" type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
+        </div><!-- /.col -->
+      </div>
+    </form> 
+  </div><!-- /.login-box-body -->   
+</div><!-- /.login-box -->
+
+
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>

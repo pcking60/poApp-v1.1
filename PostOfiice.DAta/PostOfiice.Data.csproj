@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36F400AA-EDA9-4EC9-995A-2DB388F865B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PostOfiice.DAta</RootNamespace>
+    <AssemblyName>PostOfiice.DAta</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\NameDuplicatedException.cs" />
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201705101422110_InitialDB.cs" />
+    <Compile Include="Migrations\201705101422110_InitialDB.Designer.cs">
+      <DependentUpon>201705101422110_InitialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705140516056_MainServiceGroupsTable.cs" />
+    <Compile Include="Migrations\201705140516056_MainServiceGroupsTable.Designer.cs">
+      <DependentUpon>201705140516056_MainServiceGroupsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705250241091_revenusStatistic.cs" />
+    <Compile Include="Migrations\201705250241091_revenusStatistic.Designer.cs">
+      <DependentUpon>201705250241091_revenusStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705250244435_unitStatistic.cs" />
+    <Compile Include="Migrations\201705250244435_unitStatistic.Designer.cs">
+      <DependentUpon>201705250244435_unitStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705310332252_updateTKBDHistory.cs" />
+    <Compile Include="Migrations\201705310332252_updateTKBDHistory.Designer.cs">
+      <DependentUpon>201705310332252_updateTKBDHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706050617004_changeDecimal.cs" />
+    <Compile Include="Migrations\201706050617004_changeDecimal.Designer.cs">
+      <DependentUpon>201706050617004_changeDecimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706090902268_reportFunction1_1.cs" />
+    <Compile Include="Migrations\201706090902268_reportFunction1_1.Designer.cs">
+      <DependentUpon>201706090902268_reportFunction1_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706090903530_reportFunction1_2.cs" />
+    <Compile Include="Migrations\201706090903530_reportFunction1_2.Designer.cs">
+      <DependentUpon>201706090903530_reportFunction1_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706090904584_reportFunction1.cs" />
+    <Compile Include="Migrations\201706090904584_reportFunction1.Designer.cs">
+      <DependentUpon>201706090904584_reportFunction1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706200228577_UpdateTransactionTable.cs" />
+    <Compile Include="Migrations\201706200228577_UpdateTransactionTable.Designer.cs">
+      <DependentUpon>201706200228577_UpdateTransactionTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706200800496_RP1Statistic.cs" />
+    <Compile Include="Migrations\201706200800496_RP1Statistic.Designer.cs">
+      <DependentUpon>201706200800496_RP1Statistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706290942403_TKBD.cs" />
+    <Compile Include="Migrations\201706290942403_TKBD.Designer.cs">
+      <DependentUpon>201706290942403_TKBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707050924225_UpdateTableTKBDHistory.cs" />
+    <Compile Include="Migrations\201707050924225_UpdateTableTKBDHistory.Designer.cs">
+      <DependentUpon>201707050924225_UpdateTableTKBDHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708300258469_create function Export by Service Group and Time.cs" />
+    <Compile Include="Migrations\201708300258469_create function Export by Service Group and Time.Designer.cs">
+      <DependentUpon>201708300258469_create function Export by Service Group and Time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708300340184_Export By Service Group_Time_Manager.cs" />
+    <Compile Include="Migrations\201708300340184_Export By Service Group_Time_Manager.Designer.cs">
+      <DependentUpon>201708300340184_Export By Service Group_Time_Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708300344563_Export_service_group_time_user.cs" />
+    <Compile Include="Migrations\201708300344563_Export_service_group_time_user.Designer.cs">
+      <DependentUpon>201708300344563_Export_service_group_time_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708300730317_Export_service_group_by_time_district.cs" />
+    <Compile Include="Migrations\201708300730317_Export_service_group_by_time_district.Designer.cs">
+      <DependentUpon>201708300730317_Export_service_group_by_time_district.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708300737316_Export_By_Service_Group_And_Time_District_Po.cs" />
+    <Compile Include="Migrations\201708300737316_Export_By_Service_Group_And_Time_District_Po.Designer.cs">
+      <DependentUpon>201708300737316_Export_By_Service_Group_And_Time_District_Po.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709010318466_group_by_service_district_time_bccp.cs" />
+    <Compile Include="Migrations\201709010318466_group_by_service_district_time_bccp.Designer.cs">
+      <DependentUpon>201709010318466_group_by_service_district_time_bccp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709010320132_group_by_service_time_bccp.cs" />
+    <Compile Include="Migrations\201709010320132_group_by_service_time_bccp.Designer.cs">
+      <DependentUpon>201709010320132_group_by_service_time_bccp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709010324548_group_by_service_district_po_user_time_bccp.cs" />
+    <Compile Include="Migrations\201709010324548_group_by_service_district_po_user_time_bccp.Designer.cs">
+      <DependentUpon>201709010324548_group_by_service_district_po_user_time_bccp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709010624064_group_by_service_district_po_time_bccp.cs" />
+    <Compile Include="Migrations\201709010624064_group_by_service_district_po_time_bccp.Designer.cs">
+      <DependentUpon>201709010624064_group_by_service_district_po_time_bccp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709031256244_Export_By_Service_Group_And_Time_District_Po_TCBC.cs" />
+    <Compile Include="Migrations\201709031256244_Export_By_Service_Group_And_Time_District_Po_TCBC.Designer.cs">
+      <DependentUpon>201709031256244_Export_By_Service_Group_And_Time_District_Po_TCBC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709031306100_Export_By_Service_Group_And_Time_District_TCBC.cs" />
+    <Compile Include="Migrations\201709031306100_Export_By_Service_Group_And_Time_District_TCBC.Designer.cs">
+      <DependentUpon>201709031306100_Export_By_Service_Group_And_Time_District_TCBC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709031308093_Export_By_Service_Group_And_Time_TCBC.cs" />
+    <Compile Include="Migrations\201709031308093_Export_By_Service_Group_And_Time_TCBC.Designer.cs">
+      <DependentUpon>201709031308093_Export_By_Service_Group_And_Time_TCBC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709031309514_Export_By_Service_Group_And_Time_District_Po_User_TCBC.cs" />
+    <Compile Include="Migrations\201709031309514_Export_By_Service_Group_And_Time_District_Po_User_TCBC.Designer.cs">
+      <DependentUpon>201709031309514_Export_By_Service_Group_And_Time_District_Po_User_TCBC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709040311567_Export_By_Service_Group_And_Time_PPTT.cs" />
+    <Compile Include="Migrations\201709040311567_Export_By_Service_Group_And_Time_PPTT.Designer.cs">
+      <DependentUpon>201709040311567_Export_By_Service_Group_And_Time_PPTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709040314388_Export_By_Service_Group_And_Time_District_PPTT.cs" />
+    <Compile Include="Migrations\201709040314388_Export_By_Service_Group_And_Time_District_PPTT.Designer.cs">
+      <DependentUpon>201709040314388_Export_By_Service_Group_And_Time_District_PPTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709040317474_Export_By_Service_Group_And_Time_District_Po_PPTT.cs" />
+    <Compile Include="Migrations\201709040317474_Export_By_Service_Group_And_Time_District_Po_PPTT.Designer.cs">
+      <DependentUpon>201709040317474_Export_By_Service_Group_And_Time_District_Po_PPTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709040323344_Export_By_Service_Group_And_Time_District_Po_User_PPTT.cs" />
+    <Compile Include="Migrations\201709040323344_Export_By_Service_Group_And_Time_District_Po_User_PPTT.Designer.cs">
+      <DependentUpon>201709040323344_Export_By_Service_Group_And_Time_District_Po_User_PPTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091538593_Export_TKBD_By_Condition.cs" />
+    <Compile Include="Migrations\201709091538593_Export_TKBD_By_Condition.Designer.cs">
+      <DependentUpon>201709091538593_Export_TKBD_By_Condition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091546081_Export_TKBD_By_Time_District.cs" />
+    <Compile Include="Migrations\201709091546081_Export_TKBD_By_Time_District.Designer.cs">
+      <DependentUpon>201709091546081_Export_TKBD_By_Time_District.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091551317_Export_TKBD_By_Time_District_PO.cs" />
+    <Compile Include="Migrations\201709091551317_Export_TKBD_By_Time_District_PO.Designer.cs">
+      <DependentUpon>201709091551317_Export_TKBD_By_Time_District_PO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709091553204_Export_TKBD_By_Time_District_PO_User.cs" />
+    <Compile Include="Migrations\201709091553204_Export_TKBD_By_Time_District_PO_User.Designer.cs">
+      <DependentUpon>201709091553204_Export_TKBD_By_Time_District_PO_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709100013476_Export_TKBD_Detail_By_Time_District.cs" />
+    <Compile Include="Migrations\201709100013476_Export_TKBD_Detail_By_Time_District.Designer.cs">
+      <DependentUpon>201709100013476_Export_TKBD_Detail_By_Time_District.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709100020109_Export_TKBD_Detail_By_Time.cs" />
+    <Compile Include="Migrations\201709100020109_Export_TKBD_Detail_By_Time.Designer.cs">
+      <DependentUpon>201709100020109_Export_TKBD_Detail_By_Time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709100021231_Export_TKBD_Detail_By_Time_District_Po.cs" />
+    <Compile Include="Migrations\201709100021231_Export_TKBD_Detail_By_Time_District_Po.Designer.cs">
+      <DependentUpon>201709100021231_Export_TKBD_Detail_By_Time_District_Po.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709100023050_Export_TKBD_Detail_By_Time_District_Po_User.cs" />
+    <Compile Include="Migrations\201709100023050_Export_TKBD_Detail_By_Time_District_Po_User.Designer.cs">
+      <DependentUpon>201709100023050_Export_TKBD_Detail_By_Time_District_Po_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709110332115_Get_TKBD_By_Time.cs" />
+    <Compile Include="Migrations\201709110332115_Get_TKBD_By_Time.Designer.cs">
+      <DependentUpon>201709110332115_Get_TKBD_By_Time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709110334110_Get_TKBD_By_Time_District.cs" />
+    <Compile Include="Migrations\201709110334110_Get_TKBD_By_Time_District.Designer.cs">
+      <DependentUpon>201709110334110_Get_TKBD_By_Time_District.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709110340256_Get_TKBD_By_Time_District_Po.cs" />
+    <Compile Include="Migrations\201709110340256_Get_TKBD_By_Time_District_Po.Designer.cs">
+      <DependentUpon>201709110340256_Get_TKBD_By_Time_District_Po.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709110342300_Get_TKBD_By_Time_District_Po_User.cs" />
+    <Compile Include="Migrations\201709110342300_Get_TKBD_By_Time_District_Po_User.Designer.cs">
+      <DependentUpon>201709110342300_Get_TKBD_By_Time_District_Po_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709110839000_change-tkbd-history.cs" />
+    <Compile Include="Migrations\201709110839000_change-tkbd-history.Designer.cs">
+      <DependentUpon>201709110839000_change-tkbd-history.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709150251109_Get_TKBD_By_Time_User.cs" />
+    <Compile Include="Migrations\201709150251109_Get_TKBD_By_Time_User.Designer.cs">
+      <DependentUpon>201709150251109_Get_TKBD_By_Time_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709150333434_Export_TKBD_Detail_By_Time_User.cs" />
+    <Compile Include="Migrations\201709150333434_Export_TKBD_Detail_By_Time_User.Designer.cs">
+      <DependentUpon>201709150333434_Export_TKBD_Detail_By_Time_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709150336227_Export_TKBD_By_Time_User.cs" />
+    <Compile Include="Migrations\201709150336227_Export_TKBD_By_Time_User.Designer.cs">
+      <DependentUpon>201709150336227_Export_TKBD_By_Time_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709151630491_change-tkbd-Amount.cs" />
+    <Compile Include="Migrations\201709151630491_change-tkbd-Amount.Designer.cs">
+      <DependentUpon>201709151630491_change-tkbd-Amount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709180937217_change-tkbdAmounts.cs" />
+    <Compile Include="Migrations\201709180937217_change-tkbdAmounts.Designer.cs">
+      <DependentUpon>201709180937217_change-tkbdAmounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709181008376_change-tkbdAmounts-1.cs" />
+    <Compile Include="Migrations\201709181008376_change-tkbdAmounts-1.Designer.cs">
+      <DependentUpon>201709181008376_change-tkbdAmounts-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710171504501_add-period-savingtype-interesttype-interestrate-table.cs" />
+    <Compile Include="Migrations\201710171504501_add-period-savingtype-interesttype-interestrate-table.Designer.cs">
+      <DependentUpon>201710171504501_add-period-savingtype-interesttype-interestrate-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710190303473_add-percent-column.cs" />
+    <Compile Include="Migrations\201710190303473_add-percent-column.Designer.cs">
+      <DependentUpon>201710190303473_add-percent-column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710190835436_full.cs" />
+    <Compile Include="Migrations\201710190835436_full.Designer.cs">
+      <DependentUpon>201710190835436_full.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710190851501_change-tkbd-history-v1.cs" />
+    <Compile Include="Migrations\201710190851501_change-tkbd-history-v1.Designer.cs">
+      <DependentUpon>201710190851501_change-tkbd-history-v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PostOfficeDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ApplicationGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserRepository.cs" />
+    <Compile Include="Repositories\DistrictRepository.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\InterestRateRepository.cs" />
+    <Compile Include="Repositories\MainServiceGroupRepository.cs" />
+    <Compile Include="Repositories\PORepository.cs" />
+    <Compile Include="Repositories\PropertyServiceRepository.cs" />
+    <Compile Include="Repositories\ServiceGroupRepository.cs" />
+    <Compile Include="Repositories\ServiceRepository.cs" />
+    <Compile Include="Repositories\StatisticRepository.cs" />
+    <Compile Include="Repositories\TKBDHistoryRepository.cs" />
+    <Compile Include="Repositories\TKBDRepository.cs" />
+    <Compile Include="Repositories\TransactionDetailRepository.cs" />
+    <Compile Include="Repositories\TransactionRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PostOffice.Common\PostOffice.Common.csproj">
+      <Project>{34c2a845-792d-41fa-9a23-f239797073d6}</Project>
+      <Name>PostOffice.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PostOffice.Model\PostOffice.Model.csproj">
+      <Project>{8ae2fe9e-cffa-4e55-a236-062952315084}</Project>
+      <Name>PostOffice.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705101422110_InitialDB.resx">
+      <DependentUpon>201705101422110_InitialDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705140516056_MainServiceGroupsTable.resx">
+      <DependentUpon>201705140516056_MainServiceGroupsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705250241091_revenusStatistic.resx">
+      <DependentUpon>201705250241091_revenusStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705250244435_unitStatistic.resx">
+      <DependentUpon>201705250244435_unitStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705310332252_updateTKBDHistory.resx">
+      <DependentUpon>201705310332252_updateTKBDHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706050617004_changeDecimal.resx">
+      <DependentUpon>201706050617004_changeDecimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706090902268_reportFunction1_1.resx">
+      <DependentUpon>201706090902268_reportFunction1_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706090903530_reportFunction1_2.resx">
+      <DependentUpon>201706090903530_reportFunction1_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706090904584_reportFunction1.resx">
+      <DependentUpon>201706090904584_reportFunction1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706200228577_UpdateTransactionTable.resx">
+      <DependentUpon>201706200228577_UpdateTransactionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706200800496_RP1Statistic.resx">
+      <DependentUpon>201706200800496_RP1Statistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706290942403_TKBD.resx">
+      <DependentUpon>201706290942403_TKBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707050924225_UpdateTableTKBDHistory.resx">
+      <DependentUpon>201707050924225_UpdateTableTKBDHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708300258469_create function Export by Service Group and Time.resx">
+      <DependentUpon>201708300258469_create function Export by Service Group and Time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708300340184_Export By Service Group_Time_Manager.resx">
+      <DependentUpon>201708300340184_Export By Service Group_Time_Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708300344563_Export_service_group_time_user.resx">
+      <DependentUpon>201708300344563_Export_service_group_time_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708300730317_Export_service_group_by_time_district.resx">
+      <DependentUpon>201708300730317_Export_service_group_by_time_district.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708300737316_Export_By_Service_Group_And_Time_District_Po.resx">
+      <DependentUpon>201708300737316_Export_By_Service_Group_And_Time_District_Po.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709010318466_group_by_service_district_time_bccp.resx">
+      <DependentUpon>201709010318466_group_by_service_district_time_bccp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709010320132_group_by_service_time_bccp.resx">
+      <DependentUpon>201709010320132_group_by_service_time_bccp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709010324548_group_by_service_district_po_user_time_bccp.resx">
+      <DependentUpon>201709010324548_group_by_service_district_po_user_time_bccp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709010624064_group_by_service_district_po_time_bccp.resx">
+      <DependentUpon>201709010624064_group_by_service_district_po_time_bccp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709031256244_Export_By_Service_Group_And_Time_District_Po_TCBC.resx">
+      <DependentUpon>201709031256244_Export_By_Service_Group_And_Time_District_Po_TCBC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709031306100_Export_By_Service_Group_And_Time_District_TCBC.resx">
+      <DependentUpon>201709031306100_Export_By_Service_Group_And_Time_District_TCBC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709031308093_Export_By_Service_Group_And_Time_TCBC.resx">
+      <DependentUpon>201709031308093_Export_By_Service_Group_And_Time_TCBC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709031309514_Export_By_Service_Group_And_Time_District_Po_User_TCBC.resx">
+      <DependentUpon>201709031309514_Export_By_Service_Group_And_Time_District_Po_User_TCBC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709040311567_Export_By_Service_Group_And_Time_PPTT.resx">
+      <DependentUpon>201709040311567_Export_By_Service_Group_And_Time_PPTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709040314388_Export_By_Service_Group_And_Time_District_PPTT.resx">
+      <DependentUpon>201709040314388_Export_By_Service_Group_And_Time_District_PPTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709040317474_Export_By_Service_Group_And_Time_District_Po_PPTT.resx">
+      <DependentUpon>201709040317474_Export_By_Service_Group_And_Time_District_Po_PPTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709040323344_Export_By_Service_Group_And_Time_District_Po_User_PPTT.resx">
+      <DependentUpon>201709040323344_Export_By_Service_Group_And_Time_District_Po_User_PPTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091538593_Export_TKBD_By_Condition.resx">
+      <DependentUpon>201709091538593_Export_TKBD_By_Condition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091546081_Export_TKBD_By_Time_District.resx">
+      <DependentUpon>201709091546081_Export_TKBD_By_Time_District.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091551317_Export_TKBD_By_Time_District_PO.resx">
+      <DependentUpon>201709091551317_Export_TKBD_By_Time_District_PO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709091553204_Export_TKBD_By_Time_District_PO_User.resx">
+      <DependentUpon>201709091553204_Export_TKBD_By_Time_District_PO_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709100013476_Export_TKBD_Detail_By_Time_District.resx">
+      <DependentUpon>201709100013476_Export_TKBD_Detail_By_Time_District.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709100020109_Export_TKBD_Detail_By_Time.resx">
+      <DependentUpon>201709100020109_Export_TKBD_Detail_By_Time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709100021231_Export_TKBD_Detail_By_Time_District_Po.resx">
+      <DependentUpon>201709100021231_Export_TKBD_Detail_By_Time_District_Po.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709100023050_Export_TKBD_Detail_By_Time_District_Po_User.resx">
+      <DependentUpon>201709100023050_Export_TKBD_Detail_By_Time_District_Po_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709110332115_Get_TKBD_By_Time.resx">
+      <DependentUpon>201709110332115_Get_TKBD_By_Time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709110334110_Get_TKBD_By_Time_District.resx">
+      <DependentUpon>201709110334110_Get_TKBD_By_Time_District.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709110340256_Get_TKBD_By_Time_District_Po.resx">
+      <DependentUpon>201709110340256_Get_TKBD_By_Time_District_Po.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709110342300_Get_TKBD_By_Time_District_Po_User.resx">
+      <DependentUpon>201709110342300_Get_TKBD_By_Time_District_Po_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709110839000_change-tkbd-history.resx">
+      <DependentUpon>201709110839000_change-tkbd-history.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709150251109_Get_TKBD_By_Time_User.resx">
+      <DependentUpon>201709150251109_Get_TKBD_By_Time_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709150333434_Export_TKBD_Detail_By_Time_User.resx">
+      <DependentUpon>201709150333434_Export_TKBD_Detail_By_Time_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709150336227_Export_TKBD_By_Time_User.resx">
+      <DependentUpon>201709150336227_Export_TKBD_By_Time_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709151630491_change-tkbd-Amount.resx">
+      <DependentUpon>201709151630491_change-tkbd-Amount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709180937217_change-tkbdAmounts.resx">
+      <DependentUpon>201709180937217_change-tkbdAmounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709181008376_change-tkbdAmounts-1.resx">
+      <DependentUpon>201709181008376_change-tkbdAmounts-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171504501_add-period-savingtype-interesttype-interestrate-table.resx">
+      <DependentUpon>201710171504501_add-period-savingtype-interesttype-interestrate-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710190303473_add-percent-column.resx">
+      <DependentUpon>201710190303473_add-percent-column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710190835436_full.resx">
+      <DependentUpon>201710190835436_full.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710190851501_change-tkbd-history-v1.resx">
+      <DependentUpon>201710190851501_change-tkbd-history-v1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

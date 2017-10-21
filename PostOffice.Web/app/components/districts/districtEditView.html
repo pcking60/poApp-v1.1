@@ -1,0 +1,57 @@
+﻿<section class="content-header">
+    <h1>
+        Cập nhật {{district.Name}}
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="district">Damh mục thành phố, huyện</a></li>
+        <li class="active">Cập nhật</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thông tin cập nhật</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmEditDistrict" role="form" ng-submit="EditDistrict()">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tên</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-change="changeSomething()" required name="name" ng-model="district.Name">
+                            <span ng-show="frmAddDistrict.name.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Mã đơn vị</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" required name="code" ng-model="district.Code">
+                            <span ng-show="frmAddDistrict.code.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Trạng thái</label>
+                        <div class="col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="status" ng-model="district.Status" ng-checked="district.Status"> Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </div>    <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="districts" class="btn btn-default">Hủy</button>
+                <button type="submit" class="btn btn-info pull-right">Lưu</button>
+            </div>
+                <!-- /.box-footer -->
+            
+        </form>
+    </div>
+</section>

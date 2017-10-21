@@ -1,0 +1,86 @@
+﻿<div ng-controller="transactionsListController">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <button class="btn btn-small btn-flat btn-primary active" ng-click="getTransactions()" ng-class="{active:clicked}">1</button>
+        <button class="btn btn-small btn-flat btn-primary" ng-click="getTransactionsIn7Days()" ng-class="{active:clicked}">7</button>
+        <button class="btn btn-small btn-flat btn-primary" >30</button>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box" >
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%;vertical-align: middle" class="text-center text-bold">ID</th>
+                                    <th style="width: 18%;vertical-align: middle" class="text-center text-bold">Tên dịch vụ</th>
+                                    <th style="width: 13%; vertical-align: middle" class="text-center text-bold">Ngày giao dịch</th>
+                                    <th style="width: 13%; vertical-align: middle" class="text-center text-bold">Ngày nhập</th>
+                                    <th style="width: 5%; vertical-align: middle" class="text-center text-bold">Số lượng</th>
+                                    <th style="width: 13%; vertical-align: middle" class="text-center text-bold">Số Thực thu</th>
+                                    <th style="width: 13%; vertical-align: middle" class="text-center text-bold">Số nợ</th>
+                                    <th style="width: 11%; vertical-align: middle" class="text-center text-bold">DTTL</th>
+                                    <th style="width: 9%;vertical-align: middle" class="text-center text-bold">Thao tác</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.ServiceName" placeholder="auto search..."></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>
+                                        <!--<select style="width:100%; border-color: #cecece;" name="parentId" class="form-control input-sm" ng-model="SmartSearch.Status" ng-init="SmartSearch.Status='true'">
+                                            <option value="">Tất cả</option>
+                                            <option value="true" >Kích hoạt</option>
+                                            <option value="false">Khóa</option>
+                                        </select>-->
+                                        <!--<input type="hidden" name="status" ng-model="SmartSearch.Status"/>-->
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in transactions| filter: SmartSearch">
+                                    <td style="vertical-align:middle" class="text-center">{{item.ID}}</td>
+                                    <td style="vertical-align:middle" class="text-left">{{item.ServiceName}}</td>
+                                    <td style="vertical-align:middle" class="text-center">{{item.TransactionDate | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    <!--<td style="vertical-align:middle" class="text-center">{{currentDate.getTime()}}</td>-->
+                                    <td style="vertical-align:middle" class="text-center">{{item.CreatedDate | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    <td style="vertical-align:middle" class="text-center">{{item.Quantity | number}}</td>
+                                    <td style="vertical-align:middle" class="text-right">{{item.TotalCash | currency}}</td>
+                                    <td style="vertical-align:middle" class="text-right">{{item.TotalDebt | currency}}</td>
+                                    <td style="vertical-align:middle" class="text-right">{{item.EarnMoney | currency}}</td>
+                                    <td style="vertical-align:middle" class="text-center">
+                                        <button class="btn btn-sm btn-primary" ui-sref="edit_transaction({id:item.ID})" ng-disabled="editEnabled(item)"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-sm btn-danger" ng-click="deleteTransaction(item.ID)"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="9"><span class="pull-left">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount=totalCount||0}}</span></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div ng-if="loading">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <label class="label label-primary"></label>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
+                </div>
+            </div><!-- /.box-body -->
+            <!--<div class="box-footer">
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-Func="getTransactionsIn7Days(page)"></pager-directive>
+            </div>-->
+            <!-- /.box-footer-->
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div> 

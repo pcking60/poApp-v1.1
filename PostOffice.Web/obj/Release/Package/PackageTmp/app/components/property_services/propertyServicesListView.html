@@ -1,0 +1,105 @@
+﻿<section class="content-header">
+    <h1>Danh sách thuộc tính</h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li class="active"><a ui-sref="property_services">Danh mục thuộc tính</a></li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+       
+        <div class="box-body">
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <button class="btn btn-success" ui-sref="add_property_service">Thêm mới</button>
+                    <button class="btn btn-danger" ng-click="deleteMulti()" disabled id="btnDelete">Xóa</button>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;vertical-align: middle" class="text-center text-bold"><input type="checkbox" name="all" ng-click="selectAll() " /></th>
+                                <th style="width: 5%;vertical-align: middle" class="text-center text-bold">ID</th>
+                                <th style="width: 15%;vertical-align: middle" class="text-center text-bold">Tên thuộc tính</th>
+                                <th style="width: 5%;vertical-align: middle" class="text-center text-bold">Phần trăm</th>
+                                <th style="width: 20%;vertical-align: middle" class="text-center text-bold">Dịch vụ</th>
+                                <th style="width: 15%;vertical-align: middle" class="text-center text-bold">Ngày tạo</th>
+                                <th style="width: 15%;vertical-align: middle" class="text-center text-bold">Ngày cập nhật</th>
+                                <th style="width: 10%;vertical-align: middle" class="text-center text-bold">Trạng thái</th>
+                                <th style="width: 10%;vertical-align: middle" class="text-center text-bold">Thao tác</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.ID" placeholder="Id"></th>
+                                <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Name" placeholder="auto search"></th>
+                                <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Percent" placeholder="%"></th>
+                                <th>
+                                    <input type="text" class="form-control input-sm" ng-model="SmartSearch.ServiceName" placeholder="auto search">
+                                </th>
+                                                                    
+                                <!--<th>
+                                    <select style="width:100%; border-color: #d2d6de; color:#4f4c4c" name="parentId" class="form-control input-sm" 
+                                        ng-options="option.ID as option.Name for option in listServices" ng-model="SmartSearch.ServiceID">                                        
+                                        <option value="" >Tất cả</option>
+                                        <option></option>
+                                    </select>
+                                    <input type="hidden" name="status" ng-model="SmartSearch.ServiceID" />
+                                </th>-->
+                                
+                                
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <select style="width:100%; border-color: #d2d6de; color:#4f4c4c" name="parentId" class="form-control input-sm" ng-model="SmartSearch.Status">
+                                        <option value="">Tất cả</option>
+                                        <option value="true">Kích hoạt</option> 
+                                        <option value="false">Khóa</option>
+                                    </select>
+                                    <input type="hidden" name="status" ng-model="SmartSearch.Status" />
+                                </th>
+                                
+                                <th></th>
+                               
+                            </tr>
+                            </thead>
+                        <tr ng-repeat="item in propertyServices | filter: SmartSearch | orderBy: 'ServiceName'">
+                            <td style="vertical-align:middle" class="text-center"><input type="checkbox" name="all" ng-model="item.checked" /></td>
+                            <td style="vertical-align:middle" class="text-center">{{item.ID}}</td>
+                            <td>{{item.Name}}</td>
+                            <td class="text-center">{{item.Percent}}</td>
+                            <td class="text-center">{{item.ServiceName}}</td>
+                            <td sclass="text-center">{{item.CreatedDate | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                            <td class="text-center">{{item.UpdatedDate | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                            <td class="text-center"><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green':item.Status==true}">{{item.Status | statusFilter}}</span></td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-primary" ui-sref="edit_property_service({id:item.ID})"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger center" ng-click="deletePropertyService(item.ID)"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6"><span class="pull-left">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount=totalCount||0}}</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div ng-if="loading">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <i class="fa fa-spinner fa-3x fa-spin"></i> <label class="label label-primary"></label>
+                    </div>
+                    <div class="col-xs-4"></div>
+                </div>
+            </div>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-Func="getPropertyServices(page)"></pager-directive>
+        </div><!-- /.box-footer-->
+    </div><!-- /.box -->
+</section>

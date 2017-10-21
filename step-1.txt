@@ -1,0 +1,8 @@
+﻿1./ Change Thống kê theo thời gian -> Thống kê tổng hợp
+2./ Fix Xuất báo cáo by Role: Admin, Manager
+3./ Move Import File --> Lịch sử giao dịch TKBD
+4./ Add Transaction Histories to Profile Panel
+5./ Remove Số lượng 
+6./ Fix Total Earn By Month
+7./ Add Transaction: fix getUser.
+8./ Fix RP1: sum VAT, sum All
