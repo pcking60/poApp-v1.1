@@ -4,6 +4,7 @@
     <ToolsVersionPromptShown>2.5</ToolsVersionPromptShown>
     <UseIISExpress>true</UseIISExpress>
     <NameOfLastUsedPublishProfile>Po-App-v1.1</NameOfLastUsedPublishProfile>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

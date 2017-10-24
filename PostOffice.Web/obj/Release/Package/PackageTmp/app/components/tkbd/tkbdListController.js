@@ -37,25 +37,30 @@ angular.module('postoffice.tkbd')
                 //check role 
                 $scope.isManager = authService.haveRole('Manager');
                 $scope.isAdmin = authService.haveRole('Administrator');
+                $scope.isSupport = authService.haveRole('Support');
 
-                if ($scope.isManager) {
-                    $stateParams.id = authService.authentication.userName;
-                    apiService.get('/api/applicationUser/userinfo',
-                        null,
-                        function (response) {
-                            $stateParams.id = response.data.POID;
-                            $scope.tkbd.districtId = response.data.POID;
-                            getPos();
-                        },
-                        function (response) {
-                            notificationService.displayError('Không tải được danh sách huyện/ thành phố.');
-                        });
+                if ($scope.isAdmin || $scope.isSupport) {
+                    getDistricts();
                 }
                 else {
-                    if ($scope.isAdmin) {
-                        getDistricts();
-                    }                    
-                }      
+                    if ($scope.isManager) {
+                        $stateParams.id = authService.authentication.userName;
+                        apiService.get('/api/applicationUser/userinfo',
+                            null,
+                            function (response) {
+                                $stateParams.id = response.data.POID;
+                                $scope.tkbd.districtId = response.data.POID;
+                                getPos();
+                            },
+                            function (response) {
+                                notificationService.displayError('Không tải được danh sách huyện/ thành phố.');
+                            });
+                    }
+                    else {
+
+                    }
+                }
+                  
 
                 //lấy danh sách huyện / đơn vị
                 $scope.getDistricts = getDistricts;

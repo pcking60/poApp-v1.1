@@ -37,8 +37,9 @@ angular.module('postoffice.tkbd')
                 //check role 
                 $scope.isManager = authService.haveRole('Manager');
                 $scope.isAdmin = authService.haveRole('Administrator');
+                $scope.isSupport = authService.haveRole('Support');
 
-                if ($scope.isAdmin) {
+                if ($scope.isAdmin || $scope.isSupport) {
                     getDistricts();
                 }
                 else {

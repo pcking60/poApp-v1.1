@@ -18,6 +18,7 @@ namespace PostOfiice.DAta.Migrations
                @"select
 	                t.Month,
 	                convert(int, count(t.Account)) as Quantity,
+CONVERT(decimal(16,2), SUM(t.TotalMoney)) as EndPeriod,
 	                convert(decimal(16,2),
 	                sum(t.Amount)) as DTTL,
 	                t.CreatedBy

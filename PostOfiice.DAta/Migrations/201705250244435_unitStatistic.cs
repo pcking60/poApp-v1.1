@@ -42,7 +42,7 @@
         
         public override void Down()
         {
-            DropStoredProcedure("dbo.getUnitStatistic");
+            DropStoredProcedure("getUnitStatistic");
         }
     }
 }

@@ -60,6 +60,8 @@
     <Compile Include="ViewModels\ExportModel\TKBD_Export_Template.cs" />
     <Compile Include="ViewModels\MainGroup1.cs" />
     <Compile Include="ViewModels\MainGroup3.cs" />
+    <Compile Include="ViewModels\RankModel\Rank.cs" />
+    <Compile Include="ViewModels\RankModel\RankAfter.cs" />
     <Compile Include="ViewModels\ReportFunction1.cs" />
     <Compile Include="ViewModels\ReportFunction1ViewModel.cs" />
     <Compile Include="ViewModels\ReportServiceViewModel.cs" />

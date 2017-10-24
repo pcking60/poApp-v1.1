@@ -13,6 +13,11 @@ angular.module('postoffice.tkbd', ['postoffice.common'])
                 templateUrl: "/app/components/tkbd/tkbdImportListView.html",
                 parent: 'base',
                 controller: "tkbdImportListController"
+            }).state('rank', {
+                url: "/xep-hang-huy-dong",
+                templateUrl: "/app/components/tkbd/tkbdRankView.html",
+                parent: 'base',
+                controller: "tkbdRankController"
             }).state('tkbdhistory', {
                 url: "/lich-su-giao-dich-tkbd",
                 templateUrl: "/app/components/tkbd/TKBDHistory.html",

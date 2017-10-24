@@ -2,6 +2,7 @@
 using OfficeOpenXml;
 using PostOffice.Common;
 using PostOffice.Common.ViewModels.ExportModel;
+using PostOffice.Common.ViewModels.RankModel;
 using PostOffice.Common.ViewModels.StatisticModel;
 using PostOffice.Model.Models;
 using PostOffice.Service;
@@ -172,6 +173,8 @@ namespace PostOffice.Web.Api
                         vm.FunctionName = "Thống kê chi tiết giao dịch phát sinh";
 
                         var responseTKBD_Detail = _tkbdService.Export_TKBD_Detail_By_Condition(month, year, districtId, poId, currentUser, userId);
+                        //var c = responseTKBD_Detail.Count();
+                        //var result = responseTKBD_Detail.ToList();
                         var dataSource_Detail = Mapper.Map<IEnumerable<TKBD_Export_Detail_Template>, IEnumerable<TKBD_Export_Detail_Template_ViewModel>>(responseTKBD_Detail);
                         foreach (var item in dataSource_Detail)
                         {
@@ -634,7 +637,7 @@ namespace PostOffice.Web.Api
                             vm.Month = DateTime.Now.Month - 1;
                             vm.Year = DateTime.Now.Year;
                             vm.TotalMoney = money;
-                            vm.Amount = money * item.Rate * 20 * days / 1200 / 30 ?? 0;
+                            vm.Amount = money * item.Rate * 20 * days / 120000 / 30 ?? 0;
                             TKBDAmount tkbd = new TKBDAmount();
                             tkbd.UpdateTKBD(vm);
                             if (_tkbdService.CheckExist(vm.Account, vm.Month, vm.Year))
@@ -647,6 +650,34 @@ namespace PostOffice.Web.Api
                     }
 
                     response = request.CreateResponse(HttpStatusCode.Created, tkbdHistories.Count());
+                }
+                return response;
+            });
+        }
+        [Route("rank")]
+        [HttpGet]
+        public HttpResponseMessage Rank(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var m1 = DateTime.Now.Month - 1;
+                    var m2 = DateTime.Now.Month - 2;
+                    var query = _tkbdService.Rank(m2, m1);
+                    var result = query.ToList();
+                    var c = result.Count();
+                    var responseData = Mapper.Map<IEnumerable<Rank>, IEnumerable<RankAfter>>(result);
+                    foreach (var item in responseData)
+                    {
+                        item.FullName = _applicationUserService.getByUserName(item.CreatedBy).FullName;
+                    }
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
                 return response;
             });

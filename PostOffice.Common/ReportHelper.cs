@@ -928,19 +928,20 @@ namespace PostOffice.Common
                         ws.Cells["A10"].Value = "STT";
                         ws.Cells["B10"].Value = "Tháng";
                         ws.Cells["C10"].Value = "Số \nlượng";
-                        ws.Cells["D10"].Value = "Doanh thu \n tính lương";
-                        ws.Cells["E10"].Value = "Mã \n nhân viên";
-                        ws.Cells["F10"].Value = "Tên \n nhân viên";
+                        ws.Cells["D10"].Value = "Số dư cuối kỳ";
+                        ws.Cells["E10"].Value = "Doanh thu \n tính lương";
+                        ws.Cells["F10"].Value = "Mã \n nhân viên";
+                        ws.Cells["G10"].Value = "Tên \n nhân viên";
 
-                        ws.Cells["A10:F10"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                        ws.Cells["A10:F10"].Style.Font.Bold = true;
-                        ws.Cells[10, 1, 10, 6].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                        ws.Cells[10, 1, 10, 6].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(236, 143, 50));
+                        ws.Cells["A10:G10"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        ws.Cells["A10:G10"].Style.Font.Bold = true;
+                        ws.Cells[10, 1, 10, 7].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        ws.Cells[10, 1, 10, 7].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(236, 143, 50));
 
                         ws.Cells.AutoFitColumns();
                         ws.Row(10).Style.WrapText = true;
 
-                        ws.Cells["D11:F" + (noRowTKBD + 11)].Style.Numberformat.Format = "#,##0.00";
+                        ws.Cells["D11:G" + (noRowTKBD + 11)].Style.Numberformat.Format = "#,##0.00";
 
                         //sum group 1
                         if (noRowTKBD > 0)
@@ -951,6 +952,7 @@ namespace PostOffice.Common
                             ws.Row(noRowTKBD + 11).Style.Font.Bold = true;
                             ws.Cells[noRowTKBD + 11, 3].Formula = "sum(c11:c" + (noRowTKBD + 10) + ")";
                             ws.Cells[noRowTKBD + 11, 4].Formula = "sum(D11:D" + (noRowTKBD + 10) + ")";
+                            ws.Cells[noRowTKBD + 11, 5].Formula = "sum(E11:E" + (noRowTKBD + 10) + ")";
                         }
                         
                     }
@@ -1112,8 +1114,8 @@ namespace PostOffice.Common
 
                         ws.Cells["A10:G10"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                         ws.Cells["A10:G10"].Style.Font.Bold = true;
-                        ws.Cells[10, 1, 10, 6].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                        ws.Cells[10, 1, 10, 6].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(236, 143, 50));
+                        ws.Cells[10, 1, 10, 7].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        ws.Cells[10, 1, 10, 7].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(236, 143, 50));
 
                         ws.Cells.AutoFitColumns();
                         ws.Row(10).Style.WrapText = true;
@@ -1125,7 +1127,7 @@ namespace PostOffice.Common
                         ws.Cells[noRowTKBD + 11, 2].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                         ws.Row(noRowTKBD + 11).Style.Font.Bold = true;
                         ws.Cells[noRowTKBD + 11, 4].Formula = "sum(D11:D" + (noRowTKBD + 10) + ")";
-                        ws.Cells[noRowTKBD + 11, 4].Formula = "sum(E11:E" + (noRowTKBD + 10) + ")";
+                        ws.Cells[noRowTKBD + 11, 5].Formula = "sum(E11:E" + (noRowTKBD + 10) + ")";
                     }
 
                     #endregion BCCP

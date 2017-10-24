@@ -1,7 +1,7 @@
 ﻿(function (app) {
     app.controller('transactionAddController', transactionAddController);
-    transactionAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService', '$stateParams', '$ngBootbox', '$timeout'];
-    function transactionAddController($scope, apiService, notificationService, $state, commonService, $stateParams, $ngBootbox, $timeout) {
+    transactionAddController.$inject = ['authService', '$scope', 'apiService', 'notificationService', '$state', 'commonService', '$stateParams', '$ngBootbox', '$timeout'];
+    function transactionAddController(authService, $scope, apiService, notificationService, $state, commonService, $stateParams, $ngBootbox, $timeout) {
         $scope.transaction = {
             Status: true,
             IsCash: true,
@@ -13,6 +13,26 @@
             TransactionDetails: [],
             Services: []
         }
+
+        //check role 
+        $scope.isManager = authService.haveRole('Manager');
+        $scope.isAdmin = authService.haveRole('Administrator');
+        $scope.days = 2;
+        if ($scope.isAdmin) {
+            $scope.days = 30;
+        }
+        if ($scope.isManager) {
+            $scope.days = 7;
+        }
+
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                maxDate: moment(),
+                minDate: moment().subtract($scope.days, 'day'),
+
+            });
+        });
+
         $scope.getListUser = getListUser;
         $scope.AddTransaction = AddTransaction;
         function AddTransaction() {

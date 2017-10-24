@@ -1,4 +1,5 @@
 ﻿using PostOffice.Common.ViewModels.ExportModel;
+using PostOffice.Common.ViewModels.RankModel;
 using PostOffice.Model.Models;
 using PostOfiice.DAta.Infrastructure;
 using System;
@@ -20,6 +21,7 @@ namespace PostOfiice.DAta.Repositories
         IEnumerable<TKBD_Export_Detail_Template> Export_TKBD_Detail_By_Time_District(int month, int year, int districtId);
         IEnumerable<TKBD_Export_Detail_Template> Export_TKBD_Detail_By_Time_District_Po(int month, int year, int districtId, int poId);
         IEnumerable<TKBD_Export_Detail_Template> Export_TKBD_Detail_By_Time_District_Po_User(int month, int year, int districtId, int poId, string userId);
+        IEnumerable<Rank> Rank(int month1, int month2);
     }
 
     public class TKBDRepository : RepositoryBase<TKBDAmount>, ITKBDRepository
@@ -142,6 +144,15 @@ namespace PostOfiice.DAta.Repositories
                 new SqlParameter("@currentUserId", currentUserId)
             };
             return DbContext.Database.SqlQuery<TKBD_Export_Detail_Template>("Export_TKBD_Detail_By_Time_User @month,@year,@currentUserId", parameters);
+        }
+
+        public IEnumerable<Rank> Rank(int month1, int month2)
+        {
+            var parameter = new SqlParameter[] {
+                new SqlParameter("@month1", month1),
+                new SqlParameter("@month2", month2)
+            };
+            return DbContext.Database.SqlQuery<Rank>("Rank @month1,@month2", parameter);
         }
 
         public override void Update(TKBDAmount entity)

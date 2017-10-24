@@ -283,16 +283,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/tkbd/tkbd.module.js">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/23/2017 14:36:24</publishTime>
     </File>
     <File Include="app/components/tkbd/tkbd.module.min.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/tkbd/TKBDHistory.html">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/20/2017 16:12:33</publishTime>
     </File>
     <File Include="app/components/tkbd/TKBDHistoryController.js">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/20/2017 16:04:56</publishTime>
     </File>
     <File Include="app/components/tkbd/TKBDHistoryController.min.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
@@ -307,22 +307,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 09:26:44</publishTime>
     </File>
     <File Include="app/components/tkbd/tkbdListController.js">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/24/2017 13:38:22</publishTime>
     </File>
     <File Include="app/components/tkbd/tkbdListController.min.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/tkbd/tkbdListView.html">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/24/2017 13:38:13</publishTime>
+    </File>
+    <File Include="app/components/tkbd/tkbdRankController.js">
+      <publishTime>10/23/2017 15:16:27</publishTime>
+    </File>
+    <File Include="app/components/tkbd/tkbdRankView.html">
+      <publishTime>10/23/2017 15:12:50</publishTime>
     </File>
     <File Include="app/components/transactions/transactionAddController.js">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/24/2017 08:59:05</publishTime>
     </File>
     <File Include="app/components/transactions/transactionAddController.min.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/transactions/transactionAddView.html">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/24/2017 08:54:21</publishTime>
     </File>
     <File Include="app/components/transactions/transactionEditController.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
@@ -388,10 +394,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 09:26:44</publishTime>
     </File>
     <File Include="app/shared/views/baseView.html">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/24/2017 13:40:22</publishTime>
     </File>
     <File Include="app/shared/views/sideBarBaseView.html">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/23/2017 14:11:14</publishTime>
     </File>
     <File Include="app/shared/views/userBaseView.html">
       <publishTime>10/18/2017 09:26:44</publishTime>
@@ -15604,7 +15610,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 09:26:44</publishTime>
     </File>
     <File Include="Assets/admin/template/TKBD_Template_Sample.xlsx">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/23/2017 19:26:55</publishTime>
     </File>
     <File Include="Assets/client/css/bootstrap.css">
       <publishTime>10/18/2017 09:26:44</publishTime>
@@ -15925,13 +15931,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/17/2013 21:06:08</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>10/09/2013 16:29:20</publishTime>
+      <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Autofac.dll">
       <publishTime>04/04/2017 06:35:00</publishTime>
     </File>
     <File Include="bin/Autofac.Integration.Mvc.dll">
-      <publishTime>10/04/2017 15:40:32</publishTime>
+      <publishTime>04/10/2017 15:40:32</publishTime>
     </File>
     <File Include="bin/Autofac.Integration.WebApi.dll">
       <publishTime>10/24/2016 12:29:56</publishTime>
@@ -15943,64 +15949,64 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/17/2013 21:06:08</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>02/03/2015 09:32:26</publishTime>
+      <publishTime>03/02/2015 09:32:26</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>02/03/2015 09:32:26</publishTime>
+      <publishTime>03/02/2015 09:32:26</publishTime>
     </File>
     <File Include="bin/EPPlus.dll">
       <publishTime>07/14/2016 15:57:38</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
-      <publishTime>03/04/2015 17:07:22</publishTime>
+      <publishTime>04/03/2015 17:07:22</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
-      <publishTime>03/04/2015 17:07:22</publishTime>
+      <publishTime>04/03/2015 17:07:22</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
-      <publishTime>03/04/2015 17:07:22</publishTime>
+      <publishTime>04/03/2015 17:07:22</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 02:06:24</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>05/04/2017 11:53:36</publishTime>
+      <publishTime>04/05/2017 11:53:36</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>05/04/2017 11:53:40</publishTime>
+      <publishTime>04/05/2017 11:53:40</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
-      <publishTime>05/04/2017 11:53:42</publishTime>
+      <publishTime>04/05/2017 11:53:42</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.dll">
-      <publishTime>05/04/2017 11:53:42</publishTime>
+      <publishTime>04/05/2017 11:53:42</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
-      <publishTime>05/04/2017 11:53:46</publishTime>
+      <publishTime>04/05/2017 11:53:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>03/08/2014 20:33:56</publishTime>
+      <publishTime>08/03/2014 20:33:56</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>11/13/2012 12:19:34</publishTime>
     </File>
     <File Include="bin/PostOffice.Common.dll">
-      <publishTime>10/19/2017 15:40:33</publishTime>
+      <publishTime>10/24/2017 09:02:25</publishTime>
     </File>
     <File Include="bin/PostOffice.Model.dll">
-      <publishTime>10/19/2017 17:04:08</publishTime>
+      <publishTime>10/24/2017 09:02:25</publishTime>
     </File>
     <File Include="bin/PostOffice.Service.dll">
-      <publishTime>10/19/2017 17:04:09</publishTime>
+      <publishTime>10/24/2017 09:02:26</publishTime>
     </File>
     <File Include="bin/PostOffice.Web.dll">
-      <publishTime>10/19/2017 17:04:15</publishTime>
+      <publishTime>10/24/2017 09:05:01</publishTime>
     </File>
     <File Include="bin/PostOfiice.DAta.dll">
-      <publishTime>10/19/2017 17:04:09</publishTime>
+      <publishTime>10/24/2017 09:02:25</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>
@@ -16057,7 +16063,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 04:02:18</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>11/02/2014 15:26:04</publishTime>
+      <publishTime>02/11/2014 15:26:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
       <publishTime>01/28/2015 04:02:32</publishTime>
@@ -16113,14 +16119,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/respond.min.js">
       <publishTime>10/18/2017 09:26:44</publishTime>
     </File>
+    <File Include="UploadedFiles/Excels/test-125.xls">
+      <publishTime>10/23/2017 18:40:30</publishTime>
+    </File>
+    <File Include="UploadedFiles/Excels/test.xls">
+      <publishTime>10/23/2017 22:24:59</publishTime>
+    </File>
+    <File Include="UploadedFiles/Excels/TKBD_Template_Sample.xlsx">
+      <publishTime>10/20/2017 15:58:23</publishTime>
+    </File>
     <File Include="Views/Admin/Index.cshtml">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/23/2017 14:20:15</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/19/2017 15:40:43</publishTime>
+      <publishTime>10/21/2017 08:34:54</publishTime>
     </File>
   </ItemGroup>
 </Project>

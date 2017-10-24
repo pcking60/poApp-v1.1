@@ -89,7 +89,7 @@
                                 <th></th>
                                 <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.ID" placeholder="Id"></th>
                                 <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Month" placeholder="auto search"></th>
-                                <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Name" placeholder="auto search"></th>
+                                <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.CustomerName" placeholder="auto search"></th>
                                 <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Account" placeholder="auto search"></th>
                                 <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Money" placeholder="auto search"></th>
                                 <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.Amount" placeholder="auto search"></th>
@@ -101,7 +101,7 @@
                             <td style="vertical-align:middle" class="text-center"><input type="checkbox" name="all" ng-model="item.checked" /></td>
                             <td style="vertical-align:middle" class="text-center">{{item.Id}}</td>
                             <td class="text-center">{{item.Account}}</td>
-                            <td class="text-center">{{item.Name}}</td>
+                            <td class="text-center">{{item.CustomerName}}</td>
                             <td class="text-center">{{item.TransactionDate | date: 'dd/MM/yyyy'}}</td>
                             <td class="text-center">{{item.Money | number}}</td>
                             <td class="text-center">{{item.Rate  | number : 4 }}</td>

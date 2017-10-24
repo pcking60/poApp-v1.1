@@ -1,4 +1,5 @@
 ﻿using PostOffice.Common.ViewModels.ExportModel;
+using PostOffice.Common.ViewModels.RankModel;
 using PostOffice.Model.Models;
 using PostOfiice.DAta.Infrastructure;
 using PostOfiice.DAta.Repositories;
@@ -31,6 +32,7 @@ namespace PostOffice.Service
         IEnumerable<TKBD_Export_Detail_Template> Export_TKBD_Detail_By_Condition(int month, int year, int districtId, int poId, string currentUser, string userSelected);
 
         TKBDAmount GetById(int id);
+        IEnumerable<Rank> Rank(int month1, int month2);
 
         bool CheckExist(string account, int month, int year);
 
@@ -229,6 +231,11 @@ namespace PostOffice.Service
         public TKBDAmount GetById(int id)
         {
             return _tKBDRepository.GetSingleByID(id);
+        }
+
+        public IEnumerable<Rank> Rank(int month1, int month2)
+        {
+            return _tKBDRepository.Rank(month1, month2);
         }
 
         public void Save()

@@ -250,6 +250,8 @@
     <Content Include="app\components\statistic\unitStatisticController.min.js">
       <DependentUpon>unitStatisticController.js</DependentUpon>
     </Content>
+    <Content Include="app\components\tkbd\tkbdRankController.js" />
+    <Content Include="app\components\tkbd\tkbdRankView.html" />
     <Content Include="app\components\tkbd\tkbd.module.js" />
     <Content Include="app\components\tkbd\tkbd.module.min.js">
       <DependentUpon>tkbd.module.js</DependentUpon>
@@ -5626,6 +5628,9 @@
     <None Include="Properties\PublishProfiles\Po-App-v1.1.pubxml" />
     <None Include="Properties\PublishProfiles\postoffice.pubxml" />
     <None Include="Properties\PublishProfiles\test-dttl.pubxml" />
+    <Content Include="UploadedFiles\Excels\test-125.xls" />
+    <Content Include="UploadedFiles\Excels\test.xls" />
+    <Content Include="UploadedFiles\Excels\TKBD_Template_Sample.xlsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

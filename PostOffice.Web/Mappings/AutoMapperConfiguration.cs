@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PostOffice.Common.ViewModels;
 using PostOffice.Common.ViewModels.ExportModel;
+using PostOffice.Common.ViewModels.RankModel;
 using PostOffice.Common.ViewModels.StatisticModel;
 using PostOffice.Model.Models;
 using PostOffice.Web.Models;
@@ -32,6 +33,7 @@ namespace PostOffice.Web.Mappings
             Mapper.CreateMap<TKBD_Export_Template, TKBD_Export_Template_ViewModel>();
             Mapper.CreateMap<TKBD_Export_Detail_Template, TKBD_Export_Detail_Template_ViewModel>();
             Mapper.CreateMap<TKBD_History_Statistic, TKBD_History_Statistic_ViewModel>();
+            Mapper.CreateMap<Rank, RankAfter>();
         
         }
     }

@@ -303,6 +303,10 @@
     <Compile Include="Migrations\201710190851501_change-tkbd-history-v1.Designer.cs">
       <DependentUpon>201710190851501_change-tkbd-history-v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710230659461_Rank.cs" />
+    <Compile Include="Migrations\201710230659461_Rank.Designer.cs">
+      <DependentUpon>201710230659461_Rank.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PostOfficeDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -498,6 +502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710190851501_change-tkbd-history-v1.resx">
       <DependentUpon>201710190851501_change-tkbd-history-v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710230659461_Rank.resx">
+      <DependentUpon>201710230659461_Rank.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
