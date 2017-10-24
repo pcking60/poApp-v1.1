@@ -10,9 +10,8 @@ angular.module('postoffice.tkbd')
                 //$scope.getTkbds = getTkbds;
                 $scope.keyword = '';
                 $scope.search = search;
-                $scope.loading = true;
                 $scope.update = update;
-
+                $scope.loading = false;
                 $scope.tkbd = {
                     functionId: null,
                     date: { startDate: null, endDate: null },
@@ -129,17 +128,16 @@ angular.module('postoffice.tkbd')
                 }
                 
                 function update() {
+                    $scope.loading = true;
                     apiService.get('/api/tkbd/update', null, function (result) {
-                        console.log(result.data.TotalCount);
-                        $scope.loading = false;
+                        //console.log(result.data.TotalCount);                                               
                         $scope.tkbd = result.data.Items;
                         $scope.page = result.data.Page;
                         $scope.pagesCount = result.data.TotalPages;
                         $scope.totalCount = result.data.TotalCount;
                         $state.reload();
                     },
-                    function () {
-                        $scope.loading = false;
+                    function () {                        
                         console.log('Load tkbds failed');
                     });
                 }

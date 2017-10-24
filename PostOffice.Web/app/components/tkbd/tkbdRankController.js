@@ -11,7 +11,7 @@
         var m = new Date();
         $scope.month = m.getMonth();
         function getRank() {
-            
+            $scope.loading = true;
             apiService.get('api/tkbd/rank', null,
                 function (response) {
                     $scope.tabledata = response.data;
@@ -26,14 +26,17 @@
                     c.push(d);
                     $scope.chartdata = c;
                     $scope.labels = l;
+                    $scope.loading = false;
                 },
 
                 function (response) {
                     if (response.status == 500) {
                         notificationService.displayError('Không có dữ liệu');
+                        $scope.loading = false;
                     }
                     else {
                         notificationService.displayError('Không thể tải dữ liệu');
+                        $scope.loading = false;
                     }
                 });
         }

@@ -14,7 +14,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-8">
-                    <button class="btn btn-success" ng-click="update()">Cập nhật dữ liệu</button>
+                    <button class="btn btn-success" ng-click="update()">Cập nhật dữ liệu<i ng-if="loading" class="fa fa-spinner fa-2x fa-spin"></i></button>
                     <span style="color:#ff6a00">
                         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
                         <small> Click vào để cập nhật dữ liệu tháng trước</small>
@@ -60,7 +60,7 @@
                                 <input type="hidden" name="districtId" ng-model="tkbd.districtId" />
                             </div>
                         </div>
-                        <div class="form-group" ng-hide="!isManager && !isAdmin">
+                        <div class="form-group" ng-hide="!isManager && !isAdmin && !isSupport">
                             <label for="inputPassword3" class="col-sm-3 control-label">Chọn bưu cục</label>
                             <div class="col-sm-6">
                                 <select name="poId" class="form-control" ng-change="updateUser(tkbd.poId)" ng-model="tkbd.poId" ng-options="option.ID as option.Name for option in tkbd.pos">
@@ -69,7 +69,7 @@
                                 <input type="hidden" name="poId" ng-model="tkbd.poId" />
                             </div>
                         </div>
-                        <div class="form-group" ng-hide="!isManager && !isAdmin">
+                        <div class="form-group" ng-hide="!isManager && !isAdmin && !isSupport">
                             <label for="inputPassword3" class="col-sm-3 control-label">Chọn nhân viên</label>
                             <div class="col-sm-6">
                                 <select name="staff" class="form-control" ng-change="updateService(tkbd.userId)" ng-model="tkbd.userId" ng-options="option.Id as option.FullName for option in tkbd.users">
