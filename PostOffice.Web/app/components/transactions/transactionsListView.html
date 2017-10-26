@@ -21,6 +21,64 @@
                     <table class="table table-bordered ">
                         <thead>
                             <tr>
+                                <th style="width: 4%;vertical-align: middle" class="text-center text-bold">ID</th>
+                                <th style="width: 18%;vertical-align: middle" class="text-center text-bold">Tên dịch vụ</th>
+                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Ngày giao dịch</th>
+                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Ngày nhập</th>
+                                <th style="width: 4%; vertical-align: middle" class="text-center text-bold">Số lượng</th>
+                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Số tiền nộp</th>
+                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Số tiền nợ</th>
+                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Số tiền chi hộ</th>
+                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">Ngoại tệ</th>
+                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">VAT</th>
+                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Doanh thu tính lương</th>
+                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Thao tác</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in transactions| filter: SmartSearch">
+                                <td style="vertical-align:middle" class="text-center">{{item.ID}}</td>
+                                <td style="vertical-align:middle" class="text-left">{{item.ServiceName}}</td>
+                                <td style="vertical-align:middle" class="text-center">{{item.TransactionDate | date: 'dd/MM/yyyy'}}</td>
+                                <!--<td style="vertical-align:middle" class="text-center">{{currentDate.getTime()}}</td>-->
+                                <td style="vertical-align:middle" class="text-center">{{item.CreatedDate | date: 'dd/MM/yyyy'}}</td>
+                                <td style="vertical-align:middle" class="text-center">{{item.Quantity | number}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.TotalCash | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.TotalDebt | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.TotalMoneySent | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.TotalCurrency | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{(item.TotalCash + item.TotalDebt + item.TotalMoneySent + item.TotalCurrency)-((item.TotalCash + item.TotalDebt + item.TotalMoneySent + item.TotalCurrency) / item.VAT) | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.EarnMoney | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-center">
+                                    <button class="btn btn-xs btn-primary" ui-sref="edit_transaction({id:item.ID})" ng-disabled="editEnabled(item)"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-xs btn-danger" ng-click="deleteTransaction(item.ID)" ng-disabled="editEnabled(item)"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>                      
+                            <tr style="font-weight:bold">
+                                <td colspan="4" class="text-right">Tổng cộng: </td>
+                                <td class="text-center">{{transaction.totalQuantity | number}}</td>
+                                <td class="text-right">{{transaction.totalCash | number:2}}</td>
+                                <td class="text-right">{{transaction.totalDebt | number:2}}</td>
+                                <td class="text-right">{{transaction.totalSent | number:2}}</td>
+                                <td class="text-right">{{transaction.totalCurrency | number:2}}</td>
+                                <td class="text-right">{{transaction.totalVat | number:2}}</td>
+                                <td class="text-right">{{transaction.totalEarn | number:2}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="9"><span class="pull-left">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount=totalCount||0}}</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <!--<div class="col-md-12">
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
                                 <th style="width: 5%;vertical-align: middle" class="text-center text-bold">ID</th>
                                 <th style="width: 24%;vertical-align: middle" class="text-center text-bold">Tên dịch vụ</th>
                                 <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Ngày giao dịch</th>
@@ -40,12 +98,7 @@
                                 <th></th>
                                 <th></th>                               
                                 <th>  
-                                    <!--<select style="width:100%; border-color: #cecece;" name="parentId" class="form-control input-sm" ng-model="SmartSearch.Status" ng-init="SmartSearch.Status='true'">
-                                        <option value="">Tất cả</option>
-                                        <option value="true" >Kích hoạt</option>
-                                        <option value="false">Khóa</option>                                        
-                                    </select>-->
-                                    <!--<input type="hidden" name="status" ng-model="SmartSearch.Status"/>-->                                   
+                                                               
                                 </th>
                                 <th></th>
                             </tr>
@@ -54,8 +107,7 @@
                             <tr ng-repeat="item in transactions| filter: SmartSearch">
                                 <td style="vertical-align:middle" class="text-center" >{{item.ID}}</td>
                                 <td style="vertical-align:middle" class="text-left">{{item.ServiceName}}</td>
-                                <td style="vertical-align:middle" class="text-center">{{item.TransactionDate | date: 'dd/MM/yyyy'}}</td>
-                                <!--<td style="vertical-align:middle" class="text-center">{{currentDate.getTime()}}</td>-->
+                                <td style="vertical-align:middle" class="text-center">{{item.TransactionDate | date: 'dd/MM/yyyy'}}</td>                               
                                 <td style="vertical-align:middle" class="text-center">{{item.CreatedDate | date: 'dd/MM/yyyy'}}</td>
                                 <td style="vertical-align:middle" class="text-center">{{item.Quantity | number}}</td>
                                 <td style="vertical-align:middle" class="text-right" >{{item.TotalCash | number}}</td>
@@ -73,7 +125,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                </div>
+                </div>-->
                 <div ng-if="loading">
                     <div class="col-xs-4"></div>
                     <div class="col-xs-4">

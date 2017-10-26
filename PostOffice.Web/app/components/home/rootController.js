@@ -15,6 +15,7 @@
                 $scope.isAdmin = authService.haveRole('Administrator');
                 $scope.isManager = authService.haveRole('Manager');
                 $scope.isCounter = authService.haveRole('Counter');
+                $scope.isSupport = authService.haveRole('Support');
 
                 getUserInfo();
                 getAllServices();

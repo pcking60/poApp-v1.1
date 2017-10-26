@@ -124,17 +124,35 @@ namespace PostOffice.Web.Api
 
                 foreach (var item in responseData)
                 {
-                    item.ServiceName = _serviceService.GetById(item.ServiceId).Name;
+                    item.groupId = _serviceGr.GetGroupIdByServiceId(item.ServiceId);
+                    item.VAT = _serviceService.GetById(item.ServiceId).VAT;
                     item.Quantity = Convert.ToInt32(_transactionDetailService.GetAllByCondition("Sản lượng", item.ID).Money);
-                    if (!item.IsCash)
+                    item.ServiceName = _serviceService.GetById(item.ServiceId).Name;
+
+                    if (!item.IsCash && item.groupId != 94)
                     {
                         item.TotalDebt = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
                     }
                     else
                     {
-                        item.TotalCash = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+
+                        if (item.groupId == 94)
+                        {
+                            if (item.IsCurrency && item.ServiceId == 1769)
+                            {
+                                item.TotalCurrency = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                            }
+                            else
+                            {
+                                item.TotalMoneySent = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                            }
+                        }
+                        else
+                        {
+                            item.TotalCash = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                        }
                     }
-                    item.EarnMoney = _transactionDetailService.GetTotalEarnMoneyByTransactionId(item.ID);                    
+                    item.EarnMoney = _transactionDetailService.GetTotalEarnMoneyByTransactionId(item.ID);
                 }
 
                 var paginationSet = new PaginationSet<TransactionViewModel>
@@ -164,15 +182,33 @@ namespace PostOffice.Web.Api
 
                 foreach (var item in responseData)
                 {
-                    item.ServiceName = _serviceService.GetById(item.ServiceId).Name;
+                    item.groupId = _serviceGr.GetGroupIdByServiceId(item.ServiceId);
+                    item.VAT = _serviceService.GetById(item.ServiceId).VAT;
                     item.Quantity = Convert.ToInt32(_transactionDetailService.GetAllByCondition("Sản lượng", item.ID).Money);
-                    if (!item.IsCash)
+                    item.ServiceName = _serviceService.GetById(item.ServiceId).Name;
+
+                    if (!item.IsCash && item.groupId != 94)
                     {
                         item.TotalDebt = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
                     }
                     else
                     {
-                        item.TotalCash = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+
+                        if (item.groupId == 94)
+                        {
+                            if (item.IsCurrency && item.ServiceId == 1769)
+                            {
+                                item.TotalCurrency = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                            }
+                            else
+                            {
+                                item.TotalMoneySent = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                            }
+                        }
+                        else
+                        {
+                            item.TotalCash = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                        }
                     }
                     item.EarnMoney = _transactionDetailService.GetTotalEarnMoneyByTransactionId(item.ID);
                 }
@@ -204,15 +240,33 @@ namespace PostOffice.Web.Api
 
                 foreach (var item in responseData)
                 {
-                    item.ServiceName = _serviceService.GetById(item.ServiceId).Name;
+                    item.groupId = _serviceGr.GetGroupIdByServiceId(item.ServiceId);
+                    item.VAT = _serviceService.GetById(item.ServiceId).VAT;
                     item.Quantity = Convert.ToInt32(_transactionDetailService.GetAllByCondition("Sản lượng", item.ID).Money);
-                    if (!item.IsCash)
+                    item.ServiceName = _serviceService.GetById(item.ServiceId).Name;
+
+                    if (!item.IsCash && item.groupId != 94)
                     {
                         item.TotalDebt = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
                     }
                     else
                     {
-                        item.TotalCash = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+
+                        if (item.groupId == 94)
+                        {
+                            if (item.IsCurrency && item.ServiceId == 1769)
+                            {
+                                item.TotalCurrency = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                            }
+                            else
+                            {
+                                item.TotalMoneySent = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                            }
+                        }
+                        else
+                        {
+                            item.TotalCash = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                        }
                     }
                     item.EarnMoney = _transactionDetailService.GetTotalEarnMoneyByTransactionId(item.ID);
                 }

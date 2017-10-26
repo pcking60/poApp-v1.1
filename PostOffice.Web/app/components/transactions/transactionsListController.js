@@ -7,6 +7,15 @@
         $scope.page = 0;
         $scope.pagesCount = 0;
         $scope.transactions = [];
+        $scope.transaction = {
+            totalQuantity: 0,
+            totalCash: 0,
+            totalSent: 0,
+            totalDebt: 0,
+            totalEarn: 0,
+            totalVat: 0,
+            totalCurrency: 0
+        };
         $scope.keyword = '';
         $scope.search = search;
         $scope.deleteTransaction = deleteTransaction;
@@ -25,14 +34,33 @@
             apiService.get('/api/transactions/getall30days', config,
                 function (result) {
                     if (result.data.TotalCount == 0) {
-                        notificationService.displayWarning("Chưa có dữ liệu");
+                        notificationService.displayWarning("Chưa có giao dịch phát sinh trong 30 ngày gần đây!");
                     }
-                    $scope.transactions = [];
-                    $scope.transactions = result.data.Items;
-                    $scope.page = result.data.Page;
-                    $scope.pagesCount = result.data.TotalPages;
-                    $scope.totalCount = result.data.TotalCount;
-                    console.log(result.data.Count);
+                    else {
+                        $scope.transactions = [];
+                        $scope.transactions = result.data.Items;
+                        $scope.page = result.data.Page;
+                        $scope.pagesCount = result.data.TotalPages;
+                        $scope.totalCount = result.data.TotalCount;
+                        $scope.transaction.totalQuantity = 0;
+                        $scope.transaction.totalCash = 0;
+                        $scope.transaction.totalSent = 0;
+                        $scope.transaction.totalDebt = 0;
+                        $scope.transaction.totalEarn = 0;
+                        $scope.transaction.totalVat = 0;
+                        $scope.transaction.totalCurrency = 0;
+                        angular.forEach($scope.transactions, function (item) {
+                            if (item.Status === true) {
+                                $scope.transaction.totalQuantity += item.Quantity;
+                                $scope.transaction.totalCash += item.TotalCash;
+                                $scope.transaction.totalSent += item.TotalMoneySent;
+                                $scope.transaction.totalDebt += item.TotalDebt;
+                                $scope.transaction.totalEarn += item.EarnMoney;
+                                $scope.transaction.totalCurrency += item.TotalCurrency;
+                                $scope.transaction.totalVat += item.TotalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent - (item.TotalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent) / item.VAT;
+                            }
+                        });
+                    }
                     $scope.loading = false;
                 },
                 function () {
@@ -56,12 +84,31 @@
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning("Chưa có giao dịch phát sinh trong 7 ngày gần đây!");
                 }
-                $scope.transactions = [];
-                $scope.transactions = result.data.Items;
-                $scope.page = result.data.Page;
-                $scope.pagesCount = result.data.TotalPages;
-                $scope.totalCount = result.data.TotalCount;
-                console.log(result.data.Count);
+                else {
+                    $scope.transactions = [];
+                    $scope.transactions = result.data.Items;
+                    $scope.page = result.data.Page;
+                    $scope.pagesCount = result.data.TotalPages;
+                    $scope.totalCount = result.data.TotalCount;
+                    $scope.transaction.totalQuantity = 0;
+                    $scope.transaction.totalCash = 0;
+                    $scope.transaction.totalSent = 0;
+                    $scope.transaction.totalDebt = 0;
+                    $scope.transaction.totalEarn = 0;
+                    $scope.transaction.totalVat = 0;
+                    $scope.transaction.totalCurrency = 0;
+                    angular.forEach($scope.transactions, function (item) {
+                        if (item.Status === true) {
+                            $scope.transaction.totalQuantity += item.Quantity;
+                            $scope.transaction.totalCash += item.TotalCash;
+                            $scope.transaction.totalSent += item.TotalMoneySent;
+                            $scope.transaction.totalDebt += item.TotalDebt;
+                            $scope.transaction.totalEarn += item.EarnMoney;
+                            $scope.transaction.totalCurrency += item.TotalCurrency;
+                            $scope.transaction.totalVat += item.TotalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent - (item.TotalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent) / item.VAT;
+                        }
+                    });
+                }
                 $scope.loading = false;
             },
             function () {
@@ -110,12 +157,33 @@
             apiService.get('/api/transactions/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning("Chưa có giao dịch phát sinh trong ngày!");                    
-                } 
-                $scope.transactions = result.data.Items;
-                $scope.page = result.data.Page;
-                $scope.pagesCount = result.data.TotalPages;
-                $scope.totalCount = result.data.TotalCount;
-                console.log(result.data.Count);                
+                }
+                else {
+                    $scope.transactions = result.data.Items;
+                    $scope.page = result.data.Page;
+                    $scope.pagesCount = result.data.TotalPages;
+                    $scope.totalCount = result.data.TotalCount;
+                    $scope.transaction.totalQuantity = 0;
+                    $scope.transaction.totalCash = 0;
+                    $scope.transaction.totalSent = 0;
+                    $scope.transaction.totalDebt = 0;
+                    $scope.transaction.totalEarn = 0;
+                    $scope.transaction.totalVat = 0;
+                    $scope.transaction.totalCurrency = 0;
+                    angular.forEach($scope.transactions, function (item) {
+                        if (item.Status === true) {
+                            $scope.transaction.totalQuantity += item.Quantity;
+                            $scope.transaction.totalCash += item.TotalCash;
+                            $scope.transaction.totalSent += item.TotalMoneySent;
+                            $scope.transaction.totalDebt += item.TotalDebt;
+                            $scope.transaction.totalEarn += item.EarnMoney;
+                            $scope.transaction.totalCurrency += item.TotalCurrency;
+                            $scope.transaction.totalVat += item.TotalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent - (item.TotalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent) / item.VAT;
+                        }
+                    });
+                }
+                
+                
                 $scope.loading = false;
             },
             function () {

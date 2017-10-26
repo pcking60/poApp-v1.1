@@ -161,8 +161,8 @@
                                 $scope.report.totalSent += item.TotalMoneySent;
                                 $scope.report.totalDebt += item.TotalDebt;
                                 $scope.report.totalEarn += item.EarnMoney;
-                                $scope.report.totalCurrency += item.totalCurrency;
-                                $scope.report.totalVat += item.totalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent - (item.TotalCash + item.TotalDebt + item.TotalMoneySent) / item.VAT;
+                                $scope.report.totalCurrency += item.TotalCurrency;
+                                $scope.report.totalVat += item.TotalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent - (item.TotalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent) / item.VAT;
                             }
                         });
                     }
@@ -181,7 +181,8 @@
         //check role 
         $scope.isManager = authService.haveRole('Manager');
         $scope.isAdmin = authService.haveRole('Administrator');
-        if (!$scope.isAdmin && !$scope.isManager) {
+        $scope.isSupport = authService.haveRole('Support');
+        if (!$scope.isAdmin && !$scope.isManager && !$scope.isSupport) {
             $stateParams.id = authService.authentication.userName;
             apiService.get('/api/applicationUser/userinfo',
                 null,
@@ -195,7 +196,7 @@
         }
         else
         {
-            if (!$scope.isAdmin) {
+            if ($scope.isManager) {
                 $stateParams.id = authService.authentication.userName;
                 apiService.get('/api/applicationUser/userinfo',
                     null,

@@ -13,7 +13,7 @@
     
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu"  ng-hide="!isAdmin && !isManager">
+    <ul class="sidebar-menu"  ng-hide="!isAdmin && !isManager && !isSupport">
 
         <li class="header" style="color: #fff024 !important;"><i class="fa fa-cogs" aria-hidden="true"></i> <span style="padding-right:2px"></span>Quản lý hệ thống</li>
         <li class="treeview" >
@@ -25,7 +25,7 @@
             <ul class="treeview-menu">
                 <li ng-hide="!isAdmin"><a ui-sref="application_groups"><i class="fa fa-circle-o text-aqua"></i> Nhóm người dùng</a></li>
                 <li ng-hide="!isAdmin"><a ui-sref="application_roles"><i class="fa fa-circle-o"></i> Quyền</a></li>
-                <li ng-hide="!isAdmin && !isManager"><a ui-sref="application_users"><i class="fa fa-circle-o"></i> Người dùng</a></li>
+                <li ng-hide="!isAdmin && !isManager && !isSupport"><a ui-sref="application_users"><i class="fa fa-circle-o"></i> Người dùng</a></li>
             </ul>
         </li>
         <li class="treeview" ng-hide="!isAdmin">
@@ -117,7 +117,7 @@
                         <span>Thống kê tổng hợp</span>
                     </a>
                 </li>
-                <li ng-hide="!isAdmin && !isManager && !isCounter">
+                <li ng-hide="!isAdmin && !isManager && !isCounter && !isSupport">
                     <a ui-sref="reports">
                         <i class="fa fa-circle-o text-yellow"></i>
                         <span>Xuất báo cáo</span>

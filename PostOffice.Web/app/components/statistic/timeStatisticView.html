@@ -23,7 +23,7 @@
                             <span ng-show="frmTimeStatistic.name.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
                         </div>
                     </div>
-                    <div class="form-group" ng-hide="!isAdmin">
+                    <div class="form-group" ng-hide="!isAdmin && !isSupport">
                         <label for="inputPassword3" class="col-sm-3 control-label">Chọn đơn vị</label>
                         <div class="col-sm-6">
                             <select name="districtId" class="form-control" ng-change="updatePos(report.districtId)" ng-model="report.districtId" ng-options="option.ID as option.Name for option in report.districts">
@@ -32,7 +32,7 @@
                             <input type="hidden" name="districtId" ng-model="report.districtId" />
                         </div>
                     </div>
-                    <div class="form-group" ng-hide="!isManager && !isAdmin">
+                    <div class="form-group" ng-hide="!isManager && !isAdmin && !isSupport">
                         <label for="inputPassword3" class="col-sm-3 control-label">Chọn bưu cục</label>
                         <div class="col-sm-6">
                             <select name="poId" class="form-control" ng-change="updateUser(report.poId)" ng-model="report.poId" ng-options="option.ID as option.Name for option in report.pos">
@@ -41,7 +41,7 @@
                             <input type="hidden" name="poId" ng-model="report.poId" />
                         </div>
                     </div>
-                    <div class="form-group" ng-hide="!isManager && !isAdmin">
+                    <div class="form-group" ng-hide="!isManager && !isAdmin && !isSupport">
                         <label for="inputPassword3" class="col-sm-3 control-label">Chọn nhân viên</label>
                         <div class="col-sm-6">
                             <select name="staff" class="form-control" ng-change="updateService(report.userId)" ng-model="report.userId" ng-options="option.Id as option.FullName for option in report.users">
