@@ -5,3 +5,9 @@ F:\develope\project\po-app-source\Po_02092017150900\PostOffice.Common\bin\Debug\
 F:\develope\project\po-app-source\Po_02092017150900\PostOffice.Common\obj\Debug\PostOffice.Common.csprojResolveAssemblyReference.cache
 F:\develope\project\po-app-source\Po_02092017150900\PostOffice.Common\obj\Debug\PostOffice.Common.dll
 F:\develope\project\po-app-source\Po_02092017150900\PostOffice.Common\obj\Debug\PostOffice.Common.pdb
+F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Debug\PostOffice.Common.dll
+F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Debug\PostOffice.Common.pdb
+F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Debug\EPPlus.dll
+F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Debug\EPPlus.xml
+F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.dll
+F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.pdb

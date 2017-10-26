@@ -28,8 +28,10 @@ namespace PostOffice.Web.Models
         public decimal? VatOfTotalDebt { get; set; }
 
         public bool IsCash { get; set; }
+        public bool IsCurrency { get; set; }
         public decimal? TotalMoneySent { get; set; }
         public decimal? TotalMoneyReceive { get; set; }
+        public decimal? TotalCurrency { get; set; }
         public bool IsReceive { get; set; }
         public int groupId { get; set; }
         [Required]

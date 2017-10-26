@@ -5,6 +5,7 @@
         $scope.transaction = {
             Status: true,
             IsCash: true,
+            IsCurrency: true,
             Users: null,
             Service: null,            
             TransactionDate: null,

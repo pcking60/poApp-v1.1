@@ -94,11 +94,12 @@
                                 <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Ngày giao dịch</th>
                                 <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Ngày nhập</th>
                                 <th style="width: 5%; vertical-align: middle" class="text-center text-bold">Số lượng</th>
-                                <th style="width: 11%; vertical-align: middle" class="text-center text-bold">Số tiền nộp</th>
-                                <th style="width: 11%; vertical-align: middle" class="text-center text-bold">Số tiền nợ</th>
-                                <th style="width: 11%; vertical-align: middle" class="text-center text-bold">Số tiền chi hộ</th>
-                                <th style="width: 6%; vertical-align: middle" class="text-center text-bold">VAT</th>
-                                <th style="width: 11%; vertical-align: middle" class="text-center text-bold">Doanh thu tính lương</th>
+                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Số tiền nộp</th>
+                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Số tiền nợ</th>
+                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Số tiền chi hộ</th>
+                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">Ngoại tệ</th>
+                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">VAT</th>
+                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Doanh thu tính lương</th>
                             </tr>
 
                         </thead>
@@ -113,7 +114,8 @@
                                 <td style="vertical-align:middle" class="text-right">{{item.TotalCash | number:2}}</td>
                                 <td style="vertical-align:middle" class="text-right">{{item.TotalDebt | number:2}}</td>
                                 <td style="vertical-align:middle" class="text-right">{{item.TotalMoneySent | number:2}}</td>
-                                <td style="vertical-align:middle" class="text-right">{{(item.TotalCash + item.TotalDebt + item.TotalMoneySent)-((item.TotalCash + item.TotalDebt + item.TotalMoneySent) / item.VAT) | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.TotalCurrency | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{(item.TotalCash + item.TotalDebt + item.TotalMoneySent + item.TotalCurrency)-((item.TotalCash + item.TotalDebt + item.TotalMoneySent + item.TotalCurrency) / item.VAT) | number:2}}</td>
                                 <td style="vertical-align:middle" class="text-right">{{item.EarnMoney | number:2}}</td>
                             </tr>
                         </tbody>
@@ -127,6 +129,7 @@
                                 <td class="text-right">{{report.totalCash | number:2}}</td>                                
                                 <td class="text-right">{{report.totalDebt | number:2}}</td>
                                 <td class="text-right">{{report.totalSent | number:2}}</td>
+                                <td class="text-right">{{report.totalCurrency | number:2}}</td>
                                 <td class="text-right">{{report.totalVat | number:2}}</td>
                                 <td class="text-right">{{report.totalEarn | number:2}}</td>
                             </tr>

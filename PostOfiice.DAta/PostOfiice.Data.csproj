@@ -307,6 +307,10 @@
     <Compile Include="Migrations\201710230659461_Rank.Designer.cs">
       <DependentUpon>201710230659461_Rank.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710250810545_add-iscurrency-transactiontable.cs" />
+    <Compile Include="Migrations\201710250810545_add-iscurrency-transactiontable.Designer.cs">
+      <DependentUpon>201710250810545_add-iscurrency-transactiontable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PostOfficeDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -505,6 +509,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710230659461_Rank.resx">
       <DependentUpon>201710230659461_Rank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710250810545_add-iscurrency-transactiontable.resx">
+      <DependentUpon>201710250810545_add-iscurrency-transactiontable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

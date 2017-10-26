@@ -527,7 +527,7 @@ namespace PostOffice.Web.Api
                     //4
                     tkbdViewModel.ServiceId = workSheet.Cells[i, 5].Value.ToString();
                     //5
-                    if (DateTime.TryParseExact(workSheet.Cells[i, 7].Value.ToString(), "dd/MM/yyyy hh:mm:ss", null, DateTimeStyles.None, out transactionDate))
+                    if (DateTime.TryParseExact(workSheet.Cells[i, 6].Value.ToString(), "dd/MM/yyyy hh:mm:ss", null, DateTimeStyles.None, out transactionDate))
                     {
                         string temp = transactionDate.ToString("yyyy-MM-dd");
                         DateTime.TryParse(temp, out tranDate);
@@ -535,7 +535,7 @@ namespace PostOffice.Web.Api
                     }
                     else
                     {
-                        if (DateTime.TryParseExact(workSheet.Cells[i, 7].Value.ToString(), "MM/dd/yyyy hh:mm:ss", null, DateTimeStyles.None, out transactionDate))
+                        if (DateTime.TryParseExact(workSheet.Cells[i, 6].Value.ToString(), "MM/dd/yyyy hh:mm:ss", null, DateTimeStyles.None, out transactionDate))
                         {
                             string temp = transactionDate.ToString("yyyy-MM-dd");
                             DateTime.TryParse(temp, out tranDate);
@@ -543,7 +543,7 @@ namespace PostOffice.Web.Api
                         }
                         else
                         {
-                            transactionDate = DateTime.FromOADate(double.Parse(workSheet.Cells[i, 7].Value.ToString()));
+                            transactionDate = DateTime.FromOADate(double.Parse(workSheet.Cells[i, 6].Value.ToString()));
                             if (transactionDate != null)
                             {
                                 string temp = transactionDate.ToString("yyyy-MM-dd");

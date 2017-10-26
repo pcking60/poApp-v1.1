@@ -191,6 +191,7 @@ namespace PostOffice.Web.Infrastructure.Extensions
             //transaction.TransactionDetails = vm.TransactionDetails;
             transaction.Quantity = vm.Quantity;
             transaction.IsCash = vm.IsCash;
+            transaction.IsCurrency = vm.IsCurrency;
         }
 
         public static void UpdateMainGroup1(MainGroup1 RP, TransactionViewModel vm)

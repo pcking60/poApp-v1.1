@@ -20,7 +20,8 @@
             totalSent: 0,
             totalDebt: 0,
             totalEarn: 0,
-            totalVat: 0
+            totalVat: 0,
+            totalCurrency: 0
         };
        
         // lấy danh sách đơn vị / huyện
@@ -124,6 +125,7 @@
             $scope.report.totalDebt = 0;
             $scope.report.totalEarn = 0;
             $scope.report.totalVat = 0;
+            $scope.report.totalCurrency = 0;
             var fromDate = $scope.report.date.startDate.format('MM-DD-YYYY');
             var toDate = $scope.report.date.endDate.format('MM-DD-YYYY');
             var config = {
@@ -151,6 +153,7 @@
                         $scope.report.totalDebt = 0;
                         $scope.report.totalEarn = 0;
                         $scope.report.totalVat = 0;
+                        $scope.report.totalCurrency = 0;
                         angular.forEach($scope.statisticResult, function (item) {
                             if (item.Status === true) {
                                 $scope.report.totalQuantity += item.Quantity;
@@ -158,7 +161,8 @@
                                 $scope.report.totalSent += item.TotalMoneySent;
                                 $scope.report.totalDebt += item.TotalDebt;
                                 $scope.report.totalEarn += item.EarnMoney;
-                                $scope.report.totalVat += item.TotalCash + item.TotalDebt + item.TotalMoneySent - (item.TotalCash + item.TotalDebt + item.TotalMoneySent) / item.VAT;
+                                $scope.report.totalCurrency += item.totalCurrency;
+                                $scope.report.totalVat += item.totalCurrency + item.TotalCash + item.TotalDebt + item.TotalMoneySent - (item.TotalCash + item.TotalDebt + item.TotalMoneySent) / item.VAT;
                             }
                         });
                     }

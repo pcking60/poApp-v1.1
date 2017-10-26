@@ -268,13 +268,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/statistic/timeStatisticController.js">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/25/2017 14:56:02</publishTime>
     </File>
     <File Include="app/components/statistic/timeStatisticController.min.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/statistic/timeStatisticView.html">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/25/2017 15:26:06</publishTime>
     </File>
     <File Include="app/components/statistic/unitStatisticController.js">
       <publishTime>10/18/2017 09:26:44</publishTime>
@@ -322,13 +322,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2017 14:00:16</publishTime>
     </File>
     <File Include="app/components/transactions/transactionAddController.js">
-      <publishTime>10/24/2017 08:59:05</publishTime>
+      <publishTime>10/25/2017 14:51:09</publishTime>
     </File>
     <File Include="app/components/transactions/transactionAddController.min.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/transactions/transactionAddView.html">
-      <publishTime>10/24/2017 08:54:21</publishTime>
+      <publishTime>10/25/2017 14:48:42</publishTime>
     </File>
     <File Include="app/components/transactions/transactionEditController.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
@@ -352,7 +352,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/transactions/transactionsListView.html">
-      <publishTime>10/18/2017 09:28:58</publishTime>
+      <publishTime>10/25/2017 14:03:33</publishTime>
     </File>
     <File Include="app/components/user_dashboard/userDashboardController.js">
       <publishTime>10/18/2017 09:26:44</publishTime>
@@ -15997,16 +15997,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/24/2017 09:02:25</publishTime>
     </File>
     <File Include="bin/PostOffice.Model.dll">
-      <publishTime>10/24/2017 09:02:25</publishTime>
+      <publishTime>10/25/2017 15:12:24</publishTime>
     </File>
     <File Include="bin/PostOffice.Service.dll">
-      <publishTime>10/24/2017 09:02:26</publishTime>
+      <publishTime>10/25/2017 15:12:25</publishTime>
     </File>
     <File Include="bin/PostOffice.Web.dll">
-      <publishTime>10/24/2017 09:05:01</publishTime>
+      <publishTime>10/26/2017 16:18:08</publishTime>
     </File>
     <File Include="bin/PostOfiice.DAta.dll">
-      <publishTime>10/24/2017 09:02:25</publishTime>
+      <publishTime>10/25/2017 15:12:24</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>

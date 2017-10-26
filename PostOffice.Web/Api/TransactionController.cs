@@ -72,9 +72,17 @@ namespace PostOffice.Web.Api
                         }
                         else
                         {
+                            
                             if (item.groupId == 94)
                             {
-                                item.TotalMoneySent = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                                if (item.IsCurrency && item.ServiceId == 1769) 
+                                {
+                                    item.TotalCurrency = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                                }
+                                else
+                                {
+                                    item.TotalMoneySent = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                                }                                
                             }
                             else
                             {
