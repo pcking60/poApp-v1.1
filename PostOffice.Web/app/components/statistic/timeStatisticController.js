@@ -196,7 +196,7 @@
         }
         else
         {
-            if ($scope.isManager) {
+            if ($scope.isManager && !$scope.isAdmin && !is.isSupport) {
                 $stateParams.id = authService.authentication.userName;
                 apiService.get('/api/applicationUser/userinfo',
                     null,
