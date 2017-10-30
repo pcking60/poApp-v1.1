@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PostOffice.Common;
 using PostOffice.Common.ViewModels;
+using PostOffice.Common.ViewModels.ExportModel;
 using PostOffice.Model.Models;
 using PostOffice.Service;
 using PostOffice.Web.Infrastructure.Core;
@@ -172,9 +173,24 @@ namespace PostOffice.Web.Api
                     case 1:
                         vm.FunctionName = "Bảng kê thu tiền tại bưu cục - tổng hợp";
 
-                        var responseBCCP = _statisticService.Export_By_Service_Group_And_Time_District_Po_BCCP(fromDate, toDate, districtId, poId, currentUser, userId);
-                        var responsePPTT = _statisticService.Export_By_Service_Group_And_Time_District_Po_PPTT(fromDate, toDate, districtId, poId, currentUser, userId);
-                        var responseTCBC = _statisticService.Export_By_Service_Group_TCBC(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var query = _statisticService.Export_By_Service_Group_And_Time_District_Po_BCCP(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var responseBCCP = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP>, IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>>(query);
+                        foreach (var item in responseBCCP)
+                        {
+                            item.TotalMoneyAfterVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                        }                        
+                        var query2 = _statisticService.Export_By_Service_Group_TCBC(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var responseTCBC = Mapper.Map<IEnumerable<Export_By_Service_Group_TCBC>,IEnumerable<Export_By_Service_Group_TCBC_Vm>>(query2);
+                        foreach (var item in responseTCBC)
+                        {
+                            item.TotalMoney = (item.TotalColection + item.TotalPay) / (decimal)item.VAT;
+                        }
+                        var query3 = _statisticService.Export_By_Service_Group_And_Time_District_Po_PPTT(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var responsePPTT = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP>, IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>>(query3);
+                        foreach (var item in responsePPTT)
+                        {
+                            item.TotalMoneyAfterVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                        }
                         //var responseOther = _statisticService.Export_By_Service_Group_And_Time(fromDate, toDate, otherId, districtId, poId, userId);
                         await ReportHelper.Export_By_Service_Group_And_Time(responseBCCP.ToList(), responsePPTT.ToList(), responseTCBC.ToList(), fullPath, vm);
 

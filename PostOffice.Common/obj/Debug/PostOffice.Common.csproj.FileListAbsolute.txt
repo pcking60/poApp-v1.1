@@ -11,3 +11,4 @@ F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Debug\EPPlus.
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Debug\EPPlus.xml
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.dll
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.pdb
+F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.csprojResolveAssemblyReference.cache

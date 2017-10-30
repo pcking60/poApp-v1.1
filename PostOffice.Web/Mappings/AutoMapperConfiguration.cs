@@ -33,6 +33,8 @@ namespace PostOffice.Web.Mappings
             Mapper.CreateMap<TKBD_Export_Template, TKBD_Export_Template_ViewModel>();
             Mapper.CreateMap<TKBD_Export_Detail_Template, TKBD_Export_Detail_Template_ViewModel>();
             Mapper.CreateMap<TKBD_History_Statistic, TKBD_History_Statistic_ViewModel>();
+            Mapper.CreateMap<Export_By_Service_Group_And_Time_District_Po_BCCP, Export_By_Service_Group_And_Time_District_Po_BCCP_VM>();
+            Mapper.CreateMap<Export_By_Service_Group_TCBC, Export_By_Service_Group_TCBC_Vm>();
             Mapper.CreateMap<Rank, RankAfter>();
         
         }

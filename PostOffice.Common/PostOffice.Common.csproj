@@ -55,7 +55,9 @@
     <Compile Include="StringHelper.cs" />
     <Compile Include="ViewModels\ExportModel\Export_By_Service_Group_And_Time.cs" />
     <Compile Include="ViewModels\ExportModel\Export_By_Service_Group_And_Time_District_Po_BCCP.cs" />
+    <Compile Include="ViewModels\ExportModel\Export_By_Service_Group_And_Time_District_Po_BCCP_VM.cs" />
     <Compile Include="ViewModels\ExportModel\Export_By_Service_Group_TCBC.cs" />
+    <Compile Include="ViewModels\ExportModel\Export_By_Service_Group_TCBC_Vm.cs" />
     <Compile Include="ViewModels\ExportModel\TKBD_Export_Detail_Template.cs" />
     <Compile Include="ViewModels\ExportModel\TKBD_Export_Template.cs" />
     <Compile Include="ViewModels\MainGroup1.cs" />
