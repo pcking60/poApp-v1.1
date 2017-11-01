@@ -8,6 +8,7 @@ using PostOffice.Web.Infrastructure.Core;
 using PostOffice.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -105,10 +106,12 @@ namespace PostOffice.Web.Api
                 PO po = new PO();
                 ApplicationUser user = new ApplicationUser();
                 Model.Models.Service sv = new Model.Models.Service();
+               
                 DateTime f;
-                DateTime h;          
+                DateTime h;    
+                      
                 // Thời gian để xuất dữ liệu
-                if (DateTime.TryParseExact(fromDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out f))
+                if (DateTime.TryParseExact(fromDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.AssumeUniversal, out f))
                 {
                     DateTime.TryParse(f.ToString("dd/MM/yyyy" ), out f);
                     vm.FromDate = f;             
@@ -118,7 +121,10 @@ namespace PostOffice.Web.Api
                     vm.FromDate = DateTime.ParseExact(fromDate, "MM/dd/yyyy", null);
                 }
 
-                if (DateTime.TryParseExact(toDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out h))
+                DateTime fd= DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                DateTime td = DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+                if (DateTime.TryParseExact(toDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.AssumeUniversal, out h))
                 {
                     DateTime.TryParse(h.ToString("dd/MM/yyyy"), out h);
                     vm.ToDate = h;
@@ -216,10 +222,10 @@ namespace PostOffice.Web.Api
                             
                             if (districtId == 0) // district = 0
                             {
-                                var modelGg1 = _trasactionService.GetAllByMainGroupId(f, h, bccpId);
-                                var modelGg2 = _trasactionService.GetAllByMainGroupId(f, h, ppttId);
-                                var modelGg3 = _trasactionService.GetAllByMainGroupId(f, h, tcbcId);
-                                var modelGg4 = _trasactionService.GetAllByMainGroupId(f, h, otherId);
+                                var modelGg1 = _trasactionService.GetAllByMainGroupId(fd, td, bccpId);
+                                var modelGg2 = _trasactionService.GetAllByMainGroupId(fd, td, ppttId);
+                                var modelGg3 = _trasactionService.GetAllByMainGroupId(fd, td, tcbcId);
+                                var modelGg4 = _trasactionService.GetAllByMainGroupId(fd, td, otherId);
                                 var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
                                 var responseGg2 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg2);
                                 var responseGg3 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg3);
@@ -329,10 +335,10 @@ namespace PostOffice.Web.Api
                             {
                                 if (poId == 0) // disitrct != 0 && po == 0
                                 {
-                                    var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, bccpId);
-                                    var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, ppttId);
-                                    var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, tcbcId);
-                                    var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, otherId);
+                                    var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(fd, td, districtId, bccpId);
+                                    var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(fd, td, districtId, ppttId);
+                                    var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(fd, td, districtId, tcbcId);
+                                    var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(fd, td, districtId, otherId);
                                     var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
                                     var responseGg2 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg2);
                                     var responseGg3 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg3);
@@ -438,10 +444,10 @@ namespace PostOffice.Web.Api
                                 }
                                 else // disitrct != 0 && po != 0
                                 {
-                                    var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, bccpId);
-                                    var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, ppttId);
-                                    var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, tcbcId);
-                                    var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, otherId);
+                                    var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, bccpId);
+                                    var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, ppttId);
+                                    var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, tcbcId);
+                                    var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, otherId);
                                     var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
                                     foreach (var item in responseGg1)
                                     {
@@ -554,10 +560,10 @@ namespace PostOffice.Web.Api
                             if (poId == 0)
                             {
                                 districtId = _districtService.GetDistrictByUserName(currentUser).ID;
-                                var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, bccpId);
-                                var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, ppttId);
-                                var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, tcbcId);
-                                var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, otherId);
+                                var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(fd, td, districtId, bccpId);
+                                var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(fd, td, districtId, ppttId);
+                                var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(fd, td, districtId, tcbcId);
+                                var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(fd, td, districtId, otherId);
                                 var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
                                 var responseGg2 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg2);
                                 var responseGg3 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg3);
@@ -664,10 +670,10 @@ namespace PostOffice.Web.Api
                                 districtId = _districtService.GetDistrictByUserName(currentUser).ID;
                                 poId = _poService.GetPOByCurrentUser(currentUser).ID;
                                 
-                                var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, bccpId);
-                                var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, ppttId);
-                                var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, tcbcId);
-                                var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, otherId);
+                                var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, bccpId);
+                                var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, ppttId);
+                                var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, tcbcId);
+                                var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, otherId);
                                 var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
                                 foreach (var item in responseGg1)
                                 {

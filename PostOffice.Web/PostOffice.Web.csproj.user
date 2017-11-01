@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ToolsVersionPromptShown>2.5</ToolsVersionPromptShown>
     <UseIISExpress>true</UseIISExpress>
-    <NameOfLastUsedPublishProfile>Po-App-v1.1</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>Po-App-v1.3</NameOfLastUsedPublishProfile>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>

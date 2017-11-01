@@ -32,7 +32,7 @@
                             <span ng-show="frmReport.name.$invalid" class="text-danger">Cần nhập thông tin vào đây</span>
                         </div>
                     </div>                    
-                    <div class="form-group" ng-hide="!isAdmin">
+                    <div class="form-group" ng-hide="!isAdmin && !isSupport">
                         <label for="inputPassword3" class="col-sm-3 control-label">Chọn đơn vị</label>
                         <div class="col-sm-6">
                             <select name="districtId" class="form-control" ng-change="updatePos(report.districtId)" ng-model="report.districtId" ng-options="option.ID as option.Name for option in report.districts">
@@ -41,7 +41,7 @@
                             <input type="hidden" name="districtId" ng-model="report.districtId" />
                         </div>
                     </div>
-                    <div class="form-group" ng-hide="!isManager && !isAdmin">
+                    <div class="form-group" ng-hide="!isManager && !isAdmin && !isSupport">
                         <label for="inputPassword3" class="col-sm-3 control-label">Chọn bưu cục</label>
                         <div class="col-sm-6">
                             <select name="poId" class="form-control" ng-change="updateUser(report.poId)" ng-model="report.poId" ng-options="option.ID as option.Name for option in report.pos">
@@ -71,8 +71,8 @@
 
                     <div class="col-md-8">
                         <div class="col-sm-8 col-sm-offset-4">
-                            <span class="col-sm-4"><button type="submit" class="btn bg-orange btn-flat" ng-disabled="frmReport.$invalid" style="opacity:1">Xuất báo cáo</button></span>
-                            <span class="col-sm-4"><button type="reset" class="btn  btn-flat bg-olive " ng-click="Reset()">Làm mới</button></span>
+                            <span class="col-sm-5"><button type="submit" class="btn bg-orange btn-flat" ng-disabled="frmReport.$invalid" style="opacity:1">Xuất báo cáo <i ng-if="loading" class="fa fa-spinner fa-pulse fa-1x fa-fw"></i></button></span>
+                            <span class="col-sm-3"><button type="reset" class="btn  btn-flat bg-olive " ng-click="Reset()">Làm mới</button></span>
                             
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                     <button type="submit" class="btn btn-info " ng-disabled="frmTimeStatistic.$invalid">Lưu</button>
                 </div>-->
                 <!-- /.box-footer -->
-            </form>
+            </form>            
         </div>
     </div> <!-- /.row-->
    
