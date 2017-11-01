@@ -10,3 +10,4 @@ F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Release\EPPlu
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Release\EPPlus.xml
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Release\PostOffice.Common.dll
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Release\PostOffice.Common.pdb
+F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Release\PostOffice.Common.csprojResolveAssemblyReference.cache

@@ -100,7 +100,7 @@ namespace PostOffice.Service
             {
                 return null;
             }
-            
+
         }
 
         public Transaction GetById(int id)
@@ -249,6 +249,7 @@ namespace PostOffice.Service
 
             bool IsManager = false;
             bool IsAdministrator = false;
+            bool IsSupport = false;
 
             foreach (var item in listGroup)
             {
@@ -261,8 +262,12 @@ namespace PostOffice.Service
                 {
                     IsAdministrator = true;
                 }
+                if (name == "Support")
+                {
+                    IsSupport = true;
+                }
             }
-            if (IsAdministrator)
+            if (IsAdministrator || IsSupport)
             {
                 if (districtId == 0) // user not select anything
                 {
