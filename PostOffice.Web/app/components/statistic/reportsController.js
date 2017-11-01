@@ -4,7 +4,7 @@
     reportsController.$inject = ['$scope', 'apiService', 'notificationService', '$filter', 'authService', '$stateParams', '$injector'];
 
     function reportsController($scope, apiService, notificationService, $filter, authService, $stateParams, $injector) {
-      
+        $scope.loading = false;
         $scope.report = {
             functionId: null,
             date: { startDate: moment(), endDate: moment() },
@@ -111,7 +111,8 @@
 
        
         $scope.Report = Report;
-        function Report() {            
+        function Report() {
+            $scope.loading = true;
             var fromDate = $scope.report.date.startDate.format('MM/DD/YYYY');
             var toDate = $scope.report.date.endDate.format('MM/DD/YYYY');
             var config = {
@@ -127,8 +128,7 @@
                 }
             }
             apiService.get('api/statistic/rp1', config,
-                function (response) {
-                    $scope.loading = true;
+                function (response) {                    
                     if (response.status = 200) {
                         window.location.href = response.data.Message;
                         $scope.loading = false;
@@ -150,7 +150,8 @@
         //check role 
         $scope.isManager = authService.haveRole('Manager');
         $scope.isAdmin = authService.haveRole('Administrator');
-        if (!$scope.isAdmin && !$scope.isManager) {
+        $scope.isSupport = authService.haveRole('Support');
+        if (!$scope.isAdmin && !$scope.isManager && !$scope.isSupport) {
             $stateParams.id = authService.authentication.userName;
             apiService.get('/api/applicationUser/userinfo',
                 null,
@@ -163,7 +164,7 @@
                 });
         }
         else {
-            if (!$scope.isAdmin) {
+            if ($scope.isManager && !$scope.isSupport && !$scope.isAdmin) {
                 $stateParams.id = authService.authentication.userName;
                 apiService.get('/api/applicationUser/userinfo',
                     null,

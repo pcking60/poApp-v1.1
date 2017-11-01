@@ -344,9 +344,9 @@ namespace PostOffice.Common
                         //format col 1
                         ws.Column(1).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                         //Header Label BCCP
-                        ws.Cells["A9:I9"].Merge = true;
-                        ws.Cells["A9:I9"].Value = "I. Nhóm Bưu Chính Chuyển Phát";
-                        ws.Cells["A9:I9"].Style.Font.Bold = true;
+                        ws.Cells["A9:J9"].Merge = true;
+                        ws.Cells["A9:J9"].Value = "I. Nhóm Bưu Chính Chuyển Phát";
+                        ws.Cells["A9:J9"].Style.Font.Bold = true;
                         ws.Row(9).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
 
                         //header
@@ -393,9 +393,9 @@ namespace PostOffice.Common
                     {
                         // load data source 2
                         ws.Cells["A" + (noRowBCCP + 14)].LoadFromCollection<T3>(tcbcDataSource, true, TableStyles.Light1);
-                        ws.Cells["A" + (noRowBCCP + 13) + ":I" + (noRowBCCP + 13)].Merge = true;
+                        ws.Cells["A" + (noRowBCCP + 13) + ":J" + (noRowBCCP + 13)].Merge = true;
                         ws.Cells["A" + (noRowBCCP + 13)].Value = "II. Nhóm Tài Chính Bưu Chính";
-                        ws.Cells["A" + (noRowBCCP + 13) + ":I" + (noRowBCCP + 13)].Style.Font.Bold = true;
+                        ws.Cells["A" + (noRowBCCP + 13) + ":J" + (noRowBCCP + 13)].Style.Font.Bold = true;
                         ws.Row(noRowBCCP + 13).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
 
                         //header
@@ -410,8 +410,8 @@ namespace PostOffice.Common
                         ws.Cells["H" + (noRowBCCP + 14)].Value = " Vat \nSố tiền \nkhách nhận";
                         ws.Cells["I" + (noRowBCCP + 14)].Value = "Tổng \ndoanh thu \nsau thuế";
                         ws.Cells["J" + (noRowBCCP + 14)].Value = "Doanh thu \ntính lương";
-                        ws.Cells["A" + (noRowBCCP + 14) + ":I" + (noRowBCCP + 14)].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                        ws.Cells["A" + (noRowBCCP + 14) + ":I" + (noRowBCCP + 14)].Style.Font.Bold = true;
+                        ws.Cells["A" + (noRowBCCP + 14) + ":J" + (noRowBCCP + 14)].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        ws.Cells["A" + (noRowBCCP + 14) + ":J" + (noRowBCCP + 14)].Style.Font.Bold = true;
                         ws.Cells[(noRowBCCP + 14), 1, (noRowBCCP + 14), 10].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                         ws.Cells[(noRowBCCP + 14), 1, (noRowBCCP + 14), 10].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(236, 143, 50));
                         ws.Row(noRowBCCP + 14).Style.WrapText = true;
@@ -451,9 +451,9 @@ namespace PostOffice.Common
                         }
                         
                         //Header Label PPTT
-                        ws.Cells["A" + (noRowBCCP + noRowTCBC + 17) + ":I" + (noRowBCCP + noRowTCBC + 17)].Merge = true;
+                        ws.Cells["A" + (noRowBCCP + noRowTCBC + 17) + ":J" + (noRowBCCP + noRowTCBC + 17)].Merge = true;
                         ws.Cells["A" + (noRowBCCP + noRowTCBC + 17)].Value = "III. Phân phối truyền thông";
-                        ws.Cells["A" + (noRowBCCP + noRowTCBC + 17) + ":I" + (noRowBCCP + noRowTCBC + 17)].Style.Font.Bold = true;
+                        ws.Cells["A" + (noRowBCCP + noRowTCBC + 17) + ":J" + (noRowBCCP + noRowTCBC + 17)].Style.Font.Bold = true;
                         ws.Row(noRowBCCP + noRowTCBC + 17).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
 
                         //header

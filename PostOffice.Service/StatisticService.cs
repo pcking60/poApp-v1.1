@@ -128,6 +128,7 @@ namespace PostOffice.Service
             // define role of user name
             bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
             bool isManager = _userRepository.CheckRole(currentUser, "Manager");
+            bool isSupport = _userRepository.CheckRole(currentUser, "Support");
 
             //get user info
             var user = _userRepository.getByUserId(userSelected);
@@ -137,7 +138,7 @@ namespace PostOffice.Service
                 userId = user.Id;
             }
 
-            if (isAdmin) //is admin
+            if (isAdmin ||  isSupport) //is admin
             {
                 if (districtId == 0)
                 {
@@ -201,6 +202,7 @@ namespace PostOffice.Service
             // define role of user
             bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
             bool isManager = _userRepository.CheckRole(currentUser, "Manager");
+            bool isSupport = _userRepository.CheckRole(currentUser, "Support");
 
             //get user info
             var user = _userRepository.getByUserId(userSelected);
@@ -210,7 +212,7 @@ namespace PostOffice.Service
                 userId = user.Id;
             }
 
-            if (isAdmin) //is admin
+            if (isAdmin || isSupport) //is admin
             {
                 if (districtId == 0)
                 {
@@ -273,6 +275,7 @@ namespace PostOffice.Service
             // define role of user
             bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
             bool isManager = _userRepository.CheckRole(currentUser, "Manager");
+            bool isSupport = _userRepository.CheckRole(currentUser, "Support");
 
             //get user info
             var user = _userRepository.getByUserName(userSelected);
@@ -282,7 +285,7 @@ namespace PostOffice.Service
                 userId = user.Id;
             }
 
-            if (isAdmin) //is admin
+            if (isAdmin || isSupport) //is admin
             {
                 if (districtId == 0)
                 {

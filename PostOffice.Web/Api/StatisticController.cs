@@ -79,6 +79,7 @@ namespace PostOffice.Web.Api
             bool isManager = false;
             isAdmin = _userService.CheckRole(User.Identity.Name, "Administrator");
             isManager = _userService.CheckRole(User.Identity.Name, "Manager");
+            bool isSupport = _userService.CheckRole(User.Identity.Name, "Support");
 
             #region Config Export file
 
@@ -109,17 +110,17 @@ namespace PostOffice.Web.Api
                 // Thời gian để xuất dữ liệu
                 if (DateTime.TryParseExact(fromDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out f))
                 {
-                    DateTime.TryParse(f.ToString("dd/MM/yyyy" ), out h);
-                    vm.FromDate = h;             
+                    DateTime.TryParse(f.ToString("dd/MM/yyyy" ), out f);
+                    vm.FromDate = f;             
                 }
                 else
                 {
                     vm.FromDate = DateTime.ParseExact(fromDate, "MM/dd/yyyy", null);
                 }
 
-                if (DateTime.TryParseExact(toDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out f))
+                if (DateTime.TryParseExact(toDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out h))
                 {
-                    DateTime.TryParse(f.ToString("dd/MM/yyyy"), out h);
+                    DateTime.TryParse(h.ToString("dd/MM/yyyy"), out h);
                     vm.ToDate = h;
                 }
                 else
@@ -202,22 +203,29 @@ namespace PostOffice.Web.Api
 
                     case 2:
                         vm.FunctionName = "Bảng kê thu tiền tại bưu cục - chi tiết";
-                        if (!isAdmin && !isManager)
+
+                        // check if basic user
+                        if (!isAdmin && !isManager && !isSupport)
                         {
                             break;
                         }
-                        if (isAdmin)
+
+                        // check if admin or support
+                        if (isAdmin || isSupport)
                         {
-                            if (districtId == 0)
+                            
+                            if (districtId == 0) // district = 0
                             {
-                                var modelGg1 = _trasactionService.GetAllByMainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.Parse(toDate), bccpId);
-                                var modelGg2 = _trasactionService.GetAllByMainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), ppttId);
-                                var modelGg3 = _trasactionService.GetAllByMainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), tcbcId);
-                                var modelGg4 = _trasactionService.GetAllByMainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), otherId);
+                                var modelGg1 = _trasactionService.GetAllByMainGroupId(f, h, bccpId);
+                                var modelGg2 = _trasactionService.GetAllByMainGroupId(f, h, ppttId);
+                                var modelGg3 = _trasactionService.GetAllByMainGroupId(f, h, tcbcId);
+                                var modelGg4 = _trasactionService.GetAllByMainGroupId(f, h, otherId);
                                 var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
                                 var responseGg2 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg2);
                                 var responseGg3 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg3);
                                 var responseGg4 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg4);
+
+                                #region Stack
 
                                 // main group 1 - BCCP
 
@@ -314,20 +322,23 @@ namespace PostOffice.Web.Api
                                 #endregion TCBC
 
                                 await ReportHelper.RP2_1(responseDBGg1.ToList(), responseDBGg2.ToList(), responseDBGg3.ToList(), fullPath, vm);
-                            }//end if districtId=0
-                            else
+                                #endregion
+
+                            }
+                            else // disitrct != 0
                             {
-                                if (poId == 0)
+                                if (poId == 0) // disitrct != 0 && po == 0
                                 {
-                                    var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.Parse(toDate), districtId, bccpId);
-                                    var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), districtId, ppttId);
-                                    var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), districtId, tcbcId);
-                                    var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), districtId, otherId);
+                                    var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, bccpId);
+                                    var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, ppttId);
+                                    var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, tcbcId);
+                                    var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, otherId);
                                     var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
                                     var responseGg2 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg2);
                                     var responseGg3 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg3);
                                     var responseGg4 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg4);
 
+                                    #region
                                     // main group 1 - BCCP
 
                                     #region BCCP
@@ -423,14 +434,19 @@ namespace PostOffice.Web.Api
                                     #endregion TCBC
 
                                     await ReportHelper.RP2_1(responseDBGg1.ToList(), responseDBGg2.ToList(), responseDBGg3.ToList(), fullPath, vm);
+                                    #endregion
                                 }
-                                else
+                                else // disitrct != 0 && po != 0
                                 {
-                                    var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), districtId, poId, bccpId);
-                                    var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), districtId, poId, ppttId);
-                                    var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), districtId, poId, tcbcId);
-                                    var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime.Parse(fromDate), DateTime.Parse(toDate), districtId, poId, otherId);
+                                    var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, bccpId);
+                                    var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, ppttId);
+                                    var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, tcbcId);
+                                    var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, otherId);
                                     var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
+                                    foreach (var item in responseGg1)
+                                    {
+                                        var ttmn = item.TotalMoney;
+                                    }
                                     var responseGg2 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg2);
                                     var responseGg3 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg3);
                                     var responseGg4 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg4);
@@ -538,10 +554,10 @@ namespace PostOffice.Web.Api
                             if (poId == 0)
                             {
                                 districtId = _districtService.GetDistrictByUserName(currentUser).ID;
-                                var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.ParseExact(toDate, "MM/dd/yyyy", null), districtId, bccpId);
-                                var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.ParseExact(toDate, "MM/dd/yyyy", null), districtId, ppttId);
-                                var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.ParseExact(toDate, "MM/dd/yyyy", null), districtId, tcbcId);
-                                var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.ParseExact(toDate, "MM/dd/yyyy", null), districtId, otherId);
+                                var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, bccpId);
+                                var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, ppttId);
+                                var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, tcbcId);
+                                var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_MainGroupId(f, h, districtId, otherId);
                                 var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
                                 var responseGg2 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg2);
                                 var responseGg3 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg3);
@@ -648,11 +664,15 @@ namespace PostOffice.Web.Api
                                 districtId = _districtService.GetDistrictByUserName(currentUser).ID;
                                 poId = _poService.GetPOByCurrentUser(currentUser).ID;
                                 
-                                var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), districtId, poId, bccpId);
-                                var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.ParseExact(toDate, "MM/dd/yyyy", null), districtId, poId, ppttId);
-                                var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.ParseExact(toDate, "MM/dd/yyyy", null), districtId, poId, tcbcId);
-                                var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime.ParseExact(fromDate, "MM/dd/yyyy", null), DateTime.ParseExact(toDate, "MM/dd/yyyy", null), districtId, poId, otherId);
+                                var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, bccpId);
+                                var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, ppttId);
+                                var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, tcbcId);
+                                var modelGg4 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(f, h, districtId, poId, otherId);
                                 var responseGg1 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg1);
+                                foreach (var item in responseGg1)
+                                {
+                                    var ttmn = item.TotalMoney;
+                                }
                                 var responseGg2 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg2);
                                 var responseGg3 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg3);
                                 var responseGg4 = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(modelGg4);
@@ -761,9 +781,24 @@ namespace PostOffice.Web.Api
 
                     case 3:
                         vm.FunctionName = "Bảng kê thu tiền theo nhân viên";
-                        var responseBCCP3 = _statisticService.Export_By_Service_Group_And_Time_District_Po_BCCP(fromDate, toDate, districtId, poId, currentUser, userId);
-                        var responsePPTT3 = _statisticService.Export_By_Service_Group_And_Time_District_Po_PPTT(fromDate, toDate, districtId, poId, currentUser, userId);
-                        var responseTCBC3 = _statisticService.Export_By_Service_Group_TCBC(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var c3_bccp = _statisticService.Export_By_Service_Group_And_Time_District_Po_BCCP(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var responseBCCP3 = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP>, IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>>(c3_bccp);
+                        foreach (var item in responseBCCP3)
+                        {
+                            item.TotalMoneyAfterVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                        }
+                        var c3_pptt = _statisticService.Export_By_Service_Group_And_Time_District_Po_PPTT(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var responsePPTT3 = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP>, IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>>(c3_pptt);
+                        foreach (var item in responsePPTT3)
+                        {
+                            item.TotalMoneyAfterVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                        }
+                        var c3_tcbc = _statisticService.Export_By_Service_Group_TCBC(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var responseTCBC3 = Mapper.Map<IEnumerable<Export_By_Service_Group_TCBC>, IEnumerable<Export_By_Service_Group_TCBC_Vm>>(c3_tcbc);
+                        foreach (var item in responseTCBC3)
+                        {
+                            item.TotalMoney = (item.TotalColection + item.TotalPay) / (decimal)item.VAT;
+                        }
                         //var responseOther3 = _statisticService.Export_By_Service_Group_And_Time(fromDate, toDate, otherId, districtId, poId, userId);
                         await ReportHelper.Export_By_Service_Group_And_Time(responseBCCP3.ToList(), responsePPTT3.ToList(), responseTCBC3.ToList(), fullPath, vm);
 
