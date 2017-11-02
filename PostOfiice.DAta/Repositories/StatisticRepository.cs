@@ -124,7 +124,7 @@ namespace PostOfiice.DAta.Repositories
                 new SqlParameter("@districtId", districtId),
                 new SqlParameter("@poId", poId)
             };
-            return DbContext.Database.SqlQuery<Export_By_Service_Group_And_Time_District_Po_BCCP>("Export_By_Service_Group_And_Time_District_Po_BCCP @fromDate,@toDate,@districtId,@poId", parameters);
+            return DbContext.Database.SqlQuery<Export_By_Service_Group_And_Time_District_Po_BCCP>("Export_By_Service_Group_And_Time_District_Po_BCCP @fromDate,@toDate,@districtId,@poId", parameters).ToList();
         }
 
         public IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP> Export_By_Service_Group_And_Time_District_Po_PPTT(string fromDate, string toDate, int districtId, int poId)

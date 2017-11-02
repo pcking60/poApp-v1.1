@@ -106,39 +106,24 @@ namespace PostOffice.Web.Api
                 PO po = new PO();
                 ApplicationUser user = new ApplicationUser();
                 Model.Models.Service sv = new Model.Models.Service();
-               
-                DateTime f;
-                DateTime h;    
-                      
+                // current user
+                string currentUser = User.Identity.Name;
                 // Thời gian để xuất dữ liệu
-                if (DateTime.TryParseExact(fromDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.AssumeUniversal, out f))
+                DateTime fd;
+                DateTime td;
+                try
                 {
-                    DateTime.TryParse(f.ToString("dd/MM/yyyy" ), out f);
-                    vm.FromDate = f;             
+                    fd = DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    vm.FromDate = fd;
+                    td = DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    vm.ToDate = td;
                 }
-                else
+                catch (Exception)
                 {
-                    vm.FromDate = DateTime.ParseExact(fromDate, "MM/dd/yyyy", null);
-                }
-
-                DateTime fd= DateTime.ParseExact(fromDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                DateTime td = DateTime.ParseExact(toDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-
-                if (DateTime.TryParseExact(toDate, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.AssumeUniversal, out h))
-                {
-                    DateTime.TryParse(h.ToString("dd/MM/yyyy"), out h);
-                    vm.ToDate = h;
-                }
-                else
-                {
-                    vm.FromDate = DateTime.ParseExact(fromDate, "MM/dd/yyyy", null);
+                    throw;
                 }
 
-
-                vm.CreatedBy = User.Identity.Name;
-
-                //rp1Advance = _statisticService.RP1Advance();
-
+                vm.CreatedBy = currentUser;
                 //check param đầu vào
 
                 #region data input
@@ -166,13 +151,10 @@ namespace PostOffice.Web.Api
 
                 #endregion data input
 
-                //var listMainGroup = _mainGroupService.GetAll();
-
                 const int bccpId = 1; //BCCP
                 const int ppttId = 2; //PPTT
                 const int tcbcId = 3; //TCBC
                 const int otherId = 4; //OTHER
-                string currentUser = User.Identity.Name;
                 switch (functionId)
                 {
                     #region case 1 Bảng kê thu tiền tại bưu cục - tổng hợp
@@ -181,13 +163,16 @@ namespace PostOffice.Web.Api
                         vm.FunctionName = "Bảng kê thu tiền tại bưu cục - tổng hợp";
 
                         var query = _statisticService.Export_By_Service_Group_And_Time_District_Po_BCCP(fromDate, toDate, districtId, poId, currentUser, userId);
+                        var c = query.Count();
                         var responseBCCP = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP>, IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>>(query);
                         foreach (var item in responseBCCP)
                         {
-                            item.TotalMoneyAfterVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
-                        }                        
+                            item.TotalMoneyBeforeVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                            item.TotalVat = (item.TotalCash + item.TotalDebt) - ((item.TotalCash + item.TotalDebt) / (decimal)item.VAT);
+                        }
+                        var responseBCCP1 = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>, IEnumerable<Export_Template_VM>>(responseBCCP);
                         var query2 = _statisticService.Export_By_Service_Group_TCBC(fromDate, toDate, districtId, poId, currentUser, userId);
-                        var responseTCBC = Mapper.Map<IEnumerable<Export_By_Service_Group_TCBC>,IEnumerable<Export_By_Service_Group_TCBC_Vm>>(query2);
+                        var responseTCBC = Mapper.Map<IEnumerable<Export_By_Service_Group_TCBC>, IEnumerable<Export_By_Service_Group_TCBC_Vm>>(query2);
                         foreach (var item in responseTCBC)
                         {
                             item.TotalMoney = (item.TotalColection + item.TotalPay) / (decimal)item.VAT;
@@ -196,10 +181,11 @@ namespace PostOffice.Web.Api
                         var responsePPTT = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP>, IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>>(query3);
                         foreach (var item in responsePPTT)
                         {
-                            item.TotalMoneyAfterVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                            item.TotalMoneyBeforeVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                            item.TotalVat = (item.TotalCash + item.TotalDebt) - ((item.TotalCash + item.TotalDebt) / (decimal)item.VAT);
                         }
-                        //var responseOther = _statisticService.Export_By_Service_Group_And_Time(fromDate, toDate, otherId, districtId, poId, userId);
-                        await ReportHelper.Export_By_Service_Group_And_Time(responseBCCP.ToList(), responsePPTT.ToList(), responseTCBC.ToList(), fullPath, vm);
+                        var responsePPTT1 = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>, IEnumerable<Export_Template_VM>>(responsePPTT);
+                        await ReportHelper.Export_By_Service_Group_And_Time(responseBCCP1.ToList(), responsePPTT1.ToList(), responseTCBC.ToList(), fullPath, vm);
 
                         break;
 
@@ -219,7 +205,6 @@ namespace PostOffice.Web.Api
                         // check if admin or support
                         if (isAdmin || isSupport)
                         {
-                            
                             if (districtId == 0) // district = 0
                             {
                                 var modelGg1 = _trasactionService.GetAllByMainGroupId(fd, td, bccpId);
@@ -328,8 +313,8 @@ namespace PostOffice.Web.Api
                                 #endregion TCBC
 
                                 await ReportHelper.RP2_1(responseDBGg1.ToList(), responseDBGg2.ToList(), responseDBGg3.ToList(), fullPath, vm);
-                                #endregion
 
+                                #endregion Stack
                             }
                             else // disitrct != 0
                             {
@@ -440,7 +425,8 @@ namespace PostOffice.Web.Api
                                     #endregion TCBC
 
                                     await ReportHelper.RP2_1(responseDBGg1.ToList(), responseDBGg2.ToList(), responseDBGg3.ToList(), fullPath, vm);
-                                    #endregion
+
+                                    #endregion case 2 Bảng kê thu tiền tại bưu cục - chi tiết
                                 }
                                 else // disitrct != 0 && po != 0
                                 {
@@ -669,7 +655,7 @@ namespace PostOffice.Web.Api
                             {
                                 districtId = _districtService.GetDistrictByUserName(currentUser).ID;
                                 poId = _poService.GetPOByCurrentUser(currentUser).ID;
-                                
+
                                 var modelGg1 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, bccpId);
                                 var modelGg2 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, ppttId);
                                 var modelGg3 = _trasactionService.GetAllBy_Time_DistrictID_POID_MainGroupId(fd, td, districtId, poId, tcbcId);
@@ -783,7 +769,9 @@ namespace PostOffice.Web.Api
 
                         break;
 
-                    #endregion case 2 Bảng kê thu tiền tại bưu cục - chi tiết
+                    #endregion customFill Test
+
+                    #region case 3 Bảng kê thu tiền theo nhân viên
 
                     case 3:
                         vm.FunctionName = "Bảng kê thu tiền theo nhân viên";
@@ -791,13 +779,13 @@ namespace PostOffice.Web.Api
                         var responseBCCP3 = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP>, IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>>(c3_bccp);
                         foreach (var item in responseBCCP3)
                         {
-                            item.TotalMoneyAfterVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                            item.TotalMoneyBeforeVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
                         }
                         var c3_pptt = _statisticService.Export_By_Service_Group_And_Time_District_Po_PPTT(fromDate, toDate, districtId, poId, currentUser, userId);
                         var responsePPTT3 = Mapper.Map<IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP>, IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP_VM>>(c3_pptt);
                         foreach (var item in responsePPTT3)
                         {
-                            item.TotalMoneyAfterVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                            item.TotalMoneyBeforeVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
                         }
                         var c3_tcbc = _statisticService.Export_By_Service_Group_TCBC(fromDate, toDate, districtId, poId, currentUser, userId);
                         var responseTCBC3 = Mapper.Map<IEnumerable<Export_By_Service_Group_TCBC>, IEnumerable<Export_By_Service_Group_TCBC_Vm>>(c3_tcbc);
@@ -809,7 +797,9 @@ namespace PostOffice.Web.Api
                         await ReportHelper.Export_By_Service_Group_And_Time(responseBCCP3.ToList(), responsePPTT3.ToList(), responseTCBC3.ToList(), fullPath, vm);
 
                         break;
+                    #endregion case 3 Bảng kê thu tiền theo nhân viên
 
+                    #region feature function
                     case 4:
                         vm.FunctionName = "Bảng kê thu tiền theo dịch vụ";
                         break;
@@ -821,9 +811,10 @@ namespace PostOffice.Web.Api
                     default:
                         vm.FunctionName = "Chức năng khác";
                         break;
+                        #endregion feature function
                 }
 
-                #endregion customFill Test
+                #endregion case 3 Bảng kê thu tiền theo nhân viên
 
                 return request.CreateErrorResponse(HttpStatusCode.OK, Path.Combine(folderReport, fileName));
             }

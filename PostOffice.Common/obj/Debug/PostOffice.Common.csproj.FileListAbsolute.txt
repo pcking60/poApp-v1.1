@@ -11,3 +11,10 @@ F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Debug\EPPlus.
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\bin\Debug\EPPlus.xml
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.dll
 F:\develope\project\po-app-source\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.pdb
+D:\develope\po-App-v1.3\poApp-v1.1\PostOffice.Common\bin\Debug\PostOffice.Common.dll
+D:\develope\po-App-v1.3\poApp-v1.1\PostOffice.Common\bin\Debug\PostOffice.Common.pdb
+D:\develope\po-App-v1.3\poApp-v1.1\PostOffice.Common\bin\Debug\EPPlus.dll
+D:\develope\po-App-v1.3\poApp-v1.1\PostOffice.Common\bin\Debug\EPPlus.xml
+D:\develope\po-App-v1.3\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.dll
+D:\develope\po-App-v1.3\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.pdb
+D:\develope\po-App-v1.3\poApp-v1.1\PostOffice.Common\obj\Debug\PostOffice.Common.csprojResolveAssemblyReference.cache
