@@ -311,6 +311,22 @@
     <Compile Include="Migrations\201710250810545_add-iscurrency-transactiontable.Designer.cs">
       <DependentUpon>201710250810545_add-iscurrency-transactiontable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711051430011_export-tcbc-by-time.cs" />
+    <Compile Include="Migrations\201711051430011_export-tcbc-by-time.Designer.cs">
+      <DependentUpon>201711051430011_export-tcbc-by-time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711051435488_export-tcbc-by-time-district.cs" />
+    <Compile Include="Migrations\201711051435488_export-tcbc-by-time-district.Designer.cs">
+      <DependentUpon>201711051435488_export-tcbc-by-time-district.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711051514108_export-tcbc-by-time-district-po.cs" />
+    <Compile Include="Migrations\201711051514108_export-tcbc-by-time-district-po.Designer.cs">
+      <DependentUpon>201711051514108_export-tcbc-by-time-district-po.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711051519030_export-tcbc-by-time-district-po-user.cs" />
+    <Compile Include="Migrations\201711051519030_export-tcbc-by-time-district-po-user.Designer.cs">
+      <DependentUpon>201711051519030_export-tcbc-by-time-district-po-user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PostOfficeDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -512,6 +528,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710250810545_add-iscurrency-transactiontable.resx">
       <DependentUpon>201710250810545_add-iscurrency-transactiontable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051430011_export-tcbc-by-time.resx">
+      <DependentUpon>201711051430011_export-tcbc-by-time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051435488_export-tcbc-by-time-district.resx">
+      <DependentUpon>201711051435488_export-tcbc-by-time-district.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051514108_export-tcbc-by-time-district-po.resx">
+      <DependentUpon>201711051514108_export-tcbc-by-time-district-po.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051519030_export-tcbc-by-time-district-po-user.resx">
+      <DependentUpon>201711051519030_export-tcbc-by-time-district-po-user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

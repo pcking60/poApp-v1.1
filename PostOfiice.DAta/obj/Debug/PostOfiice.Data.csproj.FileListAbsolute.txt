@@ -257,3 +257,7 @@ D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Mig
 D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.Data.csproj.GenerateResource.Cache
 D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.dll
 D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.pdb
+D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytime.resources
+D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrict.resources
+D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpo.resources
+D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpouser.resources
