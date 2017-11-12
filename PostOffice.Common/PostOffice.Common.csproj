@@ -60,6 +60,8 @@
     <Compile Include="ViewModels\ExportModel\Export_By_Service_Group_TCBC_Vm.cs" />
     <Compile Include="ViewModels\ExportModel\Export_Template_TCBC.cs" />
     <Compile Include="ViewModels\ExportModel\Export_Template_VM.cs" />
+    <Compile Include="ViewModels\ExportModel\Get_General_TCBC.cs" />
+    <Compile Include="ViewModels\ExportModel\Get_General_TCBC_VM.cs" />
     <Compile Include="ViewModels\ExportModel\TKBD_Export_Detail_Template.cs" />
     <Compile Include="ViewModels\ExportModel\TKBD_Export_Template.cs" />
     <Compile Include="ViewModels\MainGroup1.cs" />

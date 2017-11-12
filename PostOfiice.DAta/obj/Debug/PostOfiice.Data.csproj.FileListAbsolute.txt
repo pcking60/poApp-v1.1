@@ -261,3 +261,7 @@ D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Mig
 D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrict.resources
 D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpo.resources
 D:\develope\po-App-v1.3\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpouser.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytime.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrict.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpo.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpouser.resources

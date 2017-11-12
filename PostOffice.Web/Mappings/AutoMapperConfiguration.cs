@@ -37,6 +37,8 @@ namespace PostOffice.Web.Mappings
             Mapper.CreateMap<Export_By_Service_Group_And_Time_District_Po_BCCP_VM, Export_Template_VM>();
             Mapper.CreateMap<Export_By_Service_Group_TCBC, Export_By_Service_Group_TCBC_Vm>();
             Mapper.CreateMap<Rank, RankAfter>();
+            Mapper.CreateMap<Get_General_TCBC, Get_General_TCBC_VM>();
+            Mapper.CreateMap<Get_General_TCBC_VM, Export_Template_TCBC>();
         }
     }
 }

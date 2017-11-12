@@ -542,7 +542,8 @@ namespace PostOffice.Common
                     ws.PrinterSettings.RightMargin = (decimal)0.8 / 2.54M;
                     ws.PrinterSettings.Orientation = eOrientation.Landscape;
                     ws.Cells["A1:Z1000"].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
-                    ws.Cells["A1:Z1000"].Style.Font.SetFromFont(new Font("Segoe UI", 10));
+                    ws.Cells["A1:Z1000"].Style.Font.SetFromFont(new Font("Segoe UI", 9));
+                    ws.Cells["A1:Z1000"].AutoFitColumns();
                     //header
                     ws.Cells["A1:B1"].Merge = true;
                     ws.Cells["A1:B1"].Value = "TỔNG CÔNG TY BƯU ĐIỆN VIỆT NAM \n BƯU ĐIỆN TỈNH SÓC TRĂNG";
@@ -627,14 +628,16 @@ namespace PostOffice.Common
                     {
                         ws.Cells["A10"].Value = "Không có dữ liệu";
                     }
-                    ws.Column(1).Width = 4.9;
-                    ws.Column(2).AutoFit();
-                    ws.Column(3).Width = 6.75;
+                    ws.Column(1).Width = 2.5;
+                    ws.Column(2).Style.WrapText = true;
+                    ws.Column(3).Width = 6.5;
                     ws.Column(4).Width = 14.86;
-                    ws.Column(5).Width = 14.86;
-                    ws.Column(6).Width = 17.71;
+                    ws.Column(5).Width = 13.5;
+                    ws.Column(6).Width = 14.86;
                     ws.Column(7).Width = 12.23;
-                    ws.Column(8).Width = 16.25;
+                    ws.Column(8).Width = 14.86;
+                    ws.Column(8).Width = 14.86;
+                    ws.Column(8).Width = 14.86;
                     pck.Save();
                 }
             });

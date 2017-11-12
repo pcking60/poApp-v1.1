@@ -19,6 +19,7 @@ namespace PostOffice.Service
         IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP> Export_By_Service_Group_And_Time_District_Po_BCCP(string fromDate, string toDate, int districtId, int poId, string currentUser, string userSelected);
         IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP> Export_By_Service_Group_And_Time_District_Po_PPTT(string fromDate, string toDate, int districtId, int poId, string currentUser, string userSelected);
         IEnumerable<Export_By_Service_Group_TCBC> Export_By_Service_Group_TCBC(string fromDate, string toDate, int districtId, int poId, string currentUser, string userSelected);
+        IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate, int districtId, int poId, string currentUser, string userSelected);
     }
 
     public class StatisticService : IStatisticService
@@ -340,6 +341,79 @@ namespace PostOffice.Service
                 else //is basic user
                 {
                     return _statisticRepository.Export_By_Service_Group_And_Time_District_Po_User_PPTT(fromDate, toDate, districtId, poId, currentUser);
+                }
+            }
+        }
+
+        public IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate, int districtId, int poId, string currentUser, string userSelected)
+        {
+            // define role of user
+            bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
+            bool isManager = _userRepository.CheckRole(currentUser, "Manager");
+            bool isSupport = _userRepository.CheckRole(currentUser, "Support");
+
+            //get user info
+            var user = _userRepository.getByUserId(userSelected);
+            string userId = null;
+            if (user != null)
+            {
+                userId = user.Id;
+            }
+
+            if (isAdmin || isSupport) //is admin
+            {
+                if (districtId == 0)
+                {
+                    return _statisticRepository.Get_General_TCBC(fromDate, toDate);
+                }
+                else
+                {
+                    if (poId == 0)
+                    {
+                        return _statisticRepository.Get_General_TCBC(fromDate, toDate, districtId);
+                    }
+                    else // po id and district id not null
+                    {
+                        if (user == null) //po && district are not null && user null
+                        {
+                            return _statisticRepository.Get_General_TCBC(fromDate, toDate, districtId, poId);
+                        }
+                        else // po && district && user are not null
+                        {
+                            return _statisticRepository.Get_General_TCBC(fromDate, toDate, districtId, poId, userSelected);
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                if (isManager) // is manager
+                {
+                    if (poId == 0)
+                    {
+                        districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                        return _statisticRepository.Get_General_TCBC(fromDate, toDate, districtId);
+                    }
+                    else // po id and district id not null
+                    {
+                        if (userId == null) //po && district are not null && user null
+                        {
+                            districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                            poId = _poRepository.GetPOByCurrentUser(currentUser).ID;
+                            return _statisticRepository.Get_General_TCBC(fromDate, toDate, districtId, poId);
+                        }
+                        else // po && district && user are not null
+                        {
+                            districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                            poId = _poRepository.GetPOByCurrentUser(currentUser).ID;
+                            return _statisticRepository.Get_General_TCBC(fromDate, toDate, districtId, poId, userSelected);
+                        }
+                    }
+                }
+                else //is basic user
+                {
+                    return _statisticRepository.Get_General_TCBC(fromDate, toDate, districtId, poId, currentUser);
                 }
             }
         }

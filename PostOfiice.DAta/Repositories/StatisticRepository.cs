@@ -47,6 +47,10 @@ namespace PostOfiice.DAta.Repositories
         IEnumerable<Export_By_Service_Group_TCBC> Export_By_Service_Group_And_Time_District_TCBC(string fromDate, string toDate, int districtId);
 
         IEnumerable<Export_By_Service_Group_TCBC> Export_By_Service_Group_And_Time_TCBC(string fromDate, string toDate);
+        IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate);
+        IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate, int districtId);
+        IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate, int districtId, int poId);
+        IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate, int districtId, int poId, string userId);
         IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP> Export_By_Service_Group_And_Time_District_Po_User_PPTT(string fromDate, string toDate, int districtId, int poId, string userId);
 
         IEnumerable<Export_By_Service_Group_And_Time_District_Po_BCCP> Export_By_Service_Group_And_Time_District_Po_PPTT(string fromDate, string toDate, int districtId, int poId);
@@ -101,7 +105,7 @@ namespace PostOfiice.DAta.Repositories
                 new SqlParameter("@toDate", toDate),
                 new SqlParameter("@districtId", districtId)
             };
-            return DbContext.Database.SqlQuery<Export_By_Service_Group_And_Time_District_Po_BCCP>("Export_By_Service_Group_And_Time_District_BCCP @fromDate,@toDate,@districtId", parameters);
+            return DbContext.Database.SqlQuery<Export_By_Service_Group_And_Time_District_Po_BCCP>("Export_By_Service_Group_And_Time_District_BCCP @fromDate,@toDate,@districtId", parameters).ToList();
         }
 
         public IEnumerable<Export_By_Service_Group_And_Time> Export_By_Service_Group_And_Time_District_Po(string fromDate, string toDate, int mainGroup, int districtId, int poId)
@@ -252,6 +256,48 @@ namespace PostOfiice.DAta.Repositories
                 new SqlParameter("@toDate", toDate)
             };
             return DbContext.Database.SqlQuery<UnitStatisticViewModel>("getUnitStatistic @fromDate,@toDate", parameters);
+        }
+
+        public IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate)
+        {
+            var parameters = new SqlParameter[] {
+                new SqlParameter("@fromDate", fromDate),
+                new SqlParameter("@toDate", toDate)
+            };
+            return DbContext.Database.SqlQuery<Get_General_TCBC>("Export_TCBC_BY_TIME @fromDate,@toDate", parameters).ToList();
+        }
+
+        public IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate, int districtId)
+        {
+            var parameters = new SqlParameter[] {
+                new SqlParameter("@fromDate", fromDate),
+                new SqlParameter("@toDate", toDate),
+                new SqlParameter("@districtId", districtId)
+            };
+            return DbContext.Database.SqlQuery<Get_General_TCBC>("Export_TCBC_BY_TIME_DISTRICT @fromDate,@toDate,@districtId", parameters).ToList();
+        }
+
+        public IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate, int districtId, int poId)
+        {
+            var parameters = new SqlParameter[] {
+                new SqlParameter("@fromDate", fromDate),
+                new SqlParameter("@toDate", toDate),
+                new SqlParameter("@districtId", districtId),
+                new SqlParameter("@poId", poId)
+            };
+            return DbContext.Database.SqlQuery<Get_General_TCBC>("Export_TCBC_BY_TIME_DISTRICT_PO @fromDate,@toDate,@districtId,@poId", parameters).ToList();
+        }
+
+        public IEnumerable<Get_General_TCBC> Get_General_TCBC(string fromDate, string toDate, int districtId, int poId, string userId)
+        {
+            var parameters = new SqlParameter[] {
+                new SqlParameter("@fromDate", fromDate),
+                new SqlParameter("@toDate", toDate),
+                new SqlParameter("@districtId", districtId),
+                new SqlParameter("@poId", poId),
+                new SqlParameter("@userId", userId)
+            };
+            return DbContext.Database.SqlQuery<Get_General_TCBC>("Export_TCBC_BY_TIME_DISTRICT_PO_USER @fromDate,@toDate,@districtId,@poId,@userId", parameters).ToList();
         }
 
         public IEnumerable<ReportFunction1> ReportFunction1(string fromDate, string toDate)
