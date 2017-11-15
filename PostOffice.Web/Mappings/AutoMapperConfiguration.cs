@@ -28,7 +28,7 @@ namespace PostOffice.Web.Mappings
             Mapper.CreateMap<TKBDAmount, TKBDAmountViewModel>();
             Mapper.CreateMap<TKBDHistory, TKBDHistoryViewModel>();
             Mapper.CreateMap<TransactionViewModel, RP2_1>();
-            Mapper.CreateMap<TransactionViewModel, MainGroup1>();
+            Mapper.CreateMap<TransactionViewModel, Export_Template_VM>();
             Mapper.CreateMap<TransactionViewModel, MainGroup3>();
             Mapper.CreateMap<TKBD_Export_Template, TKBD_Export_Template_ViewModel>();
             Mapper.CreateMap<TKBD_Export_Detail_Template, TKBD_Export_Detail_Template_ViewModel>();

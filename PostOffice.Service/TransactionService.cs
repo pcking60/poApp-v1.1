@@ -27,6 +27,7 @@ namespace PostOffice.Service
         IEnumerable<Transaction> GetAllBy_UserName_30_Days(string userName);
 
         IEnumerable<Transaction> GetAllByTime(DateTime fromDate, DateTime toDate, string userName, string userId, int serviceId);
+
         IEnumerable<Transaction> General_statistic(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUserName, string selecttedUserId, int serviceId);
 
         IEnumerable<Transaction> GetAll(string keyword);
@@ -40,6 +41,12 @@ namespace PostOffice.Service
         IEnumerable<Transaction> GetAllBy_Time_DistrictID_MainGroupId(DateTime fromDate, DateTime toDate, int districtId, int id);
 
         IEnumerable<Transaction> GetAllBy_Time_DistrictID_POID_MainGroupId(DateTime fromDate, DateTime toDate, int districtId, int poId, int id);
+
+        IEnumerable<Transaction> GetByCondition_BCCP(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUser);
+
+        IEnumerable<Transaction> GetByCondition_TCBC(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUser);
+
+        IEnumerable<Transaction> GetByCondition_PPTT(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUser);
 
         void Save();
     }
@@ -100,7 +107,6 @@ namespace PostOffice.Service
             {
                 return null;
             }
-
         }
 
         public Transaction GetById(int id)
@@ -275,11 +281,11 @@ namespace PostOffice.Service
                 }
                 else
                 {
-                    if (poId == 0) // user select only district 
+                    if (poId == 0) // user select only district
                     {
                         return _transactionRepository.Get_by_time_districtId(fromDate, toDate, districtId);
                     }
-                    else 
+                    else
                     {
                         if (string.IsNullOrEmpty(selecttedUserId)) // user select only district and po
                         {
@@ -296,15 +302,15 @@ namespace PostOffice.Service
                                 return _transactionRepository.Get_by_time_districtId_poId_userId_serviceId(fromDate, toDate, districtId, poId, selecttedUserId, serviceId);
                             }
                         }
-                    }                    
-                }                
+                    }
+                }
             }
             else
             {
                 if (IsManager)
                 {
                     districtId = _districtRepository.GetDistrictByUserName(currentUserName).ID;
-                    if (poId == 0) // user select only district 
+                    if (poId == 0) // user select only district
                     {
                         return _transactionRepository.Get_by_time_districtId(fromDate, toDate, districtId);
                     }
@@ -330,6 +336,151 @@ namespace PostOffice.Service
                 else
                 {
                     return _transactionRepository.GetAllByTimeAndUsername(fromDate, toDate, user.UserName);
+                }
+            }
+        }
+
+        public IEnumerable<Transaction> GetByCondition_BCCP(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUser)
+        {
+            int bccpId = 1;
+            // define role of user name
+            bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
+            bool isManager = _userRepository.CheckRole(currentUser, "Manager");
+            bool isSupport = _userRepository.CheckRole(currentUser, "Support");
+            if (isAdmin || isSupport) //is admin
+            {
+                if (districtId == 0)
+                {
+                    return _transactionRepository.GetAllByMainGroupId(fromDate, toDate, bccpId);
+                }
+                else
+                {
+                    if (poId == 0)
+                    {
+                        return _transactionRepository.GetAllBy_Time_DistrictID_MainGroupId(fromDate, toDate, districtId, bccpId);
+                    }
+                    else // po id and district id not null
+                    {
+                        return _transactionRepository.GetAllBy_Time_DistrictID_POID_MainGroupId(fromDate, toDate, districtId, poId, bccpId);
+                    }
+                }
+            }
+            else
+            {
+                if (isManager) // is manager
+                {
+                    if (poId == 0)
+                    {
+                        districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                        return _transactionRepository.GetAllBy_Time_DistrictID_MainGroupId(fromDate, toDate, districtId, bccpId);
+                    }
+                    else // po id and district id not null
+                    {
+                        districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                        return _transactionRepository.GetAllBy_Time_DistrictID_POID_MainGroupId(fromDate, toDate, districtId, poId, bccpId);
+
+                    }
+                }
+                else
+                {
+                    return null;
+                }               
+            }
+        }
+
+        public IEnumerable<Transaction> GetByCondition_TCBC(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUser)
+        {
+            int tcbcId = 2;
+            // define role of user name
+            bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
+            bool isManager = _userRepository.CheckRole(currentUser, "Manager");
+            bool isSupport = _userRepository.CheckRole(currentUser, "Support");
+            if (isAdmin || isSupport) //is admin
+            {
+                if (districtId == 0)
+                {
+                    return _transactionRepository.GetAllByMainGroupId(fromDate, toDate, tcbcId);
+                }
+                else
+                {
+                    if (poId == 0)
+                    {
+                        return _transactionRepository.GetAllBy_Time_DistrictID_MainGroupId(fromDate, toDate, districtId, tcbcId);
+                    }
+                    else // po id and district id not null
+                    {
+                        return _transactionRepository.GetAllBy_Time_DistrictID_POID_MainGroupId(fromDate, toDate, districtId, poId, tcbcId);
+                    }
+                }
+            }
+            else
+            {
+                if (isManager) // is manager
+                {
+                    if (poId == 0)
+                    {
+                        districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                        return _transactionRepository.GetAllBy_Time_DistrictID_MainGroupId(fromDate, toDate, districtId, tcbcId);
+                    }
+                    else // po id and district id not null
+                    {
+                        districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                        return _transactionRepository.GetAllBy_Time_DistrictID_POID_MainGroupId(fromDate, toDate, districtId, poId, tcbcId);
+
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+        }
+
+        public IEnumerable<Transaction> GetByCondition_PPTT(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUser)
+        {
+            int ppttId = 3;
+            // define role of user name
+            bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
+            bool isManager = _userRepository.CheckRole(currentUser, "Manager");
+            bool isSupport = _userRepository.CheckRole(currentUser, "Support");
+            if (isAdmin || isSupport) //is admin
+            {
+                if (districtId == 0)
+                {
+                    return _transactionRepository.GetAllByMainGroupId(fromDate, toDate, ppttId);
+                }
+                else
+                {
+                    if (poId == 0)
+                    {
+                        return _transactionRepository.GetAllBy_Time_DistrictID_MainGroupId(fromDate, toDate, districtId, ppttId);
+                    }
+                    else // po id and district id not null
+                    {
+                        return _transactionRepository.GetAllBy_Time_DistrictID_POID_MainGroupId(fromDate, toDate, districtId, poId, ppttId);
+                    }
+                }
+            }
+            else
+            {
+                if (isManager) // is manager
+                {
+                    if (poId == 0)
+                    {
+                        districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                        return _transactionRepository.GetAllBy_Time_DistrictID_MainGroupId(fromDate, toDate, districtId, ppttId);
+                    }
+                    else // po id and district id not null
+                    {
+                        districtId = _districtRepository.GetDistrictByUserName(currentUser).ID;
+                        return _transactionRepository.GetAllBy_Time_DistrictID_POID_MainGroupId(fromDate, toDate, districtId, poId, ppttId);
+
+                    }
+                }
+                else
+                {
+                    return null;
                 }
             }
         }

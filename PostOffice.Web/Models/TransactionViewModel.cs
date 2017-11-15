@@ -26,13 +26,14 @@ namespace PostOffice.Web.Models
         public decimal? VatOfTotalMoney { get; set; }
         public decimal? VatOfTotalCash { get; set; }
         public decimal? VatOfTotalDebt { get; set; }
-
+        public decimal? TotalVat { get; set; }
         public bool IsCash { get; set; }
         public bool IsCurrency { get; set; }
         public decimal? TotalMoneySent { get; set; }
         public decimal? TotalMoneyReceive { get; set; }
         public decimal? TotalCurrency { get; set; }
         public bool IsReceive { get; set; }
+        public decimal? TotalMoneyBeforeVat { get; set; }
         public int groupId { get; set; }
         [Required]
         public DateTimeOffset TransactionDate { get; set; }
