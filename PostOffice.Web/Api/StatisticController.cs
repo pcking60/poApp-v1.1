@@ -200,7 +200,7 @@ namespace PostOffice.Web.Api
                         {
                             break;
                         }
-                        // BCCP
+                        #region BCCP
                         var q1 = _trasactionService.GetByCondition_BCCP(fd, td, districtId, poId, currentUser);
                         var c4 = q1.Count();
                         var BCCP = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(q1);
@@ -235,15 +235,82 @@ namespace PostOffice.Web.Api
                             var vat = item.TotalVat;
                             var e = item.EarnMoney;
                         }
-                        // TCBC
-                        var q2 = _trasactionService.GetByCondition_BCCP(fd, td, districtId, poId, currentUser);
-                        var c5 = q1.Count();
-                        var resTCBC = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(q1);
-                        // PPTP
-                        var q3 = _trasactionService.GetByCondition_BCCP(fd, td, districtId, poId, currentUser);
-                        var c6 = q1.Count();
-                        var resPPTT = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(q1);
-                        await ReportHelper.RP2_1(resBCCP.ToList(), resTCBC.ToList(), resPPTT.ToList(), fullPath, vm);        
+                        #endregion
+                        #region TCBC
+                        var q2 = _trasactionService.GetByCondition_TCBC(fd, td, districtId, poId, currentUser);
+                        var c5 = q2.Count();
+                        var TCBC = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(q2);
+                        foreach (var item in TCBC)
+                        {
+                            item.VAT = _serviceService.GetById(item.ServiceId).VAT;
+                            item.Quantity = Convert.ToInt32(_transactionDetailService.GetAllByCondition("Sản lượng", item.ID).Money);                            
+                            var Fe =  _transactionDetailService.GetFeeById("Số tiền cước", item.ID);
+                            if (Fe == null)
+                            {
+                                item.Fee = 0;
+                            }
+                            else
+                            {
+                                item.Fee = Fe.Money;
+                            }
+                            item.ServiceName = _serviceService.GetById(item.ServiceId).Name;
+                            item.EarnMoney = _transactionDetailService.GetTotalEarnMoneyByTransactionId(item.ID);
+                            var groupId = _serviceGroupService.GetSigleByServiceId(item.ID);
+                            if (groupId != null && (groupId.ID == 93 || groupId.ID == 75))
+                            {
+                                item.IsReceive = true;
+                                item.TotalColection = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                                item.TotalPay = 0;
+                            }
+                            else
+                            {
+                                item.IsReceive = false;
+                                item.TotalPay = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                                item.TotalColection = 0;
+                            }
+                        }
+                        var resTCBC_temp = Mapper.Map<IEnumerable<TransactionViewModel>, IEnumerable<Get_General_TCBC>>(TCBC);
+                        var resTCBC_temp2 = Mapper.Map<IEnumerable<Get_General_TCBC>, IEnumerable<Get_General_TCBC_VM>>(resTCBC_temp);
+                        foreach (var item in resTCBC_temp2)
+                        {
+                            item.Sales = item.EarnMoney * (decimal)item.VAT;
+                            item.Tax = item.Sales - item.Sales / (decimal)item.VAT;
+                            var name = item.ServiceName;
+                            var qty = item.Quantity;
+                            var co = item.TotalColection;
+                            var p = item.TotalPay;
+                            var m1 = item.Sales;
+                            var f = item.Fee;
+                            var e = item.EarnMoney;
+                        }
+                        var resTCBC = Mapper.Map<IEnumerable<Get_General_TCBC_VM>, IEnumerable<Export_Template_TCBC>>(resTCBC_temp2);
+                        #endregion
+                        #region PPTT
+                        var q3 = _trasactionService.GetByCondition_PPTT(fd, td, districtId, poId, currentUser);
+                        var c6 = q3.Count();
+                        var PPTT = Mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionViewModel>>(q3);
+                        foreach (var item in PPTT)
+                        {
+                            item.VAT = _serviceService.GetById(item.ServiceId).VAT;
+                            item.Quantity = Convert.ToInt32(_transactionDetailService.GetAllByCondition("Sản lượng", item.ID).Money);
+                            item.ServiceName = _serviceService.GetById(item.ServiceId).Name;
+                            if (!item.IsCash)
+                            {
+                                item.TotalDebt = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                                item.TotalCash = 0;
+                            }
+                            else
+                            {
+                                item.TotalCash = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
+                                item.TotalDebt = 0;
+                            }
+                            item.EarnMoney = _transactionDetailService.GetTotalEarnMoneyByTransactionId(item.ID);
+                            item.TotalMoneyBeforeVat = (item.TotalCash + item.TotalDebt) / (decimal)item.VAT;
+                            item.TotalVat = (item.TotalCash + item.TotalDebt) - ((item.TotalCash + item.TotalDebt) / (decimal)item.VAT);
+                        }
+                        var resPPTT = Mapper.Map<IEnumerable<TransactionViewModel>, IEnumerable<Export_Template_VM>>(PPTT);
+                        #endregion
+                        await ReportHelper.RP2_1(resBCCP.ToList(), resPPTT.ToList(), resTCBC.ToList(), fullPath, vm);        
                         break;
 
                     #endregion customFill Test

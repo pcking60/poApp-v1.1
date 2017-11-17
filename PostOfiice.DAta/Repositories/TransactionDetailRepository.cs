@@ -13,6 +13,7 @@ namespace PostOfiice.DAta.Repositories
         IEnumerable<TransactionDetail> GetAllByTransactionId(int transactionId);
 
         TransactionDetail GetAllByCondition(string condition, int transactionId);
+        TransactionDetail GetFeeById(string condition, int transactionId);
         decimal? GetTotalMoneyByTransactionId(int id);
     }
 
@@ -47,6 +48,16 @@ namespace PostOfiice.DAta.Repositories
         {
             var query = DbContext.TransactionDetails.Where(x => x.TransactionId == transactionId).ToList();
             return query;
+        }
+
+        public TransactionDetail GetFeeById(string condition, int transactionId)
+        {            
+            var query = from ps in DbContext.PropertyServices
+                        join td in DbContext.TransactionDetails
+                        on ps.ID equals td.PropertyServiceId
+                        where ps.Name == (condition) && td.TransactionId == transactionId
+                        select td;
+            return query.FirstOrDefault();
         }
 
         public decimal? GetTotalMoneyByTransactionId(int id)

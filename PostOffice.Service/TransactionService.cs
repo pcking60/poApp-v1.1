@@ -390,7 +390,7 @@ namespace PostOffice.Service
 
         public IEnumerable<Transaction> GetByCondition_TCBC(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUser)
         {
-            int tcbcId = 2;
+            int tcbcId = 3;
             // define role of user name
             bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
             bool isManager = _userRepository.CheckRole(currentUser, "Manager");
@@ -439,7 +439,7 @@ namespace PostOffice.Service
 
         public IEnumerable<Transaction> GetByCondition_PPTT(DateTime fromDate, DateTime toDate, int districtId, int poId, string currentUser)
         {
-            int ppttId = 3;
+            int ppttId = 2;
             // define role of user name
             bool isAdmin = _userRepository.CheckRole(currentUser, "Administrator");
             bool isManager = _userRepository.CheckRole(currentUser, "Manager");

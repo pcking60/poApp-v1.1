@@ -30,10 +30,14 @@ namespace PostOffice.Web.Models
         public bool IsCash { get; set; }
         public bool IsCurrency { get; set; }
         public decimal? TotalMoneySent { get; set; }
+        public decimal? Fee { get; set; }
         public decimal? TotalMoneyReceive { get; set; }
         public decimal? TotalCurrency { get; set; }
         public bool IsReceive { get; set; }
         public decimal? TotalMoneyBeforeVat { get; set; }
+        public decimal? TotalColection { get; set; }
+        public decimal? TotalPay { get; set; }
+        public decimal? Sales { get; set; }
         public int groupId { get; set; }
         [Required]
         public DateTimeOffset TransactionDate { get; set; }

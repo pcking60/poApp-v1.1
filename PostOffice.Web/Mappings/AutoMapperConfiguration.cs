@@ -39,6 +39,7 @@ namespace PostOffice.Web.Mappings
             Mapper.CreateMap<Rank, RankAfter>();
             Mapper.CreateMap<Get_General_TCBC, Get_General_TCBC_VM>();
             Mapper.CreateMap<Get_General_TCBC_VM, Export_Template_TCBC>();
+            Mapper.CreateMap<TransactionViewModel, Get_General_TCBC>();
         }
     }
 }

@@ -33,6 +33,7 @@ namespace PostOffice.Service
 
         IEnumerable<TransactionDetail> GetAllByCondition(string condition);
         TransactionDetail GetAllByCondition(string condition, int transactionId);
+        TransactionDetail GetFeeById(string condition, int transactionId);
 
         void Save();
     }
@@ -179,6 +180,11 @@ namespace PostOffice.Service
         public TransactionDetail GetAllByCondition(string condition, int transactionId)
         {
             return _transactionDetailRepository.GetAllByCondition(condition, transactionId);
+        }
+
+        public TransactionDetail GetFeeById(string condition, int transactionId)
+        {
+            return _transactionDetailRepository.GetFeeById(condition, transactionId);
         }
     }
 }
