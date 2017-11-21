@@ -568,6 +568,14 @@ namespace PostOffice.Web.Api
                     {
                         tkbdViewModel.UserId = "Người dùng không tồn tại";
                     }
+                    //8 month
+                    if (tkbdViewModel.TransactionDate != null)
+                    {
+                        tkbdViewModel.Month = tkbdViewModel.TransactionDate.Value.Month;
+                        tkbdViewModel.Year = tkbdViewModel.TransactionDate.Value.Year;
+                        var code = tkbdViewModel.Year.ToString() + tkbdViewModel.Month.ToString();
+                        tkbdViewModel.TimeCode = int.Parse(code);
+                    }
                     tkbdViewModel.CreatedBy = User.Identity.Name;
                     tkbdViewModel.CreatedDate = DateTime.Now;
                     tkbdViewModel.Status = true;
@@ -593,7 +601,11 @@ namespace PostOffice.Web.Api
                 else
                 {
                     int days = 0;
-                    var tkbdHistories = _tkbdHistoryService.GetAll().Where(x => x.Status == true && (x.TransactionDate.Value.Month <= DateTime.Now.Month - 1 || x.TransactionDate.Value.Year <DateTime.Now.Year));
+                    // previous month
+                    var _now = int.Parse(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString()) -1;
+                    var tkbdHistories = new List<TKBDHistory>();
+                    // list account of previous month
+                    tkbdHistories = _tkbdHistoryService.GetAll().Where(x=>x.Status==true && x.TimeCode==_now).ToList();
                     int c = tkbdHistories.Count();
                     foreach (var item in tkbdHistories.ToList())
                     {

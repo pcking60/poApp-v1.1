@@ -265,3 +265,4 @@ F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiic
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.Data.csproj.GenerateResource.Cache
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.dll
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.pdb
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Debug\PostOfiice.DAta.Migrations.Addsomecolumnhistorytkbd.resources

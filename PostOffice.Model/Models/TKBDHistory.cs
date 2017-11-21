@@ -22,6 +22,9 @@ namespace PostOffice.Model.Models
         public DateTime? TransactionDate { get; set; }
         public decimal? Money { get; set; }
         public decimal? Rate { get; set; }
+        public int? Month { get; set; }
+        public int? Year { get; set; }
+        public int? TimeCode { get; set; }
 
         [ForeignKey("UserId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
