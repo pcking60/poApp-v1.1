@@ -77,7 +77,7 @@ namespace PostOffice.Web.Api
                     else
                     {
                         var res = Request.CreateResponse(HttpStatusCode.Moved);
-                        res.Headers.Location = new Uri("localhost:60709/admin");
+                        res.Headers.Location = new Uri("10.97.52.125:88/admin");
                         return res;
                     }
                 }                

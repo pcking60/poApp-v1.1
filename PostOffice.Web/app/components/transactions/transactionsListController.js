@@ -16,6 +16,22 @@
             totalVat: 0,
             totalCurrency: 0
         };
+        //check role 
+        $scope.isManager = authService.haveRole('Manager');
+        $scope.isAdmin = authService.haveRole('Administrator');
+        $scope.isSupport = authService.haveRole('Support');
+        if (!$scope.isAdmin && !$scope.isManager && !$scope.isSupport) {
+            $stateParams.id = authService.authentication.userName;
+            
+        }
+        else {
+            if ($scope.isManager && !$scope.isAdmin && !$scope.isSupport) {
+               
+            }
+            else {
+               
+            }
+        }
         $scope.keyword = '';
         $scope.search = search;
         $scope.deleteTransaction = deleteTransaction;

@@ -171,6 +171,7 @@
                     function (response) {
                         apiService.get('/api/po/getbyid/' + response.data.POID, null, function (result) {
                             $stateParams.id = result.data.DistrictID;
+                            $scope.report.districtId = result.data.DistrictID;
                             getPos();
                         }, function (error) { })
                     },

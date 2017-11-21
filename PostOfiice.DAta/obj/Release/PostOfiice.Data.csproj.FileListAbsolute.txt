@@ -170,3 +170,7 @@ F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfi
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.pdb
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.Rank.resources
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.addiscurrencytransactiontable.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.exporttcbcbytime.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.exporttcbcbytimedistrict.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpo.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpouser.resources

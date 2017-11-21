@@ -11,10 +11,18 @@
     
     <div class="box">  
         <div class="box-header">
-            <button class="btn btn-small btn-flat btn-primary"  ng-click="getTransactions()">1</button>
+            <!--<button class="btn btn-small btn-flat btn-primary"  ng-click="getTransactions()">1</button>
             <button class="btn btn-small btn-flat btn-primary" ng-click="getTransactionsIn7Days()">7</button>
-            <button class="btn btn-small btn-flat btn-primary" ng-click="getTransactionsIn30Days()">30</button>
-        </div>     
+            <button class="btn btn-small btn-flat btn-primary" ng-click="getTransactionsIn30Days()">30</button>-->
+            <div ng-hide="!isManager && !isAdmin && !isSupport">
+                <label for="inputPassword3" class="col-sm-2">Chọn nhân viên</label>                
+                <select name="staff" class="col-sm-2" ng-change="getTransactions(report.userId)" ng-model="report.userId" ng-options="option.Id as option.FullName for option in report.users">
+                    <option value="">Tất cả</option>
+                </select>
+                <input type="hidden" name="parentId" ng-model="report.userId" />
+                
+            </div>
+        </div> 
         <div class="box-body table-responsive no-padding">
             <div class="row">
                 <div class="col-md-12">
