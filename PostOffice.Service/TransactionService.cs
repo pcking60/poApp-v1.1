@@ -20,7 +20,9 @@ namespace PostOffice.Service
 
         IEnumerable<Transaction> GetAll(DateTime fromDate, DateTime toDate);
 
+        IEnumerable<Transaction> GetAllBy_UserId(string userId);
         IEnumerable<Transaction> GetAllBy_UserName_Now(string userName);
+        IEnumerable<Transaction> GetAllBy_UserId_Now(string userId);
 
         IEnumerable<Transaction> GetAllBy_UserName_7_Days(string userName);
 
@@ -482,6 +484,32 @@ namespace PostOffice.Service
                 {
                     return null;
                 }
+            }
+        }
+
+        public IEnumerable<Transaction> GetAllBy_UserId_Now(string userId)
+        {
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var user = _userRepository.getByUserId(userId);
+                var date = DateTime.Now.Date;
+                return _transactionRepository.GetMulti(x => x.UserId == user.Id && x.Status == true && DbFunctions.TruncateTime(x.TransactionDate) == date).ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public IEnumerable<Transaction> GetAllBy_UserId(string userId)
+        {
+            if (!string.IsNullOrEmpty(userId))
+            {       
+                return _transactionRepository.GetMulti(x => x.UserId == userId && x.Status == true).ToList();
+            }
+            else
+            {
+                return null;
             }
         }
     }

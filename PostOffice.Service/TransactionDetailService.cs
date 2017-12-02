@@ -26,6 +26,7 @@ namespace PostOffice.Service
         TransactionDetail GetById(int id);
 
         decimal? GetTotalMoneyByTransactionId(int id);
+        decimal? GetTotalFeeByTransactionId(int id);
 
         decimal? GetTotalEarnMoneyByTransactionId(int id);
 
@@ -125,6 +126,11 @@ namespace PostOffice.Service
             //    sum += _transactionDetailRepository.GetMulti(x => x.TransactionId == id && x.ID == item.ID).Sum(x => x.Money);
             //}
             return _transactionDetailRepository.GetTotalMoneyByTransactionId(id);
+        }
+        public decimal? GetTotalFeeByTransactionId(int id)
+        {
+            
+            return _transactionDetailRepository.GetTotalFeeByTransactionId(id);
         }
 
         public void Save()

@@ -15,6 +15,7 @@ namespace PostOfiice.DAta.Repositories
         TransactionDetail GetAllByCondition(string condition, int transactionId);
         TransactionDetail GetFeeById(string condition, int transactionId);
         decimal? GetTotalMoneyByTransactionId(int id);
+        decimal? GetTotalFeeByTransactionId(int id);
     }
 
     public class TransactionDetailRepository : RepositoryBase<TransactionDetail>, ITransactionDetailRepository
@@ -63,15 +64,31 @@ namespace PostOfiice.DAta.Repositories
         public decimal? GetTotalMoneyByTransactionId(int id)
         {
             var condition = "Sản lượng";
+            var condition1 = "số tiền cước";
             var listTransactionDetails = from ps in DbContext.PropertyServices
                                          join td in DbContext.TransactionDetails
                                          on ps.ID equals td.PropertyServiceId                                      
-                                         where ps.Name != condition && td.TransactionId == id
+                                         where ps.Name != condition && ps.Name != condition1 && td.TransactionId == id
                                          select td;
             decimal? sum = 0;
             foreach (var item in listTransactionDetails)
             {
                 sum += DbContext.TransactionDetails.Where(x=>x.ID == item.ID).Sum(x => x.Money);
+            }
+            return sum;
+        }
+        public decimal? GetTotalFeeByTransactionId(int id)
+        {
+            var condition = "số tiền cước";
+            var listTransactionDetails = from ps in DbContext.PropertyServices
+                                         join td in DbContext.TransactionDetails
+                                         on ps.ID equals td.PropertyServiceId
+                                         where ps.Name == condition && td.TransactionId == id
+                                         select td;
+            decimal? sum = 0;
+            foreach (var item in listTransactionDetails)
+            {
+                sum += DbContext.TransactionDetails.Where(x => x.ID == item.ID).Sum(x => x.Money);
             }
             return sum;
         }

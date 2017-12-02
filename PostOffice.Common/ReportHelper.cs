@@ -417,7 +417,6 @@ namespace PostOffice.Common
                             {
                                 ws.Cells["A" + (i + 10)].Value = i;
                             }
-
                             // sum source 2
                             ws.Cells[noRowTCBC + 11, 2].Value = "Tổng cộng";
                             ws.Cells[0 + noRowTCBC + 11, 2].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
@@ -545,8 +544,8 @@ namespace PostOffice.Common
                     ws.Cells["A1:Z1000"].Style.Font.SetFromFont(new Font("Segoe UI", 9));
                     ws.Cells["A1:Z1000"].AutoFitColumns();
                     //header
-                    ws.Cells["A1:B1"].Merge = true;
-                    ws.Cells["A1:B1"].Value = "TỔNG CÔNG TY BƯU ĐIỆN VIỆT NAM \n BƯU ĐIỆN TỈNH SÓC TRĂNG";
+                    ws.Cells["A1:C1"].Merge = true;
+                    ws.Cells["A1:C1"].Value = "TỔNG CÔNG TY BƯU ĐIỆN VIỆT NAM \n BƯU ĐIỆN TỈNH SÓC TRĂNG";
                     ws.Row(1).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     ws.Row(1).Height = 29.35;
                     ws.Row(1).Style.Font.Bold = true;
@@ -580,30 +579,30 @@ namespace PostOffice.Common
                     ws.Cells["C5:H5"].Value = vm.Unit;
 
                     // fill time
-                    ws.Cells["C7:H7"].Merge = true;
-                    ws.Cells["C7:H7"].Style.Font.Bold = true;
-                    ws.Cells["C7:H7"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
-                    ws.Cells["C7:H7"].Style.Indent = 2;
-                    ws.Cells["C7:H7"].Value = "Từ " + vm.FromDate.ToString("dd/MM/yyyy") + " đến " + vm.ToDate.ToString("dd/MM/yyyy");
+                    ws.Cells["C6:H6"].Merge = true;
+                    ws.Cells["C6:H6"].Style.Font.Bold = true;
+                    ws.Cells["C6:H6"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+                    ws.Cells["C6:H6"].Style.Indent = 2;
+                    ws.Cells["C6:H6"].Value = "Từ " + vm.FromDate.ToString("dd/MM/yyyy") + " đến " + vm.ToDate.ToString("dd/MM/yyyy");
 
                     //info
                     ws.Cells["A4:B4"].Merge = true;
                     ws.Cells["A4:B4"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Right;
                     ws.Row(4).Style.Font.Bold = true;
-                    ws.Cells["A4:B4"].Value = "Huyện: ";
+                    ws.Cells["A4:B4"].Value = "TP/ Huyện: ";
                     ws.Cells["A4:B4"].Style.Indent = 1;
 
                     ws.Cells["A5:B5"].Merge = true;
                     ws.Cells["A5:B5"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Right;
                     ws.Row(5).Style.Font.Bold = true;
-                    ws.Cells["A5:B5"].Value = "Bưu cục: ";
+                    ws.Cells["A5:B5"].Value = "Bưu cục/ VHX: ";
                     ws.Cells["A5:B5"].Style.Indent = 1;
 
-                    ws.Cells["A7:B7"].Merge = true;
-                    ws.Cells["A7:B7"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Right;
-                    ws.Row(7).Style.Font.Bold = true;
-                    ws.Cells["A7:B7"].Value = "Thời gian:";
-                    ws.Cells["A7:B7"].Style.Indent = 1;
+                    ws.Cells["A6:B6"].Merge = true;
+                    ws.Cells["A6:B6"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Right;
+                    ws.Row(6).Style.Font.Bold = true;
+                    ws.Cells["A6:B6"].Value = "Thời gian:";
+                    ws.Cells["A6:B6"].Style.Indent = 1;
 
                     #endregion templateInfo
 

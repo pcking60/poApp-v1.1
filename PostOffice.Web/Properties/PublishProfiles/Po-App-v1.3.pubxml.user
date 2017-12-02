@@ -346,13 +346,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/transactions/transactionsListController.js">
-      <publishTime>10/26/2017 21:13:49</publishTime>
+      <publishTime>12/02/2017 09:08:38</publishTime>
     </File>
     <File Include="app/components/transactions/transactionsListController.min.js">
       <publishTime>10/18/2017 09:28:58</publishTime>
     </File>
     <File Include="app/components/transactions/transactionsListView.html">
-      <publishTime>10/26/2017 21:04:22</publishTime>
+      <publishTime>12/02/2017 08:53:36</publishTime>
     </File>
     <File Include="app/components/user_dashboard/userDashboardController.js">
       <publishTime>10/18/2017 09:26:44</publishTime>
@@ -394,7 +394,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 09:26:44</publishTime>
     </File>
     <File Include="app/shared/views/baseView.html">
-      <publishTime>10/24/2017 13:40:22</publishTime>
+      <publishTime>12/02/2017 09:01:08</publishTime>
     </File>
     <File Include="app/shared/views/sideBarBaseView.html">
       <publishTime>10/26/2017 21:24:58</publishTime>
@@ -15994,19 +15994,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/13/2012 12:19:34</publishTime>
     </File>
     <File Include="bin/PostOffice.Common.dll">
-      <publishTime>11/17/2017 17:20:54</publishTime>
+      <publishTime>11/30/2017 17:14:37</publishTime>
     </File>
     <File Include="bin/PostOffice.Model.dll">
-      <publishTime>11/17/2017 17:20:54</publishTime>
+      <publishTime>11/30/2017 17:14:40</publishTime>
     </File>
     <File Include="bin/PostOffice.Service.dll">
-      <publishTime>11/17/2017 17:20:55</publishTime>
+      <publishTime>12/01/2017 15:58:45</publishTime>
     </File>
     <File Include="bin/PostOffice.Web.dll">
-      <publishTime>11/17/2017 17:21:01</publishTime>
+      <publishTime>12/01/2017 15:58:51</publishTime>
     </File>
     <File Include="bin/PostOfiice.DAta.dll">
-      <publishTime>11/17/2017 17:20:55</publishTime>
+      <publishTime>12/01/2017 15:58:45</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>

@@ -1,4 +1,4 @@
-﻿<section class="content-header" ng-init="getTransactions()">
+﻿<section class="content-header">
     <h1>Danh sách giao dịch</h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>       
@@ -10,16 +10,13 @@
     <!-- Default box -->
     
     <div class="box">  
-        <div class="box-header">
-            <!--<button class="btn btn-small btn-flat btn-primary"  ng-click="getTransactions()">1</button>
-            <button class="btn btn-small btn-flat btn-primary" ng-click="getTransactionsIn7Days()">7</button>
-            <button class="btn btn-small btn-flat btn-primary" ng-click="getTransactionsIn30Days()">30</button>-->
+        <div class="box-header">            
             <div ng-hide="!isManager && !isAdmin && !isSupport">
                 <label for="inputPassword3" class="col-sm-2">Chọn nhân viên</label>                
-                <select name="staff" class="col-sm-2" ng-change="getTransactions(report.userId)" ng-model="report.userId" ng-options="option.Id as option.FullName for option in report.users">
+                <select name="staff" class="col-sm-2" ng-change="updateTransactionByUserId(userId)" ng-model="userId" ng-options="option.Id as option.FullName for option in users">
                     <option value="">Tất cả</option>
                 </select>
-                <input type="hidden" name="parentId" ng-model="report.userId" />
+                <input type="hidden" name="parentId" ng-model="userId" />
                 
             </div>
         </div> 
@@ -31,14 +28,17 @@
                             <tr>
                                 <th style="width: 4%;vertical-align: middle" class="text-center text-bold">ID</th>
                                 <th style="width: 18%;vertical-align: middle" class="text-center text-bold">Tên dịch vụ</th>
-                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Ngày giao dịch</th>
-                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Ngày nhập</th>
+                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">Ngày giao dịch</th>
+                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">Ngày nhập</th>
                                 <th style="width: 4%; vertical-align: middle" class="text-center text-bold">Số lượng</th>
-                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Số tiền nộp</th>
-                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Số tiền nợ</th>
-                                <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Số tiền chi hộ</th>
-                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">Ngoại tệ</th>
-                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">VAT</th>
+                                <th style="width: 6%; vertical-align: middle" class="text-center text-bold">Số tiền nộp</th>
+                                <th style="width: 6%; vertical-align: middle" class="text-center text-bold">Số tiền nợ</th>
+                                <th style="width: 6%; vertical-align: middle" class="text-center text-bold">Số tiền chi hộ</th>
+                                <th style="width: 6%; vertical-align: middle" class="text-center text-bold">Số tiền thu hộ</th>
+                                <th style="width: 6%; vertical-align: middle" class="text-center text-bold">Số tiền cước</th>
+                                <th style="width: 4%; vertical-align: middle" class="text-center text-bold">Ngoại tệ</th>
+                                <th style="width: 6%; vertical-align: middle" class="text-center text-bold">Doanh thu trước thuế</th>
+                                <th style="width: 4%; vertical-align: middle" class="text-center text-bold">VAT</th>
                                 <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Doanh thu tính lương</th>
                                 <th style="width: 9%; vertical-align: middle" class="text-center text-bold">Thao tác</th>
                             </tr>
@@ -55,8 +55,11 @@
                                 <td style="vertical-align:middle" class="text-right">{{item.TotalCash | number:2}}</td>
                                 <td style="vertical-align:middle" class="text-right">{{item.TotalDebt | number:2}}</td>
                                 <td style="vertical-align:middle" class="text-right">{{item.TotalMoneySent | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.TotalColection | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.TotalFee | number:2}}</td>
                                 <td style="vertical-align:middle" class="text-right">{{item.TotalCurrency | number:2}}</td>
-                                <td style="vertical-align:middle" class="text-right">{{(item.TotalCash + item.TotalDebt + item.TotalMoneySent + item.TotalCurrency)-((item.TotalCash + item.TotalDebt + item.TotalMoneySent + item.TotalCurrency) / item.VAT) | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.Sales | number:2}}</td>
+                                <td style="vertical-align:middle" class="text-right">{{item.TotalVat| number:2}}</td>
                                 <td style="vertical-align:middle" class="text-right">{{item.EarnMoney | number:2}}</td>
                                 <td style="vertical-align:middle" class="text-center">
                                     <button class="btn btn-xs btn-primary" ui-sref="edit_transaction({id:item.ID})" ng-disabled="editEnabled(item)"><i class="fa fa-pencil"></i></button>
@@ -71,7 +74,10 @@
                                 <td class="text-right">{{transaction.totalCash | number:2}}</td>
                                 <td class="text-right">{{transaction.totalDebt | number:2}}</td>
                                 <td class="text-right">{{transaction.totalSent | number:2}}</td>
+                                <td class="text-right">{{transaction.totalCollect | number:2}}</td>
+                                <td class="text-right">{{transaction.totalFee | number:2}}</td>
                                 <td class="text-right">{{transaction.totalCurrency | number:2}}</td>
+                                <td class="text-right">{{transaction.totalSales | number:2}}</td>
                                 <td class="text-right">{{transaction.totalVat | number:2}}</td>
                                 <td class="text-right">{{transaction.totalEarn | number:2}}</td>
                             </tr>
@@ -82,69 +88,10 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
-                <!--<div class="col-md-12">
-                    <table class="table table-bordered ">
-                        <thead>
-                            <tr>
-                                <th style="width: 5%;vertical-align: middle" class="text-center text-bold">ID</th>
-                                <th style="width: 24%;vertical-align: middle" class="text-center text-bold">Tên dịch vụ</th>
-                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Ngày giao dịch</th>
-                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Ngày nhập</th>
-                                <th style="width: 5%; vertical-align: middle" class="text-center text-bold">Số lượng</th>
-                                <th style="width: 11%; vertical-align: middle" class="text-center text-bold">Số Thực thu</th>
-                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">Số nợ</th>  
-                                <th style="width: 10%; vertical-align: middle" class="text-center text-bold">DTTL</th>
-                                <th style="width: 9%;vertical-align: middle" class="text-center text-bold">Thao tác</th>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th><input type="text" class="form-control input-sm" ng-model="SmartSearch.ServiceName" placeholder="auto search..."></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>                               
-                                <th>  
-                                                               
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in transactions| filter: SmartSearch">
-                                <td style="vertical-align:middle" class="text-center" >{{item.ID}}</td>
-                                <td style="vertical-align:middle" class="text-left">{{item.ServiceName}}</td>
-                                <td style="vertical-align:middle" class="text-center">{{item.TransactionDate | date: 'dd/MM/yyyy'}}</td>                               
-                                <td style="vertical-align:middle" class="text-center">{{item.CreatedDate | date: 'dd/MM/yyyy'}}</td>
-                                <td style="vertical-align:middle" class="text-center">{{item.Quantity | number}}</td>
-                                <td style="vertical-align:middle" class="text-right" >{{item.TotalCash | number}}</td>
-                                <td style="vertical-align:middle" class="text-right">{{item.TotalDebt | number}}</td>  
-                                <td style="vertical-align:middle" class="text-right">{{item.EarnMoney | number}}</td>  
-                                <td style="vertical-align:middle" class="text-center">
-                                    <button class="btn btn-xs btn-primary" ui-sref="edit_transaction({id:item.ID})" ng-disabled="editEnabled(item)"><i class="fa fa-pencil"></i></button> 
-                                    <button class="btn btn-xs btn-danger" ng-click="deleteTransaction(item.ID)" ng-disabled="editEnabled(item)"><i class="fa fa-trash"></i></button>                                                                       
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>              
-                            <tr>
-                                <td colspan="9"><span class="pull-left">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount=totalCount||0}}</span></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>-->
-                <div ng-if="loading">
-                    <div class="col-xs-4"></div>
-                    <div class="col-xs-4">
-                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <label class="label label-primary"></label>
-                    </div>
-                    <div class="col-xs-4"></div>
-                </div>
-            </div>
+            
         </div><!-- /.box-body -->
         <div class="box-footer">            
-            <pager-directive ng-if="function==30" page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-Func="getTransactionsIn30Days(page)"></pager-directive>
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-Func="getTransactionsByUserId(page)"></pager-directive>
             <pager-directive ng-if="function==7" page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-Func="getTransactionsIn7Days(page)"></pager-directive>
         </div><!-- /.box-footer-->
     </div><!-- /.box -->

@@ -174,3 +174,4 @@ F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfi
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.exporttcbcbytimedistrict.resources
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpo.resources
 F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.exporttcbcbytimedistrictpouser.resources
+F:\develope\project\po-app-source\poApp-v1.1\PostOfiice.DAta\obj\Release\PostOfiice.DAta.Migrations.Addsomecolumnhistorytkbd.resources

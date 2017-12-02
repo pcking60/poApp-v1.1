@@ -30,6 +30,7 @@ namespace PostOffice.Web.Models
         public bool IsCash { get; set; }
         public bool IsCurrency { get; set; }
         public decimal? TotalMoneySent { get; set; }
+        public decimal? TotalFee { get; set; }
         public decimal? Fee { get; set; }
         public decimal? TotalMoneyReceive { get; set; }
         public decimal? TotalCurrency { get; set; }
