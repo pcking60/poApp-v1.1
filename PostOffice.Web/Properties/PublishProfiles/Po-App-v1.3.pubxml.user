@@ -16000,10 +16000,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/30/2017 17:14:40</publishTime>
     </File>
     <File Include="bin/PostOffice.Service.dll">
-      <publishTime>12/01/2017 15:58:45</publishTime>
+      <publishTime>01/02/2018 16:25:10</publishTime>
     </File>
     <File Include="bin/PostOffice.Web.dll">
-      <publishTime>12/01/2017 15:58:51</publishTime>
+      <publishTime>01/02/2018 16:25:18</publishTime>
     </File>
     <File Include="bin/PostOfiice.DAta.dll">
       <publishTime>12/01/2017 15:58:45</publishTime>

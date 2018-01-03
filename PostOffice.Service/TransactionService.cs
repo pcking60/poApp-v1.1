@@ -337,7 +337,7 @@ namespace PostOffice.Service
                 }
                 else
                 {
-                    return _transactionRepository.GetAllByTimeAndUsername(fromDate, toDate, user.UserName);
+                    return _transactionRepository.GetAllByTimeAndUsername(fromDate, toDate, user.UserName, serviceId);
                 }
             }
         }

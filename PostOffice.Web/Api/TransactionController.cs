@@ -202,7 +202,7 @@ namespace PostOffice.Web.Api
                     {
                         if(item.groupId==93)    // thu ho
                         {
-                            item.TotalColection = _transactionDetailService.GetTotalEarnMoneyByTransactionId(item.ID);
+                            item.TotalColection = _transactionDetailService.GetTotalMoneyByTransactionId(item.ID);
                             item.TotalFee = _transactionDetailService.GetTotalFeeByTransactionId(item.ID);
                         }
                         else
